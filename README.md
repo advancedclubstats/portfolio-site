@@ -78,6 +78,7 @@ portfolio-site/
 │  ├─ script.js         reveal-on-scroll + Ask-AI buttons
 │  └─ img/              screenshots (roundrecall-cover.png is a placeholder)
 ├─ steal-list.md        what we lifted from each reference site
+├─ CLAUDE.md            context for Claude Code (design intent + open tasks)
 └─ package.json
 ```
 

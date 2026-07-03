@@ -55,44 +55,80 @@
 <body>
   <a class="skip" href="#work">Skip to work</a>
 
-  <!-- TOP BAR -->
-  <div class="topbar">
+  <!-- NAME + SOCIALS (the only things outside a card) -->
+  <div class="topbar" id="home">
     <span class="mark"><%= config.name %></span>
-    <a class="mark-link" href="mailto:<%= config.email %>">Email</a>
+    <nav class="socials" aria-label="Contact links">
+      <a href="mailto:<%= config.email %>">Email</a><% if (config.linkedin) { %>
+      <a href="<%= config.linkedin %>" target="_blank" rel="noopener">LinkedIn</a><% } %>
+      <a href="<%= config.roundRecallUrl %>" target="_blank" rel="noopener">RoundRecall</a>
+    </nav>
   </div>
 
   <main>
-    <!-- HERO -->
-    <header class="hero reveal" id="top">
-      <p class="eyebrow"><%= config.role %></p>
-      <h1 class="display">
-        <%= config.hero.lead %>
-        <span class="ghost"><%= config.hero.leadGhost %></span>
-      </h1>
-      <p class="role-line"><%= config.hero.role %></p>
-    </header>
-
-    <!-- WHAT I DO -->
-    <section class="block reveal" aria-labelledby="do-h">
-      <p class="label" id="do-h">What I do</p>
-      <ul class="stack">
-        <% config.whatIDo.forEach(function(line){ %>
-        <li><%= line %></li>
-        <% }); %>
-      </ul>
+    <!-- HOME: intro card -->
+    <section class="section" aria-label="Intro">
+      <div class="bento">
+        <div class="card card-text card-xl reveal">
+          <div class="card-pad">
+            <p class="card-eyebrow"><%= config.intro.eyebrow %></p>
+            <h1 class="card-head display"><%= config.intro.head %></h1>
+            <% config.intro.body.forEach(function(p){ %>
+            <p class="card-para"><%= p %></p>
+            <% }); %>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- WORK (BENTO) -->
-    <section class="block reveal" id="work" aria-labelledby="work-h">
-      <p class="label" id="work-h">Work</p>
+    <!-- ABOUT: what I do / how I think / what I want, all cards -->
+    <section class="section" id="about" aria-label="About">
+      <div class="bento">
+        <div class="card card-text card-md reveal">
+          <div class="card-pad">
+            <p class="card-eyebrow">What I do</p>
+            <ul class="stack">
+              <% config.whatIDo.forEach(function(line){ %>
+              <li><%= line %></li>
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card card-text card-md reveal">
+          <div class="card-pad">
+            <p class="card-eyebrow">What I want</p>
+            <ul class="stack">
+              <% config.whatIWant.forEach(function(line){ %>
+              <li><%= line %></li>
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card card-text card-lg think reveal">
+          <div class="card-pad">
+            <p class="card-eyebrow">How I think</p>
+            <ul class="aphorisms">
+              <% config.howIThink.forEach(function(line){ %>
+              <li class="display"><%= line %></li>
+              <% }); %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK: screenshot-first cards -->
+    <section class="section" id="work" aria-label="Work">
       <div class="bento">
         <% projects.forEach(function(p){ %>
-        <a class="card card-<%= p.size %>" href="/work/<%= p.slug %>">
+        <a class="card card-<%= p.size %> reveal" href="/work/<%= p.slug %>">
           <span class="shot">
             <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />
           </span>
           <span class="card-foot">
-            <span class="card-text">
+            <span class="card-text-inline">
               <span class="card-label display"><%= p.label %></span>
               <span class="card-tagline"><%= p.tagline %></span>
             </span>
@@ -106,51 +142,37 @@
       </div>
     </section>
 
-    <!-- HOW I THINK -->
-    <section class="block think reveal" aria-labelledby="think-h">
-      <p class="label" id="think-h">How I think</p>
-      <ul class="aphorisms">
-        <% config.howIThink.forEach(function(line){ %>
-        <li class="display"><%= line %></li>
-        <% }); %>
-      </ul>
-    </section>
-
-    <!-- WHAT I WANT -->
-    <section class="block reveal" aria-labelledby="want-h">
-      <p class="label" id="want-h">What I want</p>
-      <ul class="stack">
-        <% config.whatIWant.forEach(function(line){ %>
-        <li><%= line %></li>
-        <% }); %>
-      </ul>
+    <!-- CONTACT: reach me + ask an AI, as a card -->
+    <section class="section" id="contact" aria-label="Contact">
+      <div class="bento">
+        <div class="card card-text card-xl reveal">
+          <div class="card-pad">
+            <p class="card-eyebrow">Reach me</p>
+            <p class="contact-line">
+              <a href="mailto:<%= config.email %>"><%= config.email %></a>
+            </p>
+            <p class="ask-sub">Or ask an AI about me. It opens with a prompt ready to send.</p>
+            <div class="ai-buttons" data-prompt="<%= config.askAiPrompt(config.name, config.domain) %>">
+              <button type="button" class="ai-btn" data-provider="chatgpt">ChatGPT</button>
+              <button type="button" class="ai-btn" data-provider="claude">Claude</button>
+              <button type="button" class="ai-btn" data-provider="perplexity">Perplexity</button>
+              <button type="button" class="ai-btn" data-provider="gemini">Gemini</button>
+            </div>
+            <p class="ask-note" id="ask-note" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- CONTACT / ASK-AI -->
-  <footer class="ask-ai reveal" aria-labelledby="ask-ai-h">
-    <p class="label" id="ask-ai-h">Reach me</p>
-    <p class="contact-line">
-      <a href="mailto:<%= config.email %>"><%= config.email %></a><% if (config.linkedin) { %>
-      <span class="dot">·</span>
-      <a href="<%= config.linkedin %>" target="_blank" rel="noopener">LinkedIn</a><% } %>
-    </p>
+  <p class="foot-meta">© <%= new Date().getFullYear() %> <%= config.name %></p>
 
-    <p class="ask-sub">Or ask an AI about me. It opens with a prompt ready to send.</p>
-    <div class="ai-buttons" data-prompt="<%= config.askAiPrompt(config.name, config.domain) %>">
-      <button type="button" class="ai-btn" data-provider="chatgpt">ChatGPT</button>
-      <button type="button" class="ai-btn" data-provider="claude">Claude</button>
-      <button type="button" class="ai-btn" data-provider="perplexity">Perplexity</button>
-      <button type="button" class="ai-btn" data-provider="gemini">Gemini</button>
-    </div>
-    <p class="ask-note" id="ask-note" role="status" aria-live="polite"></p>
-
-    <p class="foot-meta">
-      <a href="#top">Back to top</a>
-      <span class="dot">·</span>
-      © <%= new Date().getFullYear() %> <%= config.name %>
-    </p>
-  </footer>
+  <!-- FLOATING NAV (FAB pill) -->
+  <nav class="fab" aria-label="Section navigation">
+    <% config.nav.forEach(function(item){ %>
+    <a href="#<%= item.target %>" data-target="<%= item.target %>"><%= item.label %></a>
+    <% }); %>
+  </nav>
 
   <script src="/script.js"></script>
 </body>

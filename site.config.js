@@ -28,12 +28,23 @@ module.exports = {
   askAiPrompt: (name, domain) =>
     `Tell me about ${name} based on ${domain}. Summarize who they are, what they do, and how to get in touch.`,
 
+  // Floating nav (the FAB pill). Each item scrolls to a section id on the page.
+  nav: [
+    { label: "Home", target: "home" },
+    { label: "About", target: "about" },
+    { label: "Work", target: "work" },
+    { label: "Contact", target: "contact" },
+  ],
+
   // --- Page copy (edit these strings to change the words on the page) -------
-  hero: {
-    // The big line. Kept as two parts so the second can render in ghost gray.
-    lead: "I find where products leak money.",
-    leadGhost: "Then I fix it.",
-    role: "Growth and monetization PM. Ex-Outschool.",
+  // The big intro card. Placeholder copy — rewrite it in your own voice.
+  intro: {
+    eyebrow: "Matt is a product manager",
+    head: "I work on the part of a product where money is won or lost.",
+    body: [
+      "Placeholder. Say who you are in two or three lines.",
+      "Growth, monetization, conversion. The expensive problems, not the obvious ones.",
+    ],
   },
 
   whatIDo: [

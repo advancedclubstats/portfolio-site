@@ -79,3 +79,26 @@
 
   els.forEach((el) => io.observe(el));
 })();
+
+// Floating nav: highlight the section currently in view.
+(function () {
+  const links = Array.from(document.querySelectorAll(".fab a"));
+  if (!links.length) return;
+
+  const sections = links
+    .map((a) => ({ link: a, el: document.getElementById(a.dataset.target) }))
+    .filter((s) => s.el);
+
+  function update() {
+    const y = window.scrollY + window.innerHeight * 0.35;
+    let current = sections[0];
+    for (const s of sections) {
+      if (s.el.offsetTop <= y) current = s;
+    }
+    links.forEach((a) => a.classList.toggle("active", a === current.link));
+  }
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+})();

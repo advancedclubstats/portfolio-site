@@ -31,6 +31,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  padding-bottom: 96px;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
@@ -85,9 +86,9 @@ a { color: inherit; }
 .mark {
   font-family: var(--font-display);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
 }
 .mark-link {
   font-family: var(--font-display);
@@ -101,15 +102,56 @@ a { color: inherit; }
 }
 .mark-link:hover { color: var(--ink); }
 
+.socials {
+  display: flex;
+  gap: 18px;
+}
+.socials a {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color .15s ease;
+}
+.socials a:hover { color: var(--ink); }
+
 /* --- Layout shell ---------------------------------------------------------- */
 main {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 24px 40px;
+  padding: 0 24px;
 }
 
-.block { padding: 56px 0; border-top: 1px solid var(--line); }
-.block:first-of-type { border-top: none; }
+/* Each nav target is a section; they stack with the same gap as the bento. */
+.section { margin-bottom: var(--gap); scroll-margin-top: 24px; }
+
+/* --- Text cards (everything that isn't a work screenshot) ----------------- */
+.card-text { background: var(--card); }
+.card-pad { padding: 32px; }
+.card-eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+.card-head {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  margin: 0 0 18px;
+  max-width: 22ch;
+}
+.card-para {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+  max-width: 46ch;
+}
+.card-para:last-child { margin-bottom: 0; }
 
 /* --- Hero ------------------------------------------------------------------ */
 .hero { padding: 40px 0 64px; }
@@ -189,7 +231,7 @@ main {
   gap: 12px;
   padding: 18px 22px 22px;
 }
-.card-text { display: flex; flex-direction: column; }
+.card-text-inline { display: flex; flex-direction: column; }
 .card-label {
   font-size: clamp(1.25rem, 4.4vw, 1.7rem);
   line-height: 1;
@@ -267,13 +309,64 @@ main {
 .ask-note { min-height: 1.2em; margin: 14px 0 0; color: var(--ink-soft); font-size: 0.9rem; }
 
 .foot-meta {
-  margin: 44px 0 0;
+  max-width: var(--maxw);
+  margin: 24px auto 0;
+  padding: 0 24px;
   font-size: 0.85rem;
   color: var(--ink-soft);
+  text-align: center;
 }
 .foot-meta a { text-decoration: none; }
 .foot-meta a:hover { text-decoration: underline; }
 .dot { margin: 0 8px; color: var(--ghost); }
+
+/* --- Floating nav (FAB pill) ---------------------------------------------- */
+.fab {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border: 0.5px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.14);
+  z-index: 40;
+}
+.fab a {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding: 9px 18px;
+  border-radius: 999px;
+  transition: background .18s ease, color .18s ease;
+}
+.fab a:hover { color: var(--ink); }
+.fab a.active {
+  color: var(--ink);
+  background: var(--card);
+}
+.fab a.active::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e0503a;
+  transform: translateY(-50%);
+}
+.fab a.active { padding-left: 22px; }
 
 /* --- Detail / article pages ------------------------------------------------ */
 .article {
@@ -371,7 +464,10 @@ main {
   .card-sm  { grid-column: span 1; }
   .card-md  { grid-column: span 1; }
   .card-lg,
-  .card-xl  { grid-column: span 2; flex-direction: row; align-items: stretch; min-height: 340px; }
+  .card-xl  { grid-column: span 2; }
+  /* only work (screenshot) cards go side-by-side; text cards stay stacked */
+  .card-lg:not(.card-text),
+  .card-xl:not(.card-text) { flex-direction: row; align-items: stretch; min-height: 340px; }
 
   .card-lg .shot,
   .card-xl .shot { width: 60%; aspect-ratio: auto; height: auto; }
