@@ -80,6 +80,34 @@
   els.forEach((el) => io.observe(el));
 })();
 
+// Quiz-chip mock (Signup Rebuild card): click a subject chip to toggle it
+// selected, same as the real onboarding quiz. Purely visual, no state saved.
+// Chips sit inside the card's outer <a>, so clicks must stop here or they'd
+// also navigate to the detail page.
+(function () {
+  const chips = document.querySelectorAll(".qm-chip");
+  if (!chips.length) return;
+
+  function toggle(chip) {
+    chip.classList.toggle("selected");
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle(chip);
+    });
+    chip.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        e.stopPropagation();
+        toggle(chip);
+      }
+    });
+  });
+})();
+
 // Floating nav: highlight the section currently in view.
 (function () {
   const links = Array.from(document.querySelectorAll(".fab a"));

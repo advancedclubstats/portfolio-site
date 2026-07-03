@@ -433,6 +433,58 @@ main {
 }
 .pn-fab svg { width: 15px; height: 15px; }
 
+/* --- Signup Rebuild card: a real, clickable fragment of the interest-picker
+   quiz, not a full screen. Colors are eyeballed off a screenshot (Outschool
+   is behind a signup wall, no source access), unlike the RoundRecall mock
+   where exact tokens came from the live app. Oversized + centered inside an
+   overflow:hidden shot so it reads as "zoomed into" a bigger screen, same
+   bleed treatment as the other screenshot cards. --------------------------- */
+.quiz-shot {
+  background: linear-gradient(180deg, #efeaf9, #f6f3fb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 18px;
+}
+.quiz-mock {
+  width: 122%;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 48px rgba(38,20,90,0.12);
+  padding: 14px 16px 16px;
+}
+.qm-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  color: #6b6b74;
+  margin-bottom: 10px;
+}
+.qm-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+.qm-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1.5px solid #e3e0ec;
+  background: #fff;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #2b2b33;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.qm-chip:hover:not(.selected) { border-color: #b9b0dd; }
+.qm-chip:focus-visible { outline: 2px solid #5b2fe8; outline-offset: 2px; }
+.qm-chip.selected { background: #5b2fe8; border-color: #5b2fe8; color: #fff; }
+.qm-icon { width: 13px; height: 13px; flex-shrink: 0; }
+.qm-x { width: 10px; height: 10px; flex-shrink: 0; display: none; }
+.qm-chip.selected .qm-x { display: inline-flex; }
+
 /* Thin text strip below the image. Short label + one line. */
 .card-foot {
   display: flex;

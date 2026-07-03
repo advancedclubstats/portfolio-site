@@ -109,6 +109,7 @@ module.exports = [
     label: "Signup rebuild",
     tagline: "Rebuilt onboarding and cut the dead steps.",
     screenshot: "signup-rebuild.png",
+    quizMock: true,
     number: "3x",
     metric: "signups",
     org: "Outschool",
