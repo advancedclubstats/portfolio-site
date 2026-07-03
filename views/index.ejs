@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= config.name %> · <%= config.role %></title>
+
+  <meta name="description" content="<%= config.metaDescription %>" />
+  <meta name="author" content="<%= config.name %>" />
+  <link rel="canonical" href="<%= config.baseUrl %>/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="<%= config.name %> · <%= config.role %>" />
+  <meta property="og:description" content="<%= config.metaDescription %>" />
+  <meta property="og:url" content="<%= config.baseUrl %>/" />
+  <meta property="profile:first_name" content="Matt" />
+  <meta property="profile:last_name" content="Martin" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="<%= config.name %> · <%= config.role %>" />
+  <meta name="twitter:description" content="<%= config.metaDescription %>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- Structured data: helps an AI answer "who is Matt Martin" accurately -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matt Martin",
+    "alternateName": "Matthew Martin",
+    "url": "<%= config.baseUrl %>/",
+    "email": "mailto:<%= config.email %>",
+    "jobTitle": "Growth & Monetization Product Manager",
+    "description": "<%= config.metaDescription %>",
+    "knowsAbout": [
+      "Product Management", "Growth", "Monetization", "Pricing strategy",
+      "Conversion optimization", "Onboarding", "Experimentation",
+      "Marketplace products", "Subscription products"
+    ],
+    "worksFor": { "@type": "Organization", "name": "Independent / open to opportunities" },
+    "alumniOf": { "@type": "Organization", "name": "Outschool" },
+    "sameAs": [
+      "<%= config.roundRecallUrl %>"<% if (config.linkedin) { %>,
+      "<%= config.linkedin %>"<% } %>
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span class="mark"><%= config.name %></span>
+    <a class="mark-link" href="mailto:<%= config.email %>">Email</a>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <header class="hero reveal" id="top">
+      <p class="eyebrow"><%= config.role %></p>
+      <h1 class="display">
+        <%= config.hero.lead %>
+        <span class="ghost"><%= config.hero.leadGhost %></span>
+      </h1>
+      <p class="role-line"><%= config.hero.role %></p>
+    </header>
+
+    <!-- WHAT I DO -->
+    <section class="block reveal" aria-labelledby="do-h">
+      <p class="label" id="do-h">What I do</p>
+      <ul class="stack">
+        <% config.whatIDo.forEach(function(line){ %>
+        <li><%= line %></li>
+        <% }); %>
+      </ul>
+    </section>
+
+    <!-- WORK (BENTO) -->
+    <section class="block reveal" id="work" aria-labelledby="work-h">
+      <p class="label" id="work-h">Work</p>
+      <div class="bento">
+        <% projects.forEach(function(p){ %>
+        <a class="card card-<%= p.size %> <%= p.screenshot ? 'has-shot' : 'text-only' %>" href="/work/<%= p.slug %>">
+          <% if (p.screenshot) { %>
+          <span class="shot" aria-hidden="true">
+            <img src="/img/<%= p.screenshot %>" alt="" loading="lazy" />
+          </span>
+          <% } %>
+          <span class="card-body">
+            <span class="number display"><%= p.number %></span>
+            <span class="metric"><%= p.metric %></span>
+          </span>
+          <span class="card-foot">
+            <span class="org"><%= p.org %></span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </span>
+        </a>
+        <% }); %>
+      </div>
+    </section>
+
+    <!-- HOW I THINK -->
+    <section class="block think reveal" aria-labelledby="think-h">
+      <p class="label" id="think-h">How I think</p>
+      <ul class="aphorisms">
+        <% config.howIThink.forEach(function(line){ %>
+        <li class="display"><%= line %></li>
+        <% }); %>
+      </ul>
+    </section>
+
+    <!-- WHAT I WANT -->
+    <section class="block reveal" aria-labelledby="want-h">
+      <p class="label" id="want-h">What I want</p>
+      <ul class="stack">
+        <% config.whatIWant.forEach(function(line){ %>
+        <li><%= line %></li>
+        <% }); %>
+      </ul>
+    </section>
+  </main>
+
+  <!-- CONTACT / ASK-AI -->
+  <footer class="ask-ai reveal" aria-labelledby="ask-ai-h">
+    <p class="label" id="ask-ai-h">Reach me</p>
+    <p class="contact-line">
+      <a href="mailto:<%= config.email %>"><%= config.email %></a><% if (config.linkedin) { %>
+      <span class="dot">·</span>
+      <a href="<%= config.linkedin %>" target="_blank" rel="noopener">LinkedIn</a><% } %>
+    </p>
+
+    <p class="ask-sub">Or ask an AI about me. It opens with a prompt ready to send.</p>
+    <div class="ai-buttons" data-prompt="<%= config.askAiPrompt(config.name, config.domain) %>">
+      <button type="button" class="ai-btn" data-provider="chatgpt">ChatGPT</button>
+      <button type="button" class="ai-btn" data-provider="claude">Claude</button>
+      <button type="button" class="ai-btn" data-provider="perplexity">Perplexity</button>
+      <button type="button" class="ai-btn" data-provider="gemini">Gemini</button>
+    </div>
+    <p class="ask-note" id="ask-note" role="status" aria-live="polite"></p>
+
+    <p class="foot-meta">
+      <a href="#top">Back to top</a>
+      <span class="dot">·</span>
+      © <%= new Date().getFullYear() %> <%= config.name %>
+    </p>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

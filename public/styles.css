@@ -1,0 +1,401 @@
+/* ===========================================================================
+   Matt Martin — portfolio
+   Branding stolen from spencergabor.work: geometric caps display, charcoal on
+   white, ghost-gray secondary, small wide-tracked labels.
+   Structure stolen from marco.fyi: single-column -> bento grid, big rounded
+   light-gray cards, oversized clipped screenshots. Color comes from the shots.
+   =========================================================================== */
+
+:root {
+  --paper: #ffffff;
+  --ink: #2c2c2c;          /* primary text */
+  --ink-soft: #6b6b6b;     /* secondary text */
+  --ghost: #d2d2d2;        /* ghost headline / faint */
+  --card: #f6f6f8;         /* card background */
+  --card-2: #efeff2;       /* alt card / hover */
+  --line: #e7e7ea;         /* hairlines */
+  --accent: #2c2c2c;       /* kept monochrome; screenshots supply color */
+
+  --maxw: 940px;
+  --gap: 16px;
+  --radius: 28px;
+  --radius-sm: 18px;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: 12px; top: 12px;
+  background: var(--ink); color: #fff;
+  padding: 8px 14px; border-radius: 8px; z-index: 50;
+}
+
+/* --- Display type ---------------------------------------------------------- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.98;
+}
+
+/* --- Small labels (Spencer's wide-tracked uppercase) ---------------------- */
+.label,
+.eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+}
+
+/* --- Top bar --------------------------------------------------------------- */
+.topbar {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 22px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mark {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  font-size: 15px;
+}
+.mark-link {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color .15s ease;
+}
+.mark-link:hover { color: var(--ink); }
+
+/* --- Layout shell ---------------------------------------------------------- */
+main {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+
+.block { padding: 56px 0; border-top: 1px solid var(--line); }
+.block:first-of-type { border-top: none; }
+
+/* --- Hero ------------------------------------------------------------------ */
+.hero { padding: 40px 0 64px; }
+.hero .eyebrow { margin-bottom: 24px; }
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 11vw, 5.6rem);
+}
+.hero .ghost { color: var(--ghost); display: inline; }
+.role-line {
+  margin: 28px 0 0;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  max-width: 34ch;
+}
+
+/* --- Stacked lists (what I do / what I want) ------------------------------ */
+.stack {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.stack li {
+  font-size: clamp(1.15rem, 4.4vw, 1.55rem);
+  line-height: 1.3;
+  max-width: 30ch;
+  font-weight: 500;
+}
+
+/* --- Bento grid (Marco) ---------------------------------------------------- */
+.bento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 210px;
+  padding: 26px;
+  background: var(--card);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform .25s ease, background .25s ease;
+}
+.card:hover { transform: translateY(-3px); background: var(--card-2); }
+
+.card-body { position: relative; z-index: 2; }
+.number {
+  display: block;
+  font-size: clamp(2.6rem, 9vw, 4rem);
+  line-height: 0.9;
+}
+.metric {
+  display: block;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 22ch;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--font-body);
+}
+.card-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 28px;
+}
+.org {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.arrow {
+  font-size: 18px;
+  color: var(--ink-soft);
+  transform: translateX(0);
+  transition: transform .25s ease, color .25s ease;
+}
+.card:hover .arrow { transform: translateX(4px); color: var(--ink); }
+
+/* Oversized, clipped screenshot snippet (Marco's "too big, cut off, rounded").
+   Fixed height so it reads as a cropped snippet and never rides up over the
+   number/heading. object-fit shows the top of the shot, zoomed. */
+.card.has-shot { min-height: 300px; }
+.card .shot {
+  position: absolute;
+  right: -6%;
+  bottom: -8%;
+  width: 70%;
+  height: 56%;
+  z-index: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.16);
+  transform: rotate(-2deg) scale(1);
+  transition: transform .35s ease;
+}
+.card.has-shot:hover .shot { transform: rotate(-2deg) scale(1.05); }
+.card .shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.card.has-shot .metric { max-width: 16ch; }
+/* the whole card is the link; drop the arrow on shot cards to avoid it landing
+   on top of the screenshot */
+.card.has-shot .arrow { display: none; }
+
+/* --- How I think (aphorisms) ---------------------------------------------- */
+.think .aphorisms {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  gap: 28px;
+}
+.think .aphorisms li {
+  font-size: clamp(1.5rem, 6.5vw, 2.6rem);
+  line-height: 1.02;
+  max-width: 20ch;
+}
+
+/* --- Ask-AI / footer ------------------------------------------------------- */
+.ask-ai {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 56px 24px 72px;
+  border-top: 1px solid var(--line);
+}
+.contact-line {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.3rem, 5vw, 2rem);
+  margin: 0 0 40px;
+}
+.contact-line a { text-decoration: none; }
+.contact-line a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ask-sub { color: var(--ink-soft); margin: 0 0 16px; }
+
+.ai-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+.ai-btn {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 11px 18px;
+  cursor: pointer;
+  transition: background .15s ease, transform .1s ease, border-color .15s ease;
+}
+.ai-btn:hover { background: var(--card-2); border-color: var(--ghost); }
+.ai-btn:active { transform: translateY(1px); }
+.ask-note { min-height: 1.2em; margin: 14px 0 0; color: var(--ink-soft); font-size: 0.9rem; }
+
+.foot-meta {
+  margin: 44px 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.foot-meta a { text-decoration: none; }
+.foot-meta a:hover { text-decoration: underline; }
+.dot { margin: 0 8px; color: var(--ghost); }
+
+/* --- Detail / article pages ------------------------------------------------ */
+.article {
+  max-width: 720px;
+  padding-top: 12px;
+}
+.article-head { padding: 24px 0 8px; }
+.article-head .eyebrow { margin-bottom: 20px; }
+.number.big {
+  font-size: clamp(3.4rem, 16vw, 7rem);
+  margin: 0 0 8px;
+}
+.article-head h1 {
+  margin: 0 0 20px;
+  font-size: clamp(2rem, 8vw, 3.2rem);
+}
+.article .lede {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 40ch;
+}
+.article-hero-shot {
+  margin: 36px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+}
+.article-hero-shot img { display: block; width: 100%; height: auto; }
+
+.article-section { padding: 26px 0; }
+.article-section h2 { margin-bottom: 14px; }
+.article-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  max-width: 62ch;
+}
+.article-gallery { display: grid; gap: 16px; margin: 24px 0; }
+.article-gallery img {
+  width: 100%; height: auto; display: block;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+}
+.article-gallery figcaption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 8px; }
+
+.article-cta { margin: 32px 0 0; }
+.article-cta a {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 3px;
+}
+.article-back { margin: 56px 0 20px; border-top: 1px solid var(--line); padding-top: 28px; }
+.article-back a {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.article-back a:hover { color: var(--ink); }
+
+/* --- Reveal on scroll ------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ===========================================================================
+   Desktop: single column becomes a bento (Marco). Comfortable centered column,
+   not a new layout.
+   =========================================================================== */
+@media (min-width: 720px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: dense;
+  }
+  /* sizing controls: sm=1 col, md=1 col, lg=full width, xl=full + tall */
+  .card-sm  { grid-column: span 1; }
+  .card-md  { grid-column: span 1; }
+  .card-lg  { grid-column: span 2; }
+  .card-xl  { grid-column: span 2; min-height: 420px; }
+
+  .card-lg { flex-direction: row; align-items: flex-end; }
+  .card-lg .card-body { flex: 1; position: relative; z-index: 2; }
+  .card-lg.has-shot { min-height: 360px; }
+  .card-lg .shot { width: 44%; height: 84%; right: -3%; bottom: -8%; }
+
+  .think .aphorisms { gap: 34px; }
+}
+
+@media (min-width: 960px) {
+  :root { --radius: 32px; }
+}
