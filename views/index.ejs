@@ -113,9 +113,52 @@
       <div class="bento">
         <% projects.forEach(function(p){ %>
         <a class="card card-<%= p.size %> reveal" href="/work/<%= p.slug %>">
+          <% if (p.phoneMock) { %>
+          <span class="shot phone-shot" aria-label="RoundRecall dashboard preview, scrollable">
+            <span class="phone">
+              <span class="phone-notch"></span>
+              <span class="phone-screen">
+                <span class="pm-title">Dashboard</span>
+
+                <span class="pm-leak">
+                  <span class="pm-eyebrow">Biggest leak</span>
+                  <span class="pm-leak-label">Putts 10&ndash;20 ft</span>
+                  <span class="pm-leak-number">&minus;0.77<span class="pm-unit">/round</span></span>
+                  <span class="pm-leak-sub">8% made vs scratch &asymp; 22% &middot; across 86 shots</span>
+                </span>
+
+                <span class="pm-section">Scoring shape</span>
+                <span class="pm-stat">+15%<span class="pm-unit">birdies &minus; doubles per hole</span></span>
+                <span class="pm-rows">
+                  <span class="pm-row"><span class="pm-dot dot-eagle"></span>Eagle+<b>1%</b></span>
+                  <span class="pm-row"><span class="pm-dot dot-birdie"></span>Birdie<b>17%</b></span>
+                  <span class="pm-row"><span class="pm-dot dot-par"></span>Par<b>58%</b></span>
+                  <span class="pm-row"><span class="pm-dot dot-bogey"></span>Bogey<b>20%</b></span>
+                  <span class="pm-row"><span class="pm-dot dot-double"></span>Double+<b>3%</b></span>
+                </span>
+
+                <span class="pm-section">Where strokes are lost</span>
+                <span class="pm-stat loss">&minus;1.19<span class="pm-unit">per round vs scratch</span></span>
+                <span class="pm-rows">
+                  <span class="pm-row"><span>Putting</span><b class="loss">&minus;1.15/rd</b></span>
+                  <span class="pm-row"><span>Short game</span><b class="loss">&minus;0.31/rd</b></span>
+                  <span class="pm-row"><span>Approach</span><b class="loss">&minus;0.06/rd</b></span>
+                </span>
+              </span>
+              <span class="phone-nav">
+                <span class="pn-item active">&#8962;</span>
+                <span class="pn-item">&#9873;</span>
+                <span class="pn-item pn-plus">+</span>
+                <span class="pn-item">&#9707;</span>
+                <span class="pn-item">&#9881;</span>
+              </span>
+            </span>
+          </span>
+          <% } else { %>
           <span class="shot">
             <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />
           </span>
+          <% } %>
           <span class="card-foot">
             <span class="card-text-inline">
               <span class="card-label display"><%= p.label %></span>

@@ -142,6 +142,7 @@ module.exports = [
     label: "Built solo",
     tagline: "A golf app, designed and shipped end to end.",
     screenshot: "roundrecall-cover.png",
+    phoneMock: true,
     number: "Built solo",
     metric: "RoundRecall",
     org: "roundrecall.com",
