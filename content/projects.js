@@ -17,7 +17,10 @@
 //   number      big headline on the DETAIL page hero ("+35%", "3x", ...)
 //   metric      one line under the number on the detail hero
 //   org         small label ("Outschool", "roundrecall.com")
-//   size        bento sizing: "sm" | "md" | "lg" | "xl" (controls desktop span)
+//   size        bento sizing: "sm" | "md" | "lg" | "xl" | "tall" (controls
+//               desktop grid span — "tall" is 1 column x 2 rows, for portrait
+//               content like the RoundRecall phone mock; order in this array
+//               matters for how "tall" packs against its neighbors)
 //   link        external url (optional; shown as a CTA on the detail page)
 //   detail      the detail-page story. Keep the voice: short, concrete, no fluff.
 //               Each section is { heading, body } where body is an array of
@@ -58,6 +61,43 @@ module.exports = [
           body: [
             "New buyer conversion rose 35% year over year. Total payments rose 10%.",
             "The lift confirmed the bet. Membership had been net friction, not net value."
+          ]
+        }
+      ],
+      images: []
+    }
+  },
+  {
+    slug: "roundrecall",
+    label: "Built solo",
+    tagline: "A golf app, designed and shipped end to end.",
+    screenshot: "roundrecall-cover.png",
+    phoneMock: true,
+    number: "Built solo",
+    metric: "RoundRecall",
+    org: "roundrecall.com",
+    size: "tall",
+    link: "https://roundrecall.com",
+    detail: {
+      title: "RoundRecall",
+      lede: "RoundRecall reads your golf round from memory instead of making you tap after every shot. I kept deleting features until it said one true thing.",
+      sections: [
+        {
+          heading: "The idea",
+          body: [
+            "Most golf apps make you log every shot as you play. Nobody does it for long. RoundRecall lets you reconstruct the round afterward, from memory, and still get real insight."
+          ]
+        },
+        {
+          heading: "How I built it",
+          body: [
+            "Solo. Product, design, and the calls about what to leave out. The discipline was subtraction: every feature had to survive the question of whether it made the one true thing clearer or just added noise."
+          ]
+        },
+        {
+          heading: "See it",
+          body: [
+            "The live app is the best version of this story. Go tap around."
           ]
         }
       ],
@@ -131,43 +171,6 @@ module.exports = [
           heading: "What moved",
           body: [
             "Conversion held flat despite a real price increase to users. Money back to the company, regulatory risk down, and proof that careful UX can absorb a price change that normally hurts."
-          ]
-        }
-      ],
-      images: []
-    }
-  },
-  {
-    slug: "roundrecall",
-    label: "Built solo",
-    tagline: "A golf app, designed and shipped end to end.",
-    screenshot: "roundrecall-cover.png",
-    phoneMock: true,
-    number: "Built solo",
-    metric: "RoundRecall",
-    org: "roundrecall.com",
-    size: "lg",
-    link: "https://roundrecall.com",
-    detail: {
-      title: "RoundRecall",
-      lede: "RoundRecall reads your golf round from memory instead of making you tap after every shot. I kept deleting features until it said one true thing.",
-      sections: [
-        {
-          heading: "The idea",
-          body: [
-            "Most golf apps make you log every shot as you play. Nobody does it for long. RoundRecall lets you reconstruct the round afterward, from memory, and still get real insight."
-          ]
-        },
-        {
-          heading: "How I built it",
-          body: [
-            "Solo. Product, design, and the calls about what to leave out. The discipline was subtraction: every feature had to survive the question of whether it made the one true thing clearer or just added noise."
-          ]
-        },
-        {
-          heading: "See it",
-          body: [
-            "The live app is the best version of this story. Go tap around."
           ]
         }
       ],
