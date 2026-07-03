@@ -261,6 +261,37 @@
               </span>
             </span>
           </span>
+          <% } else if (p.pricingMock) { %>
+          <span class="shot mem-shot" aria-label="Outschool membership plan picker, click a plan to select it">
+            <span class="mem-mock">
+              <span class="mem-card selected" role="radio" aria-checked="true" tabindex="0">
+                <span class="mem-credits"><b>80</b> credits</span>
+                <span class="mem-price-row">
+                  <span class="mem-price">$0</span>
+                  <span class="mem-price-sub"><span class="mem-strike">$40 USD</span> / month</span>
+                </span>
+                <span class="mem-btn primary">Try for free</span>
+                <span class="mem-hr"></span>
+                <span class="mem-bullets">
+                  <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text">Covers <b>~1</b> group class per week</span></span>
+                  <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text"><b>Free access</b> to <span class="mem-link">100+ self-paced classes</span></span></span>
+                </span>
+              </span>
+              <span class="mem-card" role="radio" aria-checked="false" tabindex="0">
+                <span class="mem-credits"><b>144</b> credits</span>
+                <span class="mem-price-row">
+                  <span class="mem-price">$70</span>
+                  <span class="mem-price-sub">USD / month</span>
+                </span>
+                <span class="mem-btn outline">Select</span>
+                <span class="mem-hr"></span>
+                <span class="mem-bullets">
+                  <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text"><b>4 bonus credits</b>/mo included</span></span>
+                  <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text">Covers <b>~2</b> group classes per week</span></span>
+                </span>
+              </span>
+            </span>
+          </span>
           <% } else { %>
           <span class="shot">
             <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />

@@ -108,6 +108,39 @@
   });
 })();
 
+// Membership plan mock (Optional Membership card): click a plan card to
+// select it, radio-style — only one plan is selected at a time, same as
+// the real pricing picker. Same stopPropagation reasoning as the chips.
+(function () {
+  const groups = document.querySelectorAll(".mem-mock");
+  groups.forEach((group) => {
+    const cards = group.querySelectorAll(".mem-card");
+
+    function select(card) {
+      cards.forEach((c) => {
+        const isTarget = c === card;
+        c.classList.toggle("selected", isTarget);
+        c.setAttribute("aria-checked", isTarget ? "true" : "false");
+      });
+    }
+
+    cards.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        select(card);
+      });
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+          select(card);
+        }
+      });
+    });
+  });
+})();
+
 // Floating nav: highlight the section currently in view.
 (function () {
   const links = Array.from(document.querySelectorAll(".fab a"));

@@ -433,6 +433,85 @@ main {
 }
 .pn-fab svg { width: 15px; height: 15px; }
 
+/* --- Optional Membership card: two real, clickable plan cards from
+   Outschool's actual membership page, radio-style (click either to select
+   it — you can pick a plan, same "optional" story the card is about).
+   Values are computed styles pulled live off the real page (getComputedStyle
+   on the actual pricing cards), not eyeballed. Ginto Normal/Nord are paid
+   fonts; substituted with the shell's own body/display fonts. ------------ */
+.card .shot.mem-shot {
+  background: #f4f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px;
+}
+.mem-mock { display: flex; gap: 12px; max-width: 100%; overflow-x: auto; }
+.mem-card {
+  flex: 0 0 auto;
+  width: 168px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e0e0e0;
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.mem-card.selected {
+  border-color: #4b01d4;
+  box-shadow: 0 0 3px rgba(0,0,0,0.04), 0 6px 14px rgba(0,0,0,0.08);
+}
+.mem-credits {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #262626;
+  margin-bottom: 6px;
+}
+.mem-credits b { font-weight: 700; }
+.mem-price-row { display: flex; flex-direction: column; margin-bottom: 12px; }
+.mem-price {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #262626;
+}
+.mem-price-sub { font-family: var(--font-body); font-size: 11px; font-weight: 500; color: #262626; }
+.mem-strike { color: #767676; text-decoration: line-through; }
+.mem-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 14px;
+  text-align: center;
+}
+.mem-btn.primary { background: #4b01d4; color: #fff; }
+.mem-btn.outline { background: #fff; color: #4b01d4; border: 1.5px solid #b4befe; }
+.mem-hr { border: none; border-top: 1px solid rgba(0,0,0,0.12); margin: 14px 0; }
+.mem-bullets { display: flex; flex-direction: column; gap: 8px; }
+.mem-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  line-height: 1.4;
+  color: #262626;
+}
+.mem-bullet b { font-weight: 700; }
+.mem-bullet-text { flex: 1; min-width: 0; }
+.mem-dot { color: #4caf50; flex-shrink: 0; }
+.mem-link { color: #4b01d4; }
+
 /* --- Signup Rebuild card: a real, clickable fragment of the interest-picker
    quiz, not a full screen. Values below are computed styles pulled live off
    the actual Outschool quiz (getComputedStyle, same method as RoundRecall) —

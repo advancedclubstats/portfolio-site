@@ -33,6 +33,7 @@ module.exports = [
     label: "Optional membership",
     tagline: "Made membership optional across web and mobile.",
     screenshot: "membership-optional.png",
+    pricingMock: true,
     number: "+35%",
     metric: "new buyer conversion",
     org: "Outschool",
