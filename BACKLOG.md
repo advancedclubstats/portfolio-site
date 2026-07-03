@@ -9,6 +9,11 @@
   HTML/CSS inside a CSS phone frame, native `overflow-y` scroll, no JS.
   Proved out — ruled out iframe (auth wall) and screen recording (extra
   asset, not interactive).
+- Pixel-matched the mock to RoundRecall's actual design tokens (fonts,
+  colors, FAB nav) pulled straight from the golf-tracker codebase.
+- Work grid reshaped: RoundRecall is now a "tall" (1x2) card packed beside
+  two stacked md cards instead of a wide/short hero — varied tile shapes
+  like the marco.fyi reference, fixed 340px row unit so it aligns cleanly.
 
 ## In progress
 - Real screenshots to replace the 3 remaining placeholder PNGs (Outschool
