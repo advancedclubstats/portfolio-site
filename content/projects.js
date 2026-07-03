@@ -28,7 +28,7 @@ module.exports = [
   {
     slug: "membership-optional",
     label: "Optional membership",
-    tagline: "Made it optional. Conversion up.",
+    tagline: "Made membership optional across web and mobile.",
     screenshot: "membership-optional.png",
     number: "+35%",
     metric: "new buyer conversion",
@@ -67,7 +67,7 @@ module.exports = [
   {
     slug: "signup-rebuild",
     label: "Signup rebuild",
-    tagline: "Cut the dead steps. 3x signups.",
+    tagline: "Rebuilt onboarding and cut the dead steps.",
     screenshot: "signup-rebuild.png",
     number: "3x",
     metric: "signups",
@@ -103,7 +103,7 @@ module.exports = [
   {
     slug: "sales-tax",
     label: "Sales tax at checkout",
-    tagline: "Added a price. Kept conversion.",
+    tagline: "Added tax at checkout without losing conversion.",
     screenshot: "sales-tax.png",
     number: "0",
     metric: "conversion lost",
@@ -140,7 +140,7 @@ module.exports = [
   {
     slug: "roundrecall",
     label: "Built solo",
-    tagline: "My taste, no committee.",
+    tagline: "A golf app, designed and shipped end to end.",
     screenshot: "roundrecall-cover.png",
     number: "Built solo",
     metric: "RoundRecall",

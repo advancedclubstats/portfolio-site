@@ -39,11 +39,11 @@ module.exports = {
   // --- Page copy (edit these strings to change the words on the page) -------
   // The big intro card. Placeholder copy — rewrite it in your own voice.
   intro: {
-    eyebrow: "Matt is a product manager",
-    head: "I work on the part of a product where money is won or lost.",
+    eyebrow: "Product manager · growth and monetization",
+    head: "I turn vague, expensive problems into decisions a team can ship.",
     body: [
-      "Placeholder. Say who you are in two or three lines.",
-      "Growth, monetization, conversion. The expensive problems, not the obvious ones.",
+      "Most recently at Outschool, on pricing, onboarding, checkout, and membership. Before product I was in product marketing, so I start from why people buy.",
+      "I'm best where the right move isn't obvious yet. That's usually where the leverage is.",
     ],
   },
 
