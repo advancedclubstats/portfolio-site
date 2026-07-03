@@ -15,17 +15,24 @@
   two stacked md cards instead of a wide/short hero — varied tile shapes
   like the marco.fyi reference, fixed 340px row unit so it aligns cleanly.
 - Signup Rebuild card: real clickable fragment of Outschool's interest-chip
-  quiz (click a chip to toggle purple/X, same as the real thing). Colors
-  eyeballed off a screenshot, not live-diffed (Outschool's behind a signup
-  wall, no source/dev-server access like RoundRecall had).
+  quiz (click a chip to toggle purple/X, same as the real thing). Started
+  eyeballed off a screenshot, later pixel-matched exactly once the user
+  added their logged-in Outschool tab to the browser automation group —
+  fixed 4 wrong icons, then swapped all 11 to exact FontAwesome paths.
+- Optional Membership card: real clickable pricing-tier picker, two plan
+  cards from Outschool's actual membership page, click to select
+  (radio-style) — the interaction itself demonstrates "mandatory → optional."
+  Live-diffed via the same shared-tab method, not eyeballed.
 
 ## In progress
-- Real screenshots to replace the 2 remaining placeholder PNGs (membership-
-  optional, sales-tax — still 1080x1350 colored fakes)
+- Real screenshot to replace the 1 remaining placeholder PNG (sales-tax —
+  still 1080x1350 colored fake)
 - Custom domain (currently `matt-martin-portfolio.onrender.com` via Render
   free tier)
 
 ## Next
-- Decide whether membership-optional / sales-tax get the same engaging-
-  widget treatment or stay screenshot-first once real screenshots land —
-  don't retrofit until screenshots are in hand
+- Decide whether sales-tax gets the same engaging-widget treatment or stays
+  screenshot-first once a real screenshot lands — don't retrofit until then
+- If the user has other Outschool pages open, the same shared-tab pattern
+  (add their logged-in tab to the browser automation group) is the fastest
+  path to pixel-exact recreations — much better than eyeballing screenshots
