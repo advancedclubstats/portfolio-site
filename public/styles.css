@@ -238,31 +238,58 @@ main {
   background: #e2e0d8;
   padding: 24px 0;
 }
+/* Outer box: real iPhone proportions (19.5:9), holds the side buttons that
+   hang off the frame. No chrome of its own — .phone-frame carries that. */
 .phone {
+  position: relative;
+  width: 210px;
+  height: 100%;
+  max-height: 455px;
+  aspect-ratio: 9 / 19.5;
+}
+.phone::before, .phone::after {
+  content: "";
+  position: absolute;
+  background: #14201a;
+}
+.phone::before { /* power button, right side */
+  right: -3px;
+  top: 26%;
+  width: 3px;
+  height: 9%;
+  border-radius: 0 2px 2px 0;
+}
+.phone::after { /* volume rocker, left side */
+  left: -3px;
+  top: 16%;
+  width: 3px;
+  height: 16%;
+  border-radius: 2px 0 0 2px;
+}
+.phone-frame {
   --rr-font-display: "Bricolage Grotesque", var(--font-display);
   --rr-font-mono: "Martian Mono", monospace;
   --rr-font-body: "Hanken Grotesk", var(--font-body);
   position: relative;
-  width: 260px;
+  width: 100%;
   height: 100%;
-  max-height: 380px;
   background: #f6f3ec;
-  border-radius: 34px;
-  border: 7px solid #14201a;
+  border-radius: 30px;
+  border: 8px solid #14201a;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   box-shadow: 0 24px 48px rgba(0,0,0,0.2);
 }
-.phone-notch {
+.phone-island {
   position: absolute;
-  top: 0;
+  top: 8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 84px;
+  width: 64px;
   height: 18px;
   background: #14201a;
-  border-radius: 0 0 12px 12px;
+  border-radius: 999px;
   z-index: 2;
 }
 .phone-screen {
@@ -271,11 +298,17 @@ main {
   flex-direction: column;
   gap: 12px;
   overflow-y: auto;
-  padding: 28px 14px 14px;
+  padding: 32px 14px 14px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 .phone-screen::-webkit-scrollbar { display: none; }
+/* Every direct child must resist flex-shrink, otherwise the two rows that
+   have overflow:hidden (pm-leak, pm-bar — needed for rounded clipping) get
+   crushed toward 0 height instead of the column properly overflowing to
+   scroll: an overflow:hidden flex item's automatic min-height is 0, so it's
+   the first thing sacrificed when content doesn't fit. */
+.phone-screen > * { flex-shrink: 0; }
 .pm-appbar {
   font-family: var(--rr-font-body);
   font-weight: 700;
