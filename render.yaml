@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: matt-martin-portfolio
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SITE_DOMAIN
+        sync: false
+      - key: LINKEDIN_URL
+        sync: false
