@@ -6,14 +6,19 @@
 //   - a detail page at /work/<slug>
 //   - an entry in sitemap.xml
 //
+// Cards are screenshot-first: the image fills the top of the card, a thin text
+// strip sits below. The big number lives inside the screenshot, not the text.
+//
 // Fields:
 //   slug        url segment, e.g. "membership-optional" -> /work/membership-optional
-//   number      the big headline on the card ("+35%", "3x", "0", "Built solo")
-//   metric      one short line under the number on the card
-//   org         small label, bottom of the card ("Outschool", "roundrecall.com")
+//   label       short card title in the text strip ("Optional membership")
+//   tagline     one short line under the label (placeholder copy; rewrite freely)
+//   screenshot  filename in /public/img shown full-bleed on the card
+//   number      big headline on the DETAIL page hero ("+35%", "3x", ...)
+//   metric      one line under the number on the detail hero
+//   org         small label ("Outschool", "roundrecall.com")
 //   size        bento sizing: "sm" | "md" | "lg" | "xl" (controls desktop span)
-//   screenshot  filename in /public/img, or null for a text-first card
-//   link        external url for the card's org label (optional)
+//   link        external url (optional; shown as a CTA on the detail page)
 //   detail      the detail-page story. Keep the voice: short, concrete, no fluff.
 //               Each section is { heading, body } where body is an array of
 //               paragraphs. Add screenshots to a detail page with `images`.
@@ -22,11 +27,13 @@
 module.exports = [
   {
     slug: "membership-optional",
+    label: "Optional membership",
+    tagline: "Made it optional. Conversion up.",
+    screenshot: "membership-optional.png",
     number: "+35%",
     metric: "new buyer conversion",
     org: "Outschool",
     size: "lg",
-    screenshot: null,
     link: null,
     detail: {
       title: "I made membership optional",
@@ -59,11 +66,13 @@ module.exports = [
   },
   {
     slug: "signup-rebuild",
+    label: "Signup rebuild",
+    tagline: "Cut the dead steps. 3x signups.",
+    screenshot: "signup-rebuild.png",
     number: "3x",
     metric: "signups",
     org: "Outschool",
     size: "md",
-    screenshot: null,
     link: null,
     detail: {
       title: "I rebuilt the signup flow",
@@ -93,11 +102,13 @@ module.exports = [
   },
   {
     slug: "sales-tax",
+    label: "Sales tax at checkout",
+    tagline: "Added a price. Kept conversion.",
+    screenshot: "sales-tax.png",
     number: "0",
     metric: "conversion lost",
     org: "Outschool",
     size: "md",
-    screenshot: null,
     link: null,
     detail: {
       title: "I added sales tax without losing conversion",
@@ -128,11 +139,13 @@ module.exports = [
   },
   {
     slug: "roundrecall",
+    label: "Built solo",
+    tagline: "My taste, no committee.",
+    screenshot: "roundrecall-cover.png",
     number: "Built solo",
     metric: "RoundRecall",
     org: "roundrecall.com",
     size: "lg",
-    screenshot: "roundrecall-cover.png",
     link: "https://roundrecall.com",
     detail: {
       title: "RoundRecall",

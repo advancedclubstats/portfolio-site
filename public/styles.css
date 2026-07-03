@@ -140,7 +140,7 @@ main {
   font-weight: 500;
 }
 
-/* --- Bento grid (Marco) ---------------------------------------------------- */
+/* --- Bento grid: screenshot-first cards (Marco) ---------------------------- */
 .bento {
   display: grid;
   grid-template-columns: 1fr;
@@ -150,87 +150,71 @@ main {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 210px;
-  padding: 26px;
   background: var(--card);
   border-radius: var(--radius);
   text-decoration: none;
   color: var(--ink);
   overflow: hidden;
   isolation: isolate;
-  transition: transform .25s ease, background .25s ease;
+  transition: transform .28s ease, box-shadow .28s ease;
 }
-.card:hover { transform: translateY(-3px); background: var(--card-2); }
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 60px rgba(0,0,0,0.12);
+}
 
-.card-body { position: relative; z-index: 2; }
-.number {
-  display: block;
-  font-size: clamp(2.6rem, 9vw, 4rem);
-  line-height: 0.9;
-}
-.metric {
-  display: block;
-  margin-top: 10px;
-  font-size: 1rem;
-  color: var(--ink-soft);
-  max-width: 22ch;
-  text-transform: none;
-  letter-spacing: 0;
-  font-family: var(--font-body);
-}
-.card-foot {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 28px;
-}
-.org {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 11px;
-  color: var(--ink-soft);
-}
-.arrow {
-  font-size: 18px;
-  color: var(--ink-soft);
-  transform: translateX(0);
-  transition: transform .25s ease, color .25s ease;
-}
-.card:hover .arrow { transform: translateX(4px); color: var(--ink); }
-
-/* Oversized, clipped screenshot snippet (Marco's "too big, cut off, rounded").
-   Fixed height so it reads as a cropped snippet and never rides up over the
-   number/heading. object-fit shows the top of the shot, zoomed. */
-.card.has-shot { min-height: 300px; }
+/* Full-bleed screenshot fills the top of the card. Color comes from here. */
 .card .shot {
-  position: absolute;
-  right: -6%;
-  bottom: -8%;
-  width: 70%;
-  height: 56%;
-  z-index: 1;
-  border-radius: 16px;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.16);
-  transform: rotate(-2deg) scale(1);
-  transition: transform .35s ease;
+  background: var(--card-2);
 }
-.card.has-shot:hover .shot { transform: rotate(-2deg) scale(1.05); }
 .card .shot img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  transition: transform .5s ease;
 }
-.card.has-shot .metric { max-width: 16ch; }
-/* the whole card is the link; drop the arrow on shot cards to avoid it landing
-   on top of the screenshot */
-.card.has-shot .arrow { display: none; }
+.card:hover .shot img { transform: scale(1.04); }
+
+/* Thin text strip below the image. Short label + one line. */
+.card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 18px 22px 22px;
+}
+.card-text { display: flex; flex-direction: column; }
+.card-label {
+  font-size: clamp(1.25rem, 4.4vw, 1.7rem);
+  line-height: 1;
+}
+.card-tagline {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  max-width: 30ch;
+}
+.card-meta { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.org {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.arrow {
+  font-size: 18px;
+  color: var(--ink-soft);
+  transition: transform .25s ease, color .25s ease;
+}
+.card:hover .arrow { transform: translateX(4px); color: var(--ink); }
 
 /* --- How I think (aphorisms) ---------------------------------------------- */
 .think .aphorisms {
@@ -382,16 +366,26 @@ main {
     grid-template-columns: 1fr 1fr;
     grid-auto-flow: dense;
   }
-  /* sizing controls: sm=1 col, md=1 col, lg=full width, xl=full + tall */
+  /* sizing: sm/md = 1 column (screenshot on top), lg/xl = full width feature
+     with the screenshot beside the text. */
   .card-sm  { grid-column: span 1; }
   .card-md  { grid-column: span 1; }
-  .card-lg  { grid-column: span 2; }
-  .card-xl  { grid-column: span 2; min-height: 420px; }
+  .card-lg,
+  .card-xl  { grid-column: span 2; flex-direction: row; align-items: stretch; min-height: 340px; }
 
-  .card-lg { flex-direction: row; align-items: flex-end; }
-  .card-lg .card-body { flex: 1; position: relative; z-index: 2; }
-  .card-lg.has-shot { min-height: 360px; }
-  .card-lg .shot { width: 44%; height: 84%; right: -3%; bottom: -8%; }
+  .card-lg .shot,
+  .card-xl .shot { width: 60%; aspect-ratio: auto; height: auto; }
+  .card-lg .card-foot,
+  .card-xl .card-foot {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 18px;
+    padding: 32px;
+  }
+  .card-lg .card-label,
+  .card-xl .card-label { font-size: 2rem; }
 
   .think .aphorisms { gap: 34px; }
 }
