@@ -25,7 +25,7 @@ rationale is in `steal-list.md`.
 - `server.js` — Express. Routes: `/` (home), `/work/:slug` (detail pages),
   `/llms.txt`, `/robots.txt`, `/sitemap.xml`, `/healthz`. Binds `process.env.PORT`.
 - `site.config.js` — identity, domain, and all non-project page copy
-  (`intro`, `whatIDo`, `howIThink`, `whatIWant`, `nav`, `askAiPrompt`). Edit
+  (`intro`, `whatIDo`, `whatIWant`, `nav`, `askAiPrompt`). Edit
   copy here.
 - `content/projects.js` — the work items. THIS is where you add a project. One
   object yields a home card, a `/work/<slug>` detail page, and a sitemap entry.

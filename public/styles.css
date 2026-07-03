@@ -202,7 +202,6 @@ main {
 }
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 26px 60px rgba(0,0,0,0.12);
 }
 
 /* Full-bleed screenshot fills the top of the card. Color comes from here. */
@@ -257,19 +256,6 @@ main {
   transition: transform .25s ease, color .25s ease;
 }
 .card:hover .arrow { transform: translateX(4px); color: var(--ink); }
-
-/* --- How I think (aphorisms) ---------------------------------------------- */
-.think .aphorisms {
-  list-style: none;
-  margin: 0; padding: 0;
-  display: grid;
-  gap: 28px;
-}
-.think .aphorisms li {
-  font-size: clamp(1.5rem, 6.5vw, 2.6rem);
-  line-height: 1.02;
-  max-width: 20ch;
-}
 
 /* --- Ask-AI / footer ------------------------------------------------------- */
 .ask-ai {
@@ -482,8 +468,6 @@ main {
   }
   .card-lg .card-label,
   .card-xl .card-label { font-size: 2rem; }
-
-  .think .aphorisms { gap: 34px; }
 }
 
 @media (min-width: 960px) {

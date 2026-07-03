@@ -81,7 +81,7 @@
       </div>
     </section>
 
-    <!-- ABOUT: what I do / how I think / what I want, all cards -->
+    <!-- ABOUT: what I do / what I want, all cards -->
     <section class="section" id="about" aria-label="About">
       <div class="bento">
         <div class="card card-text card-md reveal">
@@ -101,17 +101,6 @@
             <ul class="stack">
               <% config.whatIWant.forEach(function(line){ %>
               <li><%= line %></li>
-              <% }); %>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card card-text card-lg think reveal">
-          <div class="card-pad">
-            <p class="card-eyebrow">How I think</p>
-            <ul class="aphorisms">
-              <% config.howIThink.forEach(function(line){ %>
-              <li class="display"><%= line %></li>
               <% }); %>
             </ul>
           </div>

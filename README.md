@@ -43,9 +43,8 @@ real RoundRecall screenshot when you have one.
 
 ## Change the words
 
-All the non-project copy (hero line, "what I do", the aphorisms, "what I want")
-lives in `site.config.js` under `hero`, `whatIDo`, `howIThink`, `whatIWant`.
-Edit the strings there.
+All the non-project copy (hero line, "what I do", "what I want") lives in
+`site.config.js` under `hero`, `whatIDo`, `whatIWant`. Edit the strings there.
 
 ## The one thing to change before deploying
 

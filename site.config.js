@@ -15,7 +15,7 @@ module.exports = {
   baseUrl: `${PROTOCOL}://${SITE_DOMAIN}`,
   email: "mattrobm@gmail.com",
   // Fill these in when ready (leave empty string to hide the link):
-  linkedin: process.env.LINKEDIN_URL || "",
+  linkedin: process.env.LINKEDIN_URL || "https://www.linkedin.com/in/matthewmartin3/",
   location: "Remote, United States",
   roundRecallUrl: "https://roundrecall.com",
 
@@ -51,14 +51,6 @@ module.exports = {
     "Find the expensive problem. It's rarely the obvious one.",
     "Ship the fix. Prove it worked.",
     "Cut whatever doesn't earn its place.",
-  ],
-
-  // Big-type aphorism block. This is the typographic moment.
-  howIThink: [
-    "Completion beats precision.",
-    "One good way beats two.",
-    "A number you can defend beats three you can't.",
-    "If thin data can't say anything, say nothing.",
   ],
 
   whatIWant: [
