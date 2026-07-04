@@ -187,6 +187,39 @@
   });
 })();
 
+// Dashboard mock (Dashboard Rebuild card): click a sidebar item or a status
+// tab to select it, radio-style within each group — demonstrates "every
+// core job is one click away" directly instead of just claiming it.
+(function () {
+  function wireRadioGroup(items) {
+    items.forEach((item) => {
+      function select() {
+        items.forEach((i) => {
+          i.classList.toggle("selected", i === item);
+          i.classList.toggle("active", i === item);
+        });
+      }
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        select();
+      });
+      item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+          select();
+        }
+      });
+    });
+  }
+
+  document.querySelectorAll(".dash-mock").forEach((mock) => {
+    wireRadioGroup([...mock.querySelectorAll(".ds-item")]);
+    wireRadioGroup([...mock.querySelectorAll(".dp-tab")]);
+  });
+})();
+
 // Floating nav: highlight the section currently in view.
 (function () {
   const links = Array.from(document.querySelectorAll(".fab a"));

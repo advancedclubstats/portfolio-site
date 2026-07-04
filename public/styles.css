@@ -791,6 +791,81 @@ main {
   cursor: pointer;
 }
 
+/* --- Dashboard Rebuild card: the real Outschool account dashboard (learner
+   tabs, sidebar nav, status tabs, empty state), same pixel-match method as
+   the other three mocks. This is the same page the Search by Learner
+   dropdown sits on top of — the two cards are literally the same screen
+   from different angles. Click a sidebar item or a status tab to see it
+   highlight, demonstrating "every core job is one click away" directly
+   rather than just claiming it in the tagline. ------------------------- */
+.card .shot.dash-shot {
+  background: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  padding: 18px;
+}
+.dash-mock { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 10px; }
+.dash-learnertabs { display: flex; gap: 6px; }
+.dt-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f0f2ff;
+  color: #000;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  cursor: pointer;
+}
+.dt-pill.selected { background: #4b01d4; color: #fff; }
+.dt-sub { font-size: 8.5px; color: rgba(255,255,255,0.7); }
+.dash-body { display: flex; gap: 14px; }
+.dash-sidebar { display: flex; flex-direction: column; gap: 9px; flex-shrink: 0; width: 78px; padding-top: 2px; }
+.ds-item {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  color: #5c5c5c;
+  cursor: pointer;
+}
+.ds-item.active { font-weight: 700; color: #000; }
+.dash-panel {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.dp-title { display: block; font-family: var(--font-display); font-size: 13px; font-weight: 500; color: #262626; margin-bottom: 8px; }
+.dp-tabs { display: flex; gap: 5px; margin-bottom: 12px; }
+.dp-tab {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 500;
+  color: #1a1a1a;
+  background: #ebebeb;
+  border-radius: 4px;
+  padding: 6px 7px;
+  cursor: pointer;
+}
+.dp-tab.selected { background: #e0e5ff; }
+.dp-empty { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px 0 4px; text-align: center; }
+.dp-empty-text { font-family: var(--font-body); font-size: 10.5px; font-weight: 500; color: #1a1a1a; }
+.dp-browse {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: #4b01d4;
+  background: #fff;
+  border: 1.5px solid #b4befe;
+  border-radius: 999px;
+  padding: 7px 16px;
+}
+
 .ai-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
 .ai-btn {
   font-family: var(--font-display);

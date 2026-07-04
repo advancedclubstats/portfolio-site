@@ -327,6 +327,36 @@
               </span>
             </span>
           </span>
+          <% } else if (p.dashMock) { %>
+          <span class="shot dash-shot" aria-label="Outschool dashboard, click a sidebar item or status tab">
+            <span class="dash-mock">
+              <span class="dash-learnertabs">
+                <span class="dt-pill">All</span>
+                <span class="dt-pill selected">Matt<span class="dt-sub">63% complete</span></span>
+              </span>
+              <span class="dash-body">
+                <span class="dash-sidebar">
+                  <span class="ds-item active" role="button" tabindex="0">Classes</span>
+                  <span class="ds-item" role="button" tabindex="0">Favorites</span>
+                  <span class="ds-item" role="button" tabindex="0">Transcripts</span>
+                  <span class="ds-item" role="button" tabindex="0">Transactions</span>
+                  <span class="ds-item" role="button" tabindex="0">Learner Profiles</span>
+                </span>
+                <span class="dash-panel">
+                  <span class="dp-title">Classes for Matt</span>
+                  <span class="dp-tabs">
+                    <span class="dp-tab selected" role="button" tabindex="0">Enrolled</span>
+                    <span class="dp-tab" role="button" tabindex="0">Completed</span>
+                    <span class="dp-tab" role="button" tabindex="0">Waitlisted</span>
+                  </span>
+                  <span class="dp-empty">
+                    <span class="dp-empty-text">No classes scheduled yet.</span>
+                    <span class="dp-browse">Browse Classes</span>
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
           <% } else { %>
           <span class="shot">
             <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />

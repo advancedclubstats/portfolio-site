@@ -184,6 +184,7 @@ module.exports = [
     label: "Dashboard rebuild",
     tagline: "Put every core job two or three clicks away.",
     screenshot: "dashboard-rebuild.png",
+    dashMock: true,
     number: "2–3 clicks",
     metric: "to any core job",
     org: "Outschool",
