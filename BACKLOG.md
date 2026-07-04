@@ -24,15 +24,31 @@
   (radio-style) — the interaction itself demonstrates "mandatory → optional."
   Live-diffed via the same shared-tab method, not eyeballed.
 
+## Done (cont.)
+- Added 3 new work stories (`dashboard-rebuild`, `search-by-learner`,
+  `built-this-site`) from `content/_pending-stories.js` (now deleted), with
+  generated neutral-color placeholder screenshots (not reused copies of
+  other cards' — that briefly showed "Built This Site" with a fake
+  screenshot labeled "MEMBERSHIP").
+- Search by Learner card: real clickable learner-picker dropdown lifted
+  from Outschool's actual search bar (shared-tab pixel-match). Click a
+  learner row to select it — updates the checkmark, row highlight, chip
+  name/avatar, and placeholder text, matching the real dropdown.
+
 ## In progress
-- Real screenshot to replace the 1 remaining placeholder PNG (sales-tax —
-  still 1080x1350 colored fake)
+- Real screenshots for dashboard-rebuild, sales-tax, built-this-site (all
+  3 still colored-fake placeholders)
 - Custom domain (currently `matt-martin-portfolio.onrender.com` via Render
   free tier)
 
 ## Next
-- Decide whether sales-tax gets the same engaging-widget treatment or stays
-  screenshot-first once a real screenshot lands — don't retrofit until then
+- Build the steal-this feature. Full brief in `steal-this-brief.md`: a `/steal`
+  route/section with the reusable prompt(s) and a downloadable starter (repo zip
+  and/or `.skill` bundle). After it exists, wire the `built-this-site` card
+  `link` to it and add it to the FAB if it reads well.
+- Decide whether dashboard-rebuild / sales-tax get the same engaging-widget
+  treatment or stay screenshot-first once real screenshots land — don't
+  retrofit until then
 - If the user has other Outschool pages open, the same shared-tab pattern
   (add their logged-in tab to the browser automation group) is the fastest
   path to pixel-exact recreations — much better than eyeballing screenshots
