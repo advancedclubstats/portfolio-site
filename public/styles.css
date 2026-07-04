@@ -689,6 +689,108 @@ main {
 .linkedin-tile .contact-tile-btn { background: #fff; color: #0a66c2; }
 .linkedin-tile:hover .contact-tile-btn { background: #eaf2ff; color: #004182; }
 
+/* --- Search by Learner card: real, clickable learner picker lifted from
+   Outschool's actual search bar dropdown (getComputedStyle on the live
+   page). Purple #4b01d4 / lavender #e0e5ff chip-and-row tokens are exact,
+   same method as the other three mocks. Click a learner row to select it
+   (radio-style) — updates the checkmark and the search-bar chip, the same
+   interaction the real dropdown does. Top-anchored crop, not horizontal
+   bleed, so nothing ever cuts through a word. -------------------------- */
+.card .shot.learner-shot {
+  background: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+}
+.learner-mock { width: 100%; max-width: 300px; }
+.lm-searchbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 999px;
+  padding: 6px 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.lm-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #e0e5ff;
+  color: #23055b;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.lm-chip-chevron { font-size: 8px; }
+.lm-chip-avatar, .lm-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.lm-chip-avatar { width: 15px; height: 15px; font-size: 8px; }
+.lm-avatar { width: 26px; height: 26px; font-size: 11px; }
+.avatar-matt { background: #e0703e; }
+.avatar-sav { background: #2a9d6f; }
+.lm-search-text {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #a3a3a3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lm-search-icon { color: #767676; flex-shrink: 0; }
+.lm-search-icon svg { width: 14px; height: 14px; }
+.lm-dropdown {
+  margin-top: 8px;
+  background: #fff;
+  border: 2px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.lm-all { padding: 10px 12px; border-bottom: 1px solid #eee; }
+.lm-all-title { display: block; font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #000; }
+.lm-all-sub { display: block; font-family: var(--font-body); font-size: 10px; color: #5c5c5c; margin-top: 1px; }
+.lm-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background .12s ease;
+}
+.lm-row.selected { background: #e0e5ff; }
+.lm-row:hover:not(.selected) { background: #f7f7f9; }
+.lm-row-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.lm-row-name { font-family: var(--font-body); font-size: 11px; font-weight: 600; color: #23055b; }
+.lm-row-count { font-weight: 400; color: #767676; }
+.lm-row-profile { font-family: var(--font-body); font-size: 9.5px; color: #767676; }
+.lm-check { color: #4b01d4; font-weight: 700; font-size: 12px; flex-shrink: 0; opacity: 0; }
+.lm-row.selected .lm-check { opacity: 1; }
+.lm-add {
+  display: block;
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: #4b01d4;
+  cursor: pointer;
+}
+
 .ai-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
 .ai-btn {
   font-family: var(--font-display);

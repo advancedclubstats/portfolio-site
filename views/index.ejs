@@ -292,6 +292,41 @@
               </span>
             </span>
           </span>
+          <% } else if (p.learnerMock) { %>
+          <span class="shot learner-shot" aria-label="Outschool search by learner picker, click a learner to select">
+            <span class="learner-mock">
+              <span class="lm-searchbar">
+                <span class="lm-chip"><span class="lm-chip-avatar avatar-matt">M</span> <span class="lm-chip-name">Matt</span> <span class="lm-chip-chevron">&#9662;</span></span>
+                <span class="lm-search-text">Find Matt&rsquo;s next class</span>
+                <span class="lm-search-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                </span>
+              </span>
+              <span class="lm-dropdown">
+                <span class="lm-all">
+                  <span class="lm-all-title">All classes</span>
+                  <span class="lm-all-sub">Search for classes for any learner</span>
+                </span>
+                <span class="lm-row selected" role="radio" aria-checked="true" tabindex="0" data-name="Matt">
+                  <span class="lm-avatar avatar-matt">M</span>
+                  <span class="lm-row-info">
+                    <span class="lm-row-name">Matt <span class="lm-row-count">(9)</span></span>
+                    <span class="lm-row-profile">Profile 63% complete</span>
+                  </span>
+                  <span class="lm-check" aria-hidden="true">&#10003;</span>
+                </span>
+                <span class="lm-row" role="radio" aria-checked="false" tabindex="0" data-name="Sav">
+                  <span class="lm-avatar avatar-sav">S</span>
+                  <span class="lm-row-info">
+                    <span class="lm-row-name">Sav <span class="lm-row-count">(9)</span></span>
+                    <span class="lm-row-profile">Profile 75% complete</span>
+                  </span>
+                  <span class="lm-check" aria-hidden="true">&#10003;</span>
+                </span>
+                <span class="lm-add">+ Add a learner</span>
+              </span>
+            </span>
+          </span>
           <% } else { %>
           <span class="shot">
             <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />

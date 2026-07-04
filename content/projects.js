@@ -222,6 +222,7 @@ module.exports = [
     label: "Search by learner",
     tagline: "Rebuilt search around the kid, not a blank box.",
     screenshot: "search-by-learner.png",
+    learnerMock: true,
     number: "Significant lift",
     metric: "in search to enroll",
     org: "Outschool",

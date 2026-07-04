@@ -141,6 +141,52 @@
   });
 })();
 
+// Learner picker mock (Search by Learner card): click a learner row to
+// select it, radio-style — also updates the search-bar chip and
+// placeholder text, same as the real dropdown does.
+(function () {
+  const mocks = document.querySelectorAll(".learner-mock");
+  mocks.forEach((mock) => {
+    const rows = mock.querySelectorAll(".lm-row");
+    const chipName = mock.querySelector(".lm-chip-name");
+    const chipAvatar = mock.querySelector(".lm-chip-avatar");
+    const searchText = mock.querySelector(".lm-search-text");
+
+    function select(row) {
+      rows.forEach((r) => {
+        const isTarget = r === row;
+        r.classList.toggle("selected", isTarget);
+        r.setAttribute("aria-checked", isTarget ? "true" : "false");
+      });
+      const name = row.dataset.name;
+      const avatarClass = [...row.querySelector(".lm-avatar").classList].find((c) =>
+        c.startsWith("avatar-")
+      );
+      if (chipName) chipName.textContent = name;
+      if (searchText) searchText.textContent = `Find ${name}’s next class`;
+      if (chipAvatar && avatarClass) {
+        chipAvatar.className = "lm-chip-avatar " + avatarClass;
+        chipAvatar.textContent = name[0];
+      }
+    }
+
+    rows.forEach((row) => {
+      row.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        select(row);
+      });
+      row.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+          select(row);
+        }
+      });
+    });
+  });
+})();
+
 // Floating nav: highlight the section currently in view.
 (function () {
   const links = Array.from(document.querySelectorAll(".fab a"));
