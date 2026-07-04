@@ -34,10 +34,16 @@
   from Outschool's actual search bar (shared-tab pixel-match). Click a
   learner row to select it — updates the checkmark, row highlight, chip
   name/avatar, and placeholder text, matching the real dropdown.
+- Dashboard Rebuild card: real clickable account dashboard (sidebar nav +
+  status tabs + empty state) — turns out this is literally the same real
+  page Search by Learner's dropdown sits on top of. Two independent
+  click-to-select groups (sidebar, status tabs) demonstrate "every core
+  job is 2-3 clicks away" directly instead of just asserting it.
 
 ## In progress
-- Real screenshots for dashboard-rebuild, sales-tax, built-this-site (all
-  3 still colored-fake placeholders)
+- Real screenshots for sales-tax, built-this-site (both still colored-fake
+  placeholders — dashboard-rebuild and search-by-learner now have live
+  widgets instead, no screenshot needed)
 - Custom domain (currently `matt-martin-portfolio.onrender.com` via Render
   free tier)
 
@@ -46,9 +52,8 @@
   route/section with the reusable prompt(s) and a downloadable starter (repo zip
   and/or `.skill` bundle). After it exists, wire the `built-this-site` card
   `link` to it and add it to the FAB if it reads well.
-- Decide whether dashboard-rebuild / sales-tax get the same engaging-widget
-  treatment or stay screenshot-first once real screenshots land — don't
-  retrofit until then
+- Decide whether sales-tax gets the same engaging-widget treatment or stays
+  screenshot-first once a real screenshot lands — don't retrofit until then
 - If the user has other Outschool pages open, the same shared-tab pattern
   (add their logged-in tab to the browser automation group) is the fastest
   path to pixel-exact recreations — much better than eyeballing screenshots
