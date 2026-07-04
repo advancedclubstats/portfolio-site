@@ -178,5 +178,117 @@ module.exports = [
       ],
       images: []
     }
+  },
+  {
+    slug: "dashboard-rebuild",
+    label: "Dashboard rebuild",
+    tagline: "Put every core job two or three clicks away.",
+    screenshot: "dashboard-rebuild.png",
+    number: "2–3 clicks",
+    metric: "to any core job",
+    org: "Outschool",
+    size: "md",
+    link: null,
+    detail: {
+      title: "I rebuilt the dashboard",
+      lede: "The dashboard was an afterthought, and users treated it like one. They left it to get anything done. I rebuilt it so the core jobs live in one place, two or three clicks away.",
+      sections: [
+        {
+          heading: "The problem",
+          body: [
+            "Outschool's dashboard was effectively useless. You could not change payment, enroll in a class, adjust an enrollment, or message a teacher from one page. Even joining a class was confusing.",
+            "We interviewed dozens of users. They confirmed it. The dashboard was an afterthought, and they had built workarounds to do their core jobs."
+          ]
+        },
+        {
+          heading: "What I did",
+          body: [
+            "Redesigned the dashboard and the settings pages behind it, on top of a pile of design and tech debt. The bar was simple: pull the scattered actions into one place and make every core job reachable in two or three clicks."
+          ]
+        },
+        {
+          heading: "What moved",
+          body: [
+            "Dashboard usage rose. Time to finish a core job dropped. Users said so too.",
+            "No single headline number here. The direction was clear and consistent across all three."
+          ]
+        }
+      ],
+      images: []
+    }
+  },
+  {
+    slug: "search-by-learner",
+    label: "Search by learner",
+    tagline: "Rebuilt search around the kid, not a blank box.",
+    screenshot: "search-by-learner.png",
+    number: "Significant lift",
+    metric: "in search to enroll",
+    org: "Outschool",
+    size: "md",
+    link: null,
+    detail: {
+      title: "I built search by learner",
+      lede: "Outschool's search was a blank box. But parents never search in the abstract. They have one kid in mind, sometimes several. I made the child the starting point.",
+      sections: [
+        {
+          heading: "The problem",
+          body: [
+            "Search was a generic bar. Type anything, good luck. The trouble is that a parent is never searching for themselves. They are searching for one child: their age, their interests, when they are free.",
+            "We already collected all of that at onboarding. Search ignored it."
+          ]
+        },
+        {
+          heading: "What I did",
+          body: [
+            "Made the learner explicit. You pick a child, and search preloads what we already know: age, interests, availability. From there you add only the part that is actually new.",
+            "Shipped and tested a few versions to find the one that landed."
+          ]
+        },
+        {
+          heading: "What moved",
+          body: [
+            "Search-to-list click rate rose, and so did search-to-enroll. The result reached statistical significance."
+          ]
+        }
+      ],
+      images: []
+    }
+  },
+  {
+    slug: "built-this-site",
+    label: "Built this site",
+    tagline: "Treated my own portfolio as a product.",
+    screenshot: "built-this-site.png",
+    number: "Steal it",
+    metric: "the whole thing",
+    org: "Personal",
+    size: "md",
+    link: null,
+    detail: {
+      title: "I built this site",
+      lede: "This portfolio is a product too. Same job as any other: one user, one minute, one clear thing to do. I directed it, shipped it, then made it easy to steal.",
+      sections: [
+        {
+          heading: "The idea",
+          body: [
+            "A portfolio has a user and a job to do, and about a minute to do it. I built mine to that spec: read in under a minute, every project one tap away, nothing on screen that does not earn its place."
+          ]
+        },
+        {
+          heading: "How I built it",
+          body: [
+            "I did not hand-code a server from scratch, and that is the point. I made the product calls: the structure, the voice, what to cut. Built with Claude as the pair, shipped as a real thing. This is what a PM directing an AI build looks like."
+          ]
+        },
+        {
+          heading: "Steal it",
+          body: [
+            "Like it? Take it. The prompts and a starter you can run are one click away. Make it yours in an afternoon."
+          ]
+        }
+      ],
+      images: []
+    }
   }
 ];
