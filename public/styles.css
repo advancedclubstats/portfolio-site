@@ -867,6 +867,75 @@ main {
   padding: 7px 16px;
 }
 
+/* --- Built This Site card: unlike the other four mocks, there's no
+   external page to pixel-match here — the source of truth is this very
+   codebase. A tiny, structurally-accurate recreation of the site's own
+   bento layout (topbar, hero, about tiles, a swatch of each work card's
+   accent color, the floating nav pill), using the real --card/--line/
+   --radius tokens. Every span gets an explicit display: the learner-picker
+   bug (an un-blockified inline span rendering as a fragmented ghost box)
+   is exactly the kind of mistake this guards against. ------------------- */
+.card .shot.site-shot {
+  background: var(--paper);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+}
+.site-mock {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+.sm-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.sm-mark { font-family: var(--font-display); font-size: 9px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); }
+.sm-links { display: flex; gap: 4px; }
+.sm-dot { display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--ghost); }
+.sm-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+.sm-row { display: flex; gap: 8px; margin-bottom: 8px; }
+.sm-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.sm-line { display: block; height: 3px; border-radius: 2px; background: var(--ghost); }
+.sm-line.w90 { width: 90%; }
+.sm-line.w70 { width: 70%; }
+.sm-line.w60 { width: 60%; }
+.sm-line.w50 { width: 50%; }
+.sm-line.w40 { width: 40%; }
+.sm-swatch { display: block; flex: 1; height: 22px; border-radius: 6px; }
+.sm-lime { background: #cdf23e; }
+.sm-purple { background: #4b01d4; }
+.sm-orange { background: #e0703e; }
+.sm-blue { background: #0a66c2; }
+.sm-fab {
+  display: block;
+  width: 46px;
+  height: 12px;
+  margin: 4px auto 0;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
 .ai-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
 .ai-btn {
   font-family: var(--font-display);

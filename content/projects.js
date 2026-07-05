@@ -262,6 +262,7 @@ module.exports = [
     label: "Built this site",
     tagline: "Treated my own portfolio as a product.",
     screenshot: "built-this-site.png",
+    siteMock: true,
     number: "Steal it",
     metric: "the whole thing",
     org: "Personal",

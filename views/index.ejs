@@ -357,6 +357,37 @@
               </span>
             </span>
           </span>
+          <% } else if (p.siteMock) { %>
+          <span class="shot site-shot" aria-label="A tiny recreation of this very site's layout">
+            <span class="site-mock">
+              <span class="sm-topbar">
+                <span class="sm-mark">MATT MARTIN</span>
+                <span class="sm-links"><span class="sm-dot"></span><span class="sm-dot"></span></span>
+              </span>
+              <span class="sm-hero">
+                <span class="sm-line w70"></span>
+                <span class="sm-line w90"></span>
+                <span class="sm-line w50"></span>
+              </span>
+              <span class="sm-row">
+                <span class="sm-tile">
+                  <span class="sm-line w60"></span>
+                  <span class="sm-line w40"></span>
+                </span>
+                <span class="sm-tile">
+                  <span class="sm-line w60"></span>
+                  <span class="sm-line w40"></span>
+                </span>
+              </span>
+              <span class="sm-row">
+                <span class="sm-swatch sm-lime"></span>
+                <span class="sm-swatch sm-purple"></span>
+                <span class="sm-swatch sm-orange"></span>
+                <span class="sm-swatch sm-blue"></span>
+              </span>
+              <span class="sm-fab"></span>
+            </span>
+          </span>
           <% } else { %>
           <span class="shot">
             <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />
