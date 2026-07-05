@@ -755,6 +755,7 @@ main {
 .lm-search-icon { color: #767676; flex-shrink: 0; }
 .lm-search-icon svg { width: 14px; height: 14px; }
 .lm-dropdown {
+  display: block;
   margin-top: 8px;
   background: #fff;
   border: 2px solid #e5e5e5;
