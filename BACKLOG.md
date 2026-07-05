@@ -39,11 +39,22 @@
   page Search by Learner's dropdown sits on top of. Two independent
   click-to-select groups (sidebar, status tabs) demonstrate "every core
   job is 2-3 clicks away" directly instead of just asserting it.
+- Fixed a real rendering bug in the Search by Learner mock: `.lm-dropdown`
+  was a `<span>` with no `display` set, so it stayed `inline` (its parent
+  wasn't flex/grid, so no auto-blockification kicked in) — an inline box
+  with a border+radius after a block sibling rendered as a fragmented
+  ghost shape ("looks like the search bar is repeated"). Fixed with
+  explicit `display:block`, which also restored the intended 8px gap
+  (inline elements ignore margin-top).
+- Built This Site card: a tiny, structurally-accurate recreation of this
+  site's own bento layout (topbar, hero, about tiles, 4 color swatches for
+  the real work-card accents, floating nav pill) — no external page to
+  pixel-match here, so it's built straight from this codebase's own design
+  tokens instead. Meta on purpose for the one story that's about this site.
 
 ## In progress
-- Real screenshots for sales-tax, built-this-site (both still colored-fake
-  placeholders — dashboard-rebuild and search-by-learner now have live
-  widgets instead, no screenshot needed)
+- Real screenshot for sales-tax (only remaining colored-fake placeholder —
+  every other card now has a live widget or a real recreation)
 - Custom domain (currently `matt-martin-portfolio.onrender.com` via Render
   free tier)
 
@@ -57,3 +68,7 @@
 - If the user has other Outschool pages open, the same shared-tab pattern
   (add their logged-in tab to the browser automation group) is the fastest
   path to pixel-exact recreations — much better than eyeballing screenshots
+- Audit the other 4 mocks' spans for the same missing-display risk if any
+  new markup gets added to them later (only `.lm-dropdown` was actually
+  broken, but the underlying pattern — un-blockified inline spans — could
+  recur anywhere a new element isn't a flex/grid child)
