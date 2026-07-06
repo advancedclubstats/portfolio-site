@@ -188,7 +188,7 @@ module.exports = [
     number: "2–3 clicks",
     metric: "to any core job",
     org: "Outschool",
-    size: "md",
+    size: "lg",
     link: null,
     detail: {
       title: "I rebuilt the dashboard",

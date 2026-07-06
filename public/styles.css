@@ -807,27 +807,27 @@ main {
   overflow: hidden;
   padding: 18px;
 }
-.dash-mock { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 10px; }
-.dash-learnertabs { display: flex; gap: 6px; }
+.dash-mock { width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px; }
+.dash-learnertabs { display: flex; gap: 8px; }
 .dt-pill {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   background: #f0f2ff;
   color: #000;
-  border-radius: 10px;
-  padding: 5px 10px;
+  border-radius: 12px;
+  padding: 7px 13px;
   font-family: var(--font-body);
-  font-size: 10.5px;
+  font-size: 13px;
   cursor: pointer;
 }
 .dt-pill.selected { background: #4b01d4; color: #fff; }
-.dt-sub { font-size: 8.5px; color: rgba(255,255,255,0.7); }
-.dash-body { display: flex; gap: 14px; }
-.dash-sidebar { display: flex; flex-direction: column; gap: 9px; flex-shrink: 0; width: 78px; padding-top: 2px; }
+.dt-sub { font-size: 10.5px; color: rgba(255,255,255,0.7); }
+.dash-body { display: flex; gap: 20px; }
+.dash-sidebar { display: flex; flex-direction: column; gap: 13px; flex-shrink: 0; width: 108px; padding-top: 2px; }
 .ds-item {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 12.5px;
   font-weight: 500;
   color: #5c5c5c;
   cursor: pointer;
@@ -838,33 +838,33 @@ main {
   min-width: 0;
   background: #fff;
   border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 12px 14px;
+  border-radius: 12px;
+  padding: 18px 22px;
 }
-.dp-title { display: block; font-family: var(--font-display); font-size: 13px; font-weight: 500; color: #262626; margin-bottom: 8px; }
-.dp-tabs { display: flex; gap: 5px; margin-bottom: 12px; }
+.dp-title { display: block; font-family: var(--font-display); font-size: 18px; font-weight: 500; color: #262626; margin-bottom: 12px; }
+.dp-tabs { display: flex; gap: 7px; margin-bottom: 16px; }
 .dp-tab {
   font-family: var(--font-body);
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 500;
   color: #1a1a1a;
   background: #ebebeb;
-  border-radius: 4px;
-  padding: 6px 7px;
+  border-radius: 5px;
+  padding: 8px 10px;
   cursor: pointer;
 }
 .dp-tab.selected { background: #e0e5ff; }
-.dp-empty { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 14px 0 4px; text-align: center; }
-.dp-empty-text { font-family: var(--font-body); font-size: 10.5px; font-weight: 500; color: #1a1a1a; }
+.dp-empty { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 0 4px; text-align: center; }
+.dp-empty-text { font-family: var(--font-body); font-size: 13px; font-weight: 500; color: #1a1a1a; }
 .dp-browse {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #4b01d4;
   background: #fff;
   border: 1.5px solid #b4befe;
   border-radius: 999px;
-  padding: 7px 16px;
+  padding: 9px 20px;
 }
 
 /* --- Built This Site card: unlike the other four mocks, there's no
