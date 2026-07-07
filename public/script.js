@@ -220,6 +220,29 @@
   });
 })();
 
+// Steal page: copy a prompt block to the clipboard.
+(function () {
+  const buttons = document.querySelectorAll(".copy-btn");
+  if (!buttons.length) return;
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const target = document.getElementById(btn.dataset.copyTarget);
+      if (!target) return;
+      try {
+        await navigator.clipboard.writeText(target.textContent);
+        const original = btn.textContent;
+        btn.textContent = "Copied";
+        setTimeout(() => {
+          btn.textContent = original;
+        }, 1500);
+      } catch (err) {
+        // Clipboard API unavailable; leave the button as is.
+      }
+    });
+  });
+})();
+
 // Floating nav: highlight the section currently in view.
 (function () {
   const links = Array.from(document.querySelectorAll(".fab a"));

@@ -52,6 +52,30 @@
   pixel-match here, so it's built straight from this codebase's own design
   tokens instead. Meta on purpose for the one story that's about this site.
 
+## Done (cont. 2)
+- Dashboard Rebuild card reshaped to "lg" (2-col) so the work grid isn't all
+  square/md tiles — matches the marco.fyi "not everything is the same shape"
+  bento variety. Scaled up the `.dash-*` mock CSS to fill the bigger shot
+  area. Dense-packing reasoned through by hand (array order unchanged) and
+  verified in-browser before committing.
+- Built the steal-this feature (`steal-this-brief.md`): new `/steal` route +
+  `views/steal.ejs`, styled with the existing `.article` detail-page pattern.
+  Surfaces `reusable-prompt.md` (build from scratch) and `new-story-prompt.md`
+  (add one story) in copyable code blocks, plus a "Download starter (.zip)"
+  button. The starter is a one-time hand-stripped copy of this repo (not a
+  live zip-generation endpoint — no new dependency): the 6 Matt/Outschool
+  mock widgets collapsed to the plain-screenshot fallback, `site.config.js`
+  and `content/projects.js` genericized to one example project, `llms.ejs`
+  rewritten to read from `projects`/`config` instead of hardcoded bio copy.
+  Zipped to `public/downloads/portfolio-starter.zip`. Wired `built-this-site`
+  card's `link` to `/steal` — added a `linkLabel` field to the project schema
+  so the detail-page CTA can say "Steal it" instead of the default
+  "Visit <org>" wording, and made external vs. internal links behave
+  correctly (internal links skip `target="_blank"`).
+  Skipped the FAB nav addition: the FAB is built for same-page anchor
+  scrolling (highlights the section in view), and `/steal` is a separate
+  page, so adding it there would be inconsistent with every other entry.
+
 ## In progress
 - Real screenshot for sales-tax (only remaining colored-fake placeholder —
   every other card now has a live widget or a real recreation)
@@ -59,10 +83,6 @@
   free tier)
 
 ## Next
-- Build the steal-this feature. Full brief in `steal-this-brief.md`: a `/steal`
-  route/section with the reusable prompt(s) and a downloadable starter (repo zip
-  and/or `.skill` bundle). After it exists, wire the `built-this-site` card
-  `link` to it and add it to the FAB if it reads well.
 - Decide whether sales-tax gets the same engaging-widget treatment or stays
   screenshot-first once a real screenshot lands — don't retrofit until then
 - If the user has other Outschool pages open, the same shared-tab pattern

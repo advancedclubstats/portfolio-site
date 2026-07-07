@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Steal this site · <%= config.name %></title>
+
+  <meta name="description" content="The prompts and starter code behind this portfolio. Take them and build your own." />
+  <meta name="author" content="<%= config.name %>" />
+  <link rel="canonical" href="<%= config.baseUrl %>/steal" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Steal this site · <%= config.name %>" />
+  <meta property="og:description" content="The prompts and starter code behind this portfolio. Take them and build your own." />
+  <meta property="og:url" content="<%= config.baseUrl %>/steal" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="detail">
+  <div class="topbar">
+    <a class="mark-link" href="/">&larr; <%= config.name %></a>
+    <a class="mark-link" href="mailto:<%= config.email %>">Email</a>
+  </div>
+
+  <main class="article">
+    <article>
+      <header class="article-head reveal">
+        <p class="eyebrow">Steal it</p>
+        <h1 class="display">Take the whole site</h1>
+        <p class="lede">I didn't hand-code this site. I directed Claude to build it, then treated it like a real product. Here's the exact prompt, plus a working starter, so you can do the same in an afternoon.</p>
+      </header>
+
+      <section class="article-section reveal">
+        <h2 class="label">Build one from scratch</h2>
+        <p>Paste this into Claude. Fill the brackets first, it's most of the work.</p>
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-title">reusable-prompt.md</span>
+            <button type="button" class="ai-btn copy-btn" data-copy-target="prompt-scratch">Copy</button>
+          </div>
+          <pre id="prompt-scratch">I want to build a personal portfolio site. Work with me like this:
+
+Context first. Read my About Me file (attached). If I hadn't given you one, you'd interview me first (10-15 questions on my work, goals, and voice) and save it as about-me.md before building anything. Treat every word of copy as a placeholder until the design is locked. Design first. Do not let my rough copy shape the layout.
+
+The look (this is my taste, don't drift).
+- Steal from these: [SITE 1] for [e.g. fonts + branding], [SITE 2] for [e.g. card structure and layout]. Actually open them and read the real CSS, then lift those specific parts closely, section by section. Be original only where I haven't pointed at something.
+- How literal: [e.g. near-literal on structure, my own color and type].
+- Mobile-first. Overall structure: [e.g. everything is a card in a bento grid, single column on mobile, two on desktop, a floating nav pill].
+- Before you build the whole thing, show me 1-2 quick visual options for anything I'm likely to be picky about (font, card style) as a small clickable mockup. I'll pick, then you build.
+
+Screenshots / assets. [I'll provide screenshots at these paths] OR [I don't have them yet, use tasteful placeholders and wire the layout so I can drop real images in later at fixed filenames with no code changes].
+
+Build. Make it a real git repo. [Stack: simplest thing that works, or Node/Express if I'll add pages]. Make it data-driven so I can add a project or section by editing one file. Include basic SEO and an llms.txt so AIs describe me accurately. After any visual change, screenshot it at mobile (390px) and desktop (1280px) and show me before calling it done.
+
+Process. Ask all your clarifying questions up front, batched, before you build. Expect 1-2 rounds of me reacting to visuals, show don't tell. When the design is settled, write a CLAUDE.md so I can keep iterating in Claude Code.</pre>
+        </div>
+      </section>
+
+      <section class="article-section reveal">
+        <h2 class="label">Already have a site? Add one story</h2>
+        <p>Paste this at the top of a new chat, then just talk through the project. It hands back a ready-to-paste entry.</p>
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-title">new-story-prompt.md</span>
+            <button type="button" class="ai-btn copy-btn" data-copy-target="prompt-story">Copy</button>
+          </div>
+          <pre id="prompt-story">You are helping me add a new work story to my portfolio site. Your job is to take a rough spoken brain-dump from me and turn it into one complete project object that drops straight into content/projects.js, matching the site's data model and my writing voice. Then I hand it to Claude Code.
+
+Read the project's content/projects.js first (it's the source of truth, don't rely on memory) for the exact object schema and the existing stories. Match that shape and match the tone of what's already there.
+
+The object you produce (fields):
+- slug: kebab-case url segment, e.g. kid-search
+- label: 2-4 word card title
+- tagline: one concrete line, the decision or action, not a slogan
+- screenshot: <slug>.png (I'll supply the actual image, just name it)
+- number: the big headline on the detail page (a metric like +35%, or a short phrase like "Built solo" when there's no clean number)
+- metric: one line under the number
+- org: the company or product name
+- size: "md" by default; "lg" for a feature story; "tall" only for portrait content
+- link: external url if there is one, else null
+- detail.title: first person, plain, e.g. "I built search by learner name"
+- detail.lede: one or two sentences that land the whole story
+- detail.sections: default three: "The problem", "What I did", "What moved". Each body is an array of 1-2 short paragraphs. Rename or add a section if the story wants it.
+- detail.images: leave [] unless I give you more shots.
+
+How to run the intake:
+1. Let me talk. Pull as much as you can from what I say.
+2. Then ask, in ONE batched message, only for what's genuinely missing: the company/context, the core problem, what I specifically did, the outcome, and whether there's a metric I can defend.
+3. Draft the full object.
+
+Honesty rules:
+- Only use a hard metric if I actually influenced it, understand the mechanism, and could defend it in an interview. If unsure, write the outcome qualitatively. Never invent a number.
+- One idea per line. Lead with the decision, not the ceremony.
+
+What to output:
+1. The complete project object, formatted exactly like the others in projects.js, in a code block I can paste.
+2. Where it goes: which position in the array (order affects the bento layout, flag it if size "tall" or "lg" will change neighbors).
+3. A one-line reminder of what I still owe: the screenshot at public/img/<slug>.png.
+4. If the repo is connected and I say go, offer to make the edit directly and leave the rest for Claude Code.
+
+Keep it tight. If a section would just be filler, cut it. When in doubt about fit or a claim, ask me before writing it.</pre>
+        </div>
+      </section>
+
+      <section class="article-section reveal">
+        <h2 class="label">Or start from the working code</h2>
+        <p>A stripped copy of this repo. Same layout engine, same data-driven cards, none of my content. Edit two files and it's yours.</p>
+        <p class="article-cta">
+          <a href="/downloads/portfolio-starter.zip" download>Download starter (.zip) &rarr;</a>
+        </p>
+      </section>
+    </article>
+
+    <p class="article-back reveal"><a href="/#work">&larr; Back to all work</a></p>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>

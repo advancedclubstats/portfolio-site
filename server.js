@@ -35,6 +35,11 @@ app.get("/work/:slug", (req, res) => {
   res.render("project", { config, project });
 });
 
+// --- Steal-this: reusable prompts + a downloadable starter ------------------
+app.get("/steal", (req, res) => {
+  res.render("steal", { config });
+});
+
 // --- AI-SEO text files (rendered so SITE_DOMAIN stays in one place) --------
 app.get("/llms.txt", (req, res) => {
   res.type("text/plain");

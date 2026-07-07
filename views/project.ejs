@@ -59,9 +59,12 @@
       </div>
       <% } %>
 
-      <% if (project.link) { %>
+      <% if (project.link) {
+        const isExternal = /^https?:\/\//.test(project.link);
+        const linkLabel = project.linkLabel || (isExternal ? `Visit ${project.org}` : "Go");
+      %>
       <p class="article-cta reveal">
-        <a href="<%= project.link %>" target="_blank" rel="noopener">Visit <%= project.org %> &rarr;</a>
+        <a href="<%= project.link %>"<% if (isExternal) { %> target="_blank" rel="noopener"<% } %>><%= linkLabel %> &rarr;</a>
       </p>
       <% } %>
     </article>

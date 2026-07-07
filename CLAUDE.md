@@ -5,6 +5,13 @@ search. Node.js + Express + EJS, mobile-first, deployed as a small static-ish
 server. The look was designed by lifting from two reference sites; the full
 rationale is in `steal-list.md`.
 
+## Starting a session
+
+If a session starts without a specific task, read `BACKLOG.md`, propose the top
+unblocked item under "Next", and confirm before starting. Keep that file
+current: when work finishes, move the item to "Done" (with a one-line note on
+what shipped) and add anything deferred.
+
 ## Design intent (don't drift from this)
 
 - Branding from spencergabor.work: Space Grotesk in big uppercase with tight

@@ -1083,6 +1083,41 @@ main {
 }
 .article-back a:hover { color: var(--ink); }
 
+/* --- Steal page: prompt blocks with a copy button -------------------------- */
+.prompt-block {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--card);
+}
+.prompt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.prompt-title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.prompt-block pre {
+  margin: 0;
+  padding: 18px;
+  max-height: 340px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
 /* --- Reveal on scroll ------------------------------------------------------ */
 .reveal {
   opacity: 0;

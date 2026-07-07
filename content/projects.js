@@ -21,7 +21,10 @@
 //               desktop grid span — "tall" is 1 column x 2 rows, for portrait
 //               content like the RoundRecall phone mock; order in this array
 //               matters for how "tall" packs against its neighbors)
-//   link        external url (optional; shown as a CTA on the detail page)
+//   link        url shown as a CTA on the detail page (optional). External
+//               (http...) links get "Visit <org>" and open in a new tab;
+//               internal (/path) links default to "Go" and stay in-tab.
+//   linkLabel   overrides the default CTA text above (optional)
 //   detail      the detail-page story. Keep the voice: short, concrete, no fluff.
 //               Each section is { heading, body } where body is an array of
 //               paragraphs. Add screenshots to a detail page with `images`.
@@ -267,7 +270,8 @@ module.exports = [
     metric: "the whole thing",
     org: "Personal",
     size: "md",
-    link: null,
+    link: "/steal",
+    linkLabel: "Steal it",
     detail: {
       title: "I built this site",
       lede: "This portfolio is a product too. Same job as any other: one user, one minute, one clear thing to do. I directed it, shipped it, then made it easy to steal.",
