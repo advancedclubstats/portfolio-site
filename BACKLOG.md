@@ -88,7 +88,9 @@
 - If the user has other Outschool pages open, the same shared-tab pattern
   (add their logged-in tab to the browser automation group) is the fastest
   path to pixel-exact recreations — much better than eyeballing screenshots
-- Audit the other 4 mocks' spans for the same missing-display risk if any
-  new markup gets added to them later (only `.lm-dropdown` was actually
-  broken, but the underlying pattern — un-blockified inline spans — could
-  recur anywhere a new element isn't a flex/grid child)
+- Audit the other mocks' spans for the same missing-display risk if any new
+  markup gets added to them later. Confirmed twice now in Search by Learner
+  alone: `.lm-dropdown` (fixed earlier) and `.lm-all` (fixed — its block
+  children were ignoring its padding because the span itself had no
+  `display` set). Pattern: un-blockified inline spans with block children
+  inside — check any span holding block-level children.
