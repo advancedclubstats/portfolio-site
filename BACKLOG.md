@@ -110,6 +110,25 @@
   scrolls into view, tighter hover transitions on the FAB nav links. Look at
   marco.fyi directly (browser tab, not memory) for the specific interactions
   before implementing, the same way the mocks were pixel-matched.
+- Mobile topbar: the header links (`.socials` — Email/LinkedIn/RoundRecall)
+  render as plain wide text next to "MATT MARTIN" and crowd the name at
+  mobile widths (confirmed via screenshot — all three labels + the name
+  fight for one line, cramped and hard to tap accurately). Swap to icon-only
+  links below a mobile breakpoint (envelope / LinkedIn mark / link-out icon),
+  sized as real touch targets, keep the current full-text labels on desktop.
+  `.topbar`/`.socials` in `public/styles.css`, markup in `views/index.ejs`
+  (and `views/project.ejs`/`views/steal.ejs`, which have their own simpler
+  topbar with just an Email link — check if those need the same treatment).
+- Work-card mocks don't sit on a grey surface the way marco.fyi's do: his
+  reference widgets (Raycast panel, chat card, phone mock) all float on a
+  light grey card background, which reads as structure even when the widget
+  itself is white. Ours is inconsistent — `.mem-shot` (#f4f4f6) and
+  `.phone-shot` (#e2e0d8) already do this, but `.quiz-shot`, `.learner-shot`,
+  and `.dash-shot` are plain white (`#fff`) and `.site-shot` is
+  `var(--paper)` (also white), so those four mocks bleed straight to the
+  card edge instead of floating on a grey card. Fix: swap those four to
+  `var(--card)` (or another neutral grey) to match. All in
+  `public/styles.css`, one background value per selector.
 - Decide whether sales-tax gets the same engaging-widget treatment or stays
   screenshot-first once a real screenshot lands — don't retrofit until then
 - If the user has other Outschool pages open, the same shared-tab pattern
