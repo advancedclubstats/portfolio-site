@@ -168,20 +168,6 @@ main {
   max-width: 34ch;
 }
 
-/* --- Stacked lists (what I do / what I want) ------------------------------ */
-.stack {
-  list-style: none;
-  margin: 0; padding: 0;
-  display: grid;
-  gap: 14px;
-}
-.stack li {
-  font-size: clamp(1.15rem, 4.4vw, 1.55rem);
-  line-height: 1.3;
-  max-width: 30ch;
-  font-weight: 500;
-}
-
 /* --- Bento grid: screenshot-first cards (Marco) ---------------------------- */
 .bento {
   display: grid;
@@ -1190,7 +1176,6 @@ main {
   }
   .card-head { font-size: clamp(1.6rem, 5vw, 2.8rem); }
   .hero h1 { font-size: clamp(2.6rem, 11vw, 6.6rem); }
-  .stack li { font-size: clamp(1.15rem, 4.4vw, 1.8rem); }
   .card-lg .card-label,
   .card-xl .card-label { font-size: 2.3rem; }
   #work .bento { grid-auto-rows: 400px; }
@@ -1199,4 +1184,28 @@ main {
   .article-head h1 { font-size: clamp(2rem, 8vw, 3.6rem); }
   .article .lede { font-size: 1.4rem; }
   .article-section p { font-size: 1.2rem; }
+
+  /* Card title/tagline strip under every work screenshot, not just lg/xl. */
+  .card-label { font-size: clamp(1.25rem, 4.4vw, 2rem); }
+  .card-tagline { font-size: 1.05rem; }
+
+  /* The interactive mocks were sized for the old (smaller) work cards, so
+     scale each one up in place to match. The `.shot` wrapper around every
+     mock already clips overflow, and each origin is picked to match how its
+     `.shot` aligns the content (centered vs. top-anchored), so the scaled
+     result grows into the extra room the bigger card gives it instead of
+     spilling past an edge. */
+  .phone { transform: scale(1.15); }
+  .mem-mock { transform: scale(1.15); }
+  /* quiz-mock fills its shot edge-to-edge on purpose (no slack like the
+     other mocks), so shrink it first to leave room for the scale to grow
+     into instead of clipping the rightmost chips. */
+  .quiz-mock { width: 87%; transform: scale(1.15); transform-origin: top left; }
+  /* learner-mock's dropdown is a fixed stack of rows, not reflow-based like
+     the quiz chips, so there's little slack to grow into — reclaim padding
+     from the shot and use a smaller scale so the taller dropdown still fits. */
+  .card .shot.learner-shot { padding: 0 20px; }
+  .learner-mock { transform: scale(1.08); transform-origin: top center; }
+  .dash-mock { transform: scale(1.15); transform-origin: top center; }
+  .site-mock { transform: scale(1.15); transform-origin: top center; }
 }

@@ -75,6 +75,23 @@
   Skipped the FAB nav addition: the FAB is built for same-page anchor
   scrolling (highlights the section in view), and `/steal` is a separate
   page, so adding it there would be inconsistent with every other entry.
+- Scaled the interactive mocks (phone, membership, quiz, learner, dashboard,
+  site) to match the bigger 1400px+ work cards — they were sized for the old
+  340px row unit and looked small/cramped once the cards grew. Used
+  `transform: scale()` on each mock's root element rather than rewriting
+  every font-size, with `transform-origin` matched to how its `.shot` aligns
+  content. Two needed extra care: quiz-mock fills its shot edge-to-edge on
+  purpose ("the chips ARE the whole frame"), so it's shrunk 87% pre-scale to
+  leave room to grow into; learner-mock's dropdown is a fixed stack of rows
+  (no reflow slack like the chips), so it got a smaller scale (1.08) plus a
+  tighter crop (shot padding-top dropped to 0) instead of the others' 1.15.
+  Verified all six against their `.shot` bounds via `getBoundingClientRect`
+  before/after — zero clipping.
+- Deleted the "What I Do" / "What I Want" cards (the whole About section)
+  so the intro card is the only text card, and moved Work directly under it
+  so it's visible above the fold like marco.fyi. Removed the now-dead
+  `whatIDo`/`whatIWant` config fields, the `.stack` CSS (only consumer),
+  and the FAB's "About" nav item (its anchor no longer exists).
 
 ## In progress
 - Real screenshot for sales-tax (only remaining colored-fake placeholder —
@@ -83,6 +100,16 @@
   free tier)
 
 ## Next
+- Make the UI feel more tactile/engaging, marco.fyi-style: cards greying on
+  hover, subtle movement, things sliding rather than just appearing. Explicitly
+  NOT a request to change any UI elements — same cards, same mocks, same
+  content — just add the motion/hover polish layer on top. Ideas to consider
+  (not a spec): hover states on `.card`/`.mem-card`/`.dt-pill`/etc. beyond the
+  current lift+shadow, staggered reveal-on-scroll instead of all cards
+  fading in together, a slide/parallax on the phone or dashboard mock as it
+  scrolls into view, tighter hover transitions on the FAB nav links. Look at
+  marco.fyi directly (browser tab, not memory) for the specific interactions
+  before implementing, the same way the mocks were pixel-matched.
 - Decide whether sales-tax gets the same engaging-widget treatment or stays
   screenshot-first once a real screenshot lands — don't retrofit until then
 - If the user has other Outschool pages open, the same shared-tab pattern

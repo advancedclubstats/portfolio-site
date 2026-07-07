@@ -31,7 +31,6 @@ module.exports = {
   // Floating nav (the FAB pill). Each item scrolls to a section id on the page.
   nav: [
     { label: "Home", target: "home" },
-    { label: "About", target: "about" },
     { label: "Work", target: "work" },
     { label: "Contact", target: "contact" },
   ],
@@ -46,16 +45,4 @@ module.exports = {
       "I'm best where the right move isn't obvious yet. That's usually where the leverage is.",
     ],
   },
-
-  whatIDo: [
-    "Find the expensive problem. It's rarely the obvious one.",
-    "Ship the fix. Prove it worked.",
-    "Cut whatever doesn't earn its place.",
-  ],
-
-  whatIWant: [
-    "Senior or lead PM. Growth, monetization, conversion.",
-    "Consumer, marketplace, or subscription. Remote.",
-    "Real product strategy, not ticket triage.",
-  ],
 };
