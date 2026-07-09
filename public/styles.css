@@ -1666,3 +1666,45 @@ main {
 @media (min-width: 2000px) { :root { zoom: 1.35; } }
 @media (min-width: 2600px) { :root { zoom: 1.7; } }
 @media (min-width: 3300px) { :root { zoom: 2.1; } }
+
+/* ==========================================================================
+   Mobile (< 720px): single-column stack. Each work card shows its mock in a
+   flexible-height shot with the caption in-flow below (no hover on touch), and
+   the wider mocks are scaled down to fit the phone width instead of clipping.
+   ========================================================================== */
+@media (max-width: 719px) {
+  html, body { overflow-x: hidden; }
+
+  /* The work cards carry inline `grid-area` names for the desktop mosaic; at
+     mobile there are no named areas, so grid would pile them all into one cell.
+     Stack them as a flex column instead (ignores grid-area, flows in DOM order). */
+  .work-bento { display: flex; flex-direction: column; }
+
+  /* Work-card mock area: real height (not a 4:3 crop), centered. */
+  .work-bento .card .shot {
+    aspect-ratio: auto;
+    min-height: 230px;
+    padding: 24px 16px;
+    align-items: center;
+    justify-content: center;
+  }
+  .work-bento .phone-shot { aspect-ratio: auto; min-height: 440px; padding: 16px 0; }
+  .work-bento .hover-hint { display: none; }
+  .work-bento a.card .card-label { font-size: 1.35rem; }
+
+  /* Fit the wider mocks to the phone width (scaled around center; the shot
+     clips the now-invisible layout overflow). */
+  .dash-mock { --ms: 0.64; }
+  .tut-mock { --ms: 0.68; }
+  .kaj-mock { --ms: 0.82; }
+  .mem-mock { --ms: 0.92; }
+  .quiz-mock { --ms: 0.92; }
+  .learner-mock { --ms: 0.95; }
+  .tax-mock { --ms: 0.95; }
+
+  /* Landing hero: stack text over the image instead of a cramped row. */
+  .land-mock { flex-direction: column; align-items: flex-start; gap: 14px; --ms: 0.95; }
+  .land-right { align-self: center; }
+
+  .mem-scroll { width: 30px; height: 30px; }
+}
