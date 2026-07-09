@@ -59,17 +59,23 @@
   <div class="topbar" id="home">
     <span class="mark"><%= config.name %></span>
     <nav class="socials" aria-label="Contact links">
-      <a href="mailto:<%= config.email %>">Email</a><% if (config.linkedin) { %>
-      <a href="<%= config.linkedin %>" target="_blank" rel="noopener">LinkedIn</a><% } %>
-      <a href="<%= config.roundRecallUrl %>" target="_blank" rel="noopener">RoundRecall</a>
+      <a href="mailto:<%= config.email %>" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a><% if (config.linkedin) { %>
+      <a href="<%= config.linkedin %>" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.4 8.75h3.4V21H3.4V8.75Zm6.02 0h3.26v1.68h.05c.45-.86 1.56-1.77 3.22-1.77 3.44 0 4.08 2.27 4.08 5.22V21h-3.4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-3.4V8.75Z"/></svg>
+      </a><% } %>
+      <a href="<%= config.roundRecallUrl %>" target="_blank" rel="noopener" aria-label="RoundRecall">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+      </a>
     </nav>
   </div>
 
   <main>
-    <!-- HOME: intro card -->
-    <section class="section" aria-label="Intro">
-      <div class="bento">
-        <div class="card card-text card-xl reveal">
+    <!-- WORK: intro tile + screenshot-first cards in one unified bento (Marco) -->
+    <section class="section" id="work" aria-label="Work">
+      <div class="bento work-bento">
+        <div class="card card-text reveal" style="grid-area: intro">
           <div class="card-pad">
             <p class="card-eyebrow"><%= config.intro.eyebrow %></p>
             <h1 class="card-head display"><%= config.intro.head %></h1>
@@ -78,14 +84,8 @@
             <% }); %>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- WORK: screenshot-first cards -->
-    <section class="section" id="work" aria-label="Work">
-      <div class="bento">
         <% projects.forEach(function(p){ %>
-        <a class="card card-<%= p.size %> reveal" href="/work/<%= p.slug %>">
+        <a class="card reveal area-<%= p.area %><%= p.wide ? ' card-wide' : '' %>" style="grid-area: <%= p.area %>" href="/work/<%= p.slug %>">
           <% if (p.phoneMock) { %>
           <span class="shot phone-shot" aria-label="RoundRecall dashboard preview, scrollable">
             <span class="phone">
@@ -263,7 +263,35 @@
                   <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text">Covers <b>~2</b> group classes per week</span></span>
                 </span>
               </span>
+              <span class="mem-card" role="radio" aria-checked="false" tabindex="0">
+                <span class="mem-credits"><b>248</b> credits</span>
+                <span class="mem-price-row">
+                  <span class="mem-price">$120</span>
+                  <span class="mem-price-sub">USD / month</span>
+                </span>
+                <span class="mem-btn outline">Select</span>
+                <span class="mem-hr"></span>
+                <span class="mem-bullets">
+                  <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text"><b>8 bonus credits</b>/mo included</span></span>
+                  <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text">Covers <b>~2</b> group classes per week</span></span>
+                </span>
+              </span>
+              <span class="mem-card" role="radio" aria-checked="false" tabindex="0">
+                <span class="mem-credits"><b>500</b> credits</span>
+                <span class="mem-price-row">
+                  <span class="mem-price">$240</span>
+                  <span class="mem-price-sub">USD / month</span>
+                </span>
+                <span class="mem-btn outline">Select</span>
+                <span class="mem-hr"></span>
+                <span class="mem-bullets">
+                  <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text"><b>20 bonus credits</b>/mo included</span></span>
+                  <span class="mem-bullet"><span class="mem-dot">&bull;</span><span class="mem-bullet-text">Covers <b>~4</b> group classes per week</span></span>
+                </span>
+              </span>
             </span>
+            <span class="mem-scroll mem-scroll-left is-hidden" role="button" tabindex="0" aria-label="Previous plans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>
+            <span class="mem-scroll mem-scroll-right" role="button" tabindex="0" aria-label="See more plans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
           </span>
           <% } else if (p.learnerMock) { %>
           <span class="shot learner-shot" aria-label="Outschool search by learner picker, click a learner to select">
@@ -361,11 +389,79 @@
               <span class="sm-fab"></span>
             </span>
           </span>
+          <% } else if (p.taxMock) { %>
+          <span class="shot tax-shot" aria-label="Outschool checkout with a sales tax line added">
+            <span class="tax-mock">
+              <span class="tax-row"><span class="tax-label">McKenna (age 5)</span><span class="tax-val">$43.33</span></span>
+              <span class="tax-row"><span class="tax-label tax-discount">Upfront payment discount (10%)</span><span class="tax-val tax-discount">&minus;$4.33</span></span>
+              <span class="tax-row"><span class="tax-label">Marketplace fee</span><span class="tax-val">$1.56</span></span>
+              <span class="tax-row tax-new"><span class="tax-label">Sales tax</span><span class="tax-val">$3.45</span></span>
+              <span class="tax-hr"></span>
+              <span class="tax-row tax-total"><span class="tax-label">Total due today</span><span class="tax-val">$44.01</span></span>
+            </span>
+          </span>
+          <% } else if (p.kajMock) { %>
+          <span class="shot kaj-shot" aria-label="Kajabi product launches: Coaching, Newsletters, Podcasts">
+            <span class="kaj-mock">
+              <span class="kaj-head">
+                <span class="kaj-mark"><span class="kaj-logo" aria-hidden="true"></span>Kajabi</span>
+                <span class="kaj-eyebrow">Launched</span>
+              </span>
+              <span class="kaj-tile">
+                <span class="kaj-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/></svg></span>
+                <span class="kaj-tiletext"><span class="kaj-name">Coaching</span><span class="kaj-desc">1:1 programs, scheduling + payments built in</span></span>
+                <span class="kaj-go" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="kaj-tile">
+                <span class="kaj-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                <span class="kaj-tiletext"><span class="kaj-name">Newsletters</span><span class="kaj-desc">Own the inbox, monetize your list</span></span>
+                <span class="kaj-go" aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="kaj-tile">
+                <span class="kaj-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 17v4"/></svg></span>
+                <span class="kaj-tiletext"><span class="kaj-name">Podcasts</span><span class="kaj-desc">Publish and grow a private audio feed</span></span>
+                <span class="kaj-go" aria-hidden="true">&rarr;</span>
+              </span>
+            </span>
+          </span>
+          <% } else if (p.tutMock) { %>
+          <span class="shot tut-shot" aria-label="Outschool tutoring landing page">
+            <span class="tut-mock">
+              <span class="tut-head">Trusted tutors, <span class="tut-accent">anytime, anywhere.</span></span>
+              <span class="tut-rating"><span class="tut-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.9 from 1.5M class reviews</span>
+              <span class="tut-searchbar">
+                <span class="tut-search-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+                <span class="tut-search-text">Search any topic or teacher</span>
+                <span class="tut-search-btn">Find tutoring</span>
+              </span>
+            </span>
+          </span>
+          <% } else if (p.landMock) { %>
+          <span class="shot land-shot" aria-label="Outschool landing page for online English classes">
+            <span class="land-mock">
+              <span class="land-left">
+                <span class="land-crumb">Home / English</span>
+                <span class="land-head">Online English Classes for Kids</span>
+                <span class="land-bullets">
+                  <span class="land-bullet">Live classes, 1:1 tutoring &amp; self-paced</span>
+                  <span class="land-bullet">Vetted, passionate teachers</span>
+                </span>
+                <span class="land-cta">Get Started</span>
+              </span>
+              <span class="land-right" aria-hidden="true">
+                <span class="land-blob land-blob-yellow"></span>
+                <span class="land-blob land-blob-purple"></span>
+                <span class="land-photo"></span>
+                <span class="land-heart">&#10084;</span>
+              </span>
+            </span>
+          </span>
           <% } else { %>
           <span class="shot">
             <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />
           </span>
           <% } %>
+          <span class="hover-hint" aria-hidden="true">&#8599;</span>
           <span class="card-foot">
             <span class="card-text-inline">
               <span class="card-label display"><%= p.label %></span>
@@ -406,13 +502,16 @@
         <a class="card card-md contact-tile linkedin-tile reveal" href="<%= config.linkedin %>" target="_blank" rel="noopener">
           <div class="card-pad contact-tile-pad">
             <div class="contact-tile-head">
-              <span class="contact-tile-name"><%= config.name %></span>
-              <span class="contact-tile-handle">Growth &amp; Monetization PM</span>
+              <span class="contact-avatar" aria-hidden="true">MM</span>
+              <span class="contact-tile-headtext">
+                <span class="contact-tile-name"><%= config.name %></span>
+                <span class="contact-tile-handle">Growth &amp; Monetization PM</span>
+              </span>
             </div>
             <span class="app-icon linkedin-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="#fff"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.4 8.75h3.4V21H3.4V8.75Zm6.02 0h3.26v1.68h.05c.45-.86 1.56-1.77 3.22-1.77 3.44 0 4.08 2.27 4.08 5.22V21h-3.4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-3.4V8.75Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.4 8.75h3.4V21H3.4V8.75Zm6.02 0h3.26v1.68h.05c.45-.86 1.56-1.77 3.22-1.77 3.44 0 4.08 2.27 4.08 5.22V21h-3.4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-3.4V8.75Z"/></svg>
             </span>
-            <p class="linkedin-bio">I find where products leak money. Then I fix it.</p>
+            <p class="linkedin-bio">Growth &amp; Monetization PM. Conversion, Pricing, Lifecycle. Dad. Ex-Outschool, Kajabi. Building with AI.</p>
           </div>
           <span class="contact-tile-btn">View profile <span aria-hidden="true">&#8599;</span></span>
         </a>
@@ -436,13 +535,6 @@
   </main>
 
   <p class="foot-meta">© <%= new Date().getFullYear() %> <%= config.name %></p>
-
-  <!-- FLOATING NAV (FAB pill) -->
-  <nav class="fab" aria-label="Section navigation">
-    <% config.nav.forEach(function(item){ %>
-    <a href="#<%= item.target %>" data-target="<%= item.target %>"><%= item.label %></a>
-    <% }); %>
-  </nav>
 
   <script src="/script.js"></script>
 </body>

@@ -57,7 +57,6 @@ a { color: inherit; }
 .display {
   font-family: var(--font-display);
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 0.98;
 }
@@ -85,16 +84,14 @@ a { color: inherit; }
 }
 .mark {
   font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   font-weight: 600;
   font-size: 16px;
 }
 .mark-link {
   font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 12px;
+  letter-spacing: 0.01em;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   color: var(--ink-soft);
@@ -105,18 +102,16 @@ a { color: inherit; }
 .socials {
   display: flex;
   gap: 18px;
+  align-items: center;
 }
 .socials a {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 11.5px;
-  font-weight: 500;
-  text-decoration: none;
   color: var(--ink-soft);
+  display: inline-flex;
+  text-decoration: none;
   transition: color .15s ease;
 }
 .socials a:hover { color: var(--ink); }
+.socials svg { width: 20px; height: 20px; display: block; }
 
 /* --- Layout shell ---------------------------------------------------------- */
 main {
@@ -133,9 +128,8 @@ main {
 .card-pad { padding: 32px; }
 .card-eyebrow {
   font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 12px;
+  letter-spacing: 0.01em;
+  font-size: 13px;
   font-weight: 500;
   color: var(--ink-soft);
   margin: 0 0 20px;
@@ -186,9 +180,8 @@ main {
   isolation: isolate;
   transition: transform .28s ease, box-shadow .28s ease;
 }
-.card:hover {
-  transform: translateY(-4px);
-}
+/* Container tiles stay fixed (marco pattern): the hover lift + shadow lives
+   on the inner UI mock, not the card. See ".card:hover <mock>" rules below. */
 
 /* Full-bleed screenshot fills the top of the card. Color comes from here. */
 .card .shot {
@@ -221,7 +214,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e2e0d8;
+  background: #f4f4f6;
   padding: 24px 0;
 }
 /* Outer box: real iPhone proportions (19.5:9), holds the side buttons that
@@ -432,11 +425,45 @@ main {
   justify-content: center;
   overflow: hidden;
   padding: 16px;
+  position: relative;
 }
-.mem-mock { display: flex; gap: 12px; max-width: 100%; overflow-x: auto; }
+.mem-mock {
+  display: flex;
+  gap: 12px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+.mem-mock::-webkit-scrollbar { display: none; }
+/* Carousel chevron: scrolls the tier row right to reveal the 248 / 500 plans,
+   like Outschool's own membership carousel. Wired in public/script.js. */
+.mem-scroll {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  color: #4b01d4;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  transition: background .15s ease, box-shadow .15s ease, opacity .2s ease;
+}
+.mem-scroll svg { width: 16px; height: 16px; display: block; }
+.mem-scroll-right { right: 12px; }
+.mem-scroll-left { left: 12px; }
+.mem-scroll:hover { background: #f4f4f6; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14); }
+.mem-scroll.is-hidden { opacity: 0; pointer-events: none; }
 .mem-card {
   flex: 0 0 auto;
-  width: 168px;
+  width: 178px;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -502,21 +529,33 @@ main {
    quiz, not a full screen. Values below are computed styles pulled live off
    the actual Outschool quiz (getComputedStyle, same method as RoundRecall) —
    purple #4b01d4, white/#e0e0e0 unselected, 999px pill, "Ginto Normal"
-   (licensed; substituted with the shell's own body font). The chip area on
-   the real page sits on plain white, not a colored panel, so this crops
-   tight and oversized against white to read as a zoomed-in fragment, the
-   way marco.fyi's own widget tiles do — no floating card, no backdrop tint,
-   the chips ARE the whole frame. --------------------------------------- */
+   (licensed; substituted with the shell's own body font). Sits as a single
+   white card floating on the grey shot backdrop, matching the Optional
+   Membership treatment (marco.fyi's own widget-on-grey-canvas pattern).
+   ------------------------------------------------------------------------ */
 .card .shot.quiz-shot {
-  background: #fff;
+  background: #f4f4f6;
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   overflow: hidden;
-  padding: 0;
+  padding: 20px;
 }
 .quiz-mock {
   width: 100%;
-  padding: 18px 22px 0 22px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  /* Composable transform: --ms (responsive scale) × --ml (hover lift), so the
+     hover lift stacks on top of the breakpoint scale instead of clobbering it. */
+  transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.card:hover .quiz-mock {
+  --ml: -10px;
+  box-shadow: 0 20px 44px -14px rgba(18, 20, 28, 0.20),
+    0 6px 16px -6px rgba(18, 20, 28, 0.10);
 }
 .qm-label {
   display: block;
@@ -590,6 +629,29 @@ main {
   transition: transform .25s ease, color .25s ease;
 }
 .card:hover .arrow { transform: translateX(4px); color: var(--ink); }
+
+/* Placeholder tile: a calm coming-soon slot for the next portfolio item. */
+.card-placeholder {
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  border: 1px dashed var(--line);
+}
+.placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-soft);
+  opacity: 0.55;
+}
+.placeholder-plus { font-size: 30px; line-height: 1; font-weight: 300; }
+.placeholder-label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+}
 
 /* --- Ask-AI / footer ------------------------------------------------------- */
 .ask-ai {
@@ -665,15 +727,37 @@ main {
 .mail-tile .contact-tile-btn { background: var(--ink); color: #fff; }
 .mail-tile:hover .contact-tile-btn { background: #3b82f6; }
 
-/* LinkedIn tile: brand-blue card, white "in" mark floating like his bird icon */
-.linkedin-tile { background: #0a66c2; color: #fff; transition: background .2s ease; }
-.linkedin-tile:hover { background: #004182; }
-.linkedin-tile .contact-tile-handle { opacity: 0.85; }
-.linkedin-icon { background: transparent; }
-.linkedin-icon svg { width: 30px; height: 30px; }
+/* LinkedIn tile: grey at rest with an avatar left of the name (marco's Twitter
+   card), flips to brand-blue on hover. */
+.linkedin-tile { background: var(--card); color: var(--ink); transition: background .2s ease, color .2s ease; }
+.linkedin-tile:hover { background: #0a66c2; color: #fff; }
+.linkedin-tile .contact-tile-head { flex-direction: row; align-items: center; gap: 11px; padding-right: 48px; }
+.linkedin-tile .contact-tile-headtext { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.linkedin-tile .contact-tile-handle { opacity: 0.7; }
+.contact-avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #0a66c2;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.contact-avatar img { width: 100%; height: 100%; object-fit: cover; }
+/* Icon badge: blue on the grey rest state, inverts to white on the blue hover. */
+.linkedin-icon { background: #0a66c2; color: #fff; transition: background .2s ease, color .2s ease; }
+.linkedin-icon svg { width: 22px; height: 22px; }
+.linkedin-tile:hover .linkedin-icon { background: #fff; color: #0a66c2; }
 .linkedin-bio { font-size: 1.05rem; line-height: 1.4; margin: 0; }
-.linkedin-tile .contact-tile-btn { background: #fff; color: #0a66c2; }
-.linkedin-tile:hover .contact-tile-btn { background: #eaf2ff; color: #004182; }
+.linkedin-tile .contact-tile-btn { background: var(--ink); color: #fff; transition: background .15s ease, color .15s ease; }
+.linkedin-tile:hover .contact-tile-btn { background: #fff; color: #0a66c2; }
 
 /* --- Search by Learner card: real, clickable learner picker lifted from
    Outschool's actual search bar dropdown (getComputedStyle on the live
@@ -683,14 +767,22 @@ main {
    interaction the real dropdown does. Top-anchored crop, not horizontal
    bleed, so nothing ever cuts through a word. -------------------------- */
 .card .shot.learner-shot {
-  background: #fff;
+  background: #f4f4f6;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   overflow: hidden;
   padding: 20px;
 }
-.learner-mock { width: 100%; max-width: 300px; }
+.learner-mock {
+  width: 100%;
+  max-width: 300px;
+  transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.card:hover .learner-mock {
+  --ml: -10px;
+}
 .lm-searchbar {
   display: flex;
   align-items: center;
@@ -742,20 +834,20 @@ main {
 .lm-search-icon svg { width: 14px; height: 14px; }
 .lm-dropdown {
   display: block;
-  margin-top: 8px;
+  margin-top: 6px;
   background: #fff;
   border: 2px solid #e5e5e5;
   border-radius: 8px;
   overflow: hidden;
 }
-.lm-all { display: block; padding: 10px 12px 10px 46px; border-bottom: 1px solid #eee; }
+.lm-all { display: block; padding: 8px 12px 8px 46px; border-bottom: 1px solid #eee; }
 .lm-all-title { display: block; font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #000; }
 .lm-all-sub { display: block; font-family: var(--font-body); font-size: 10px; color: #5c5c5c; margin-top: 1px; }
 .lm-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 12px;
+  padding: 7px 12px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
   transition: background .12s ease;
@@ -770,7 +862,7 @@ main {
 .lm-row.selected .lm-check { opacity: 1; }
 .lm-add {
   display: block;
-  padding: 9px 12px;
+  padding: 7px 12px;
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 600;
@@ -786,14 +878,31 @@ main {
    highlight, demonstrating "every core job is one click away" directly
    rather than just claiming it in the tagline. ------------------------- */
 .card .shot.dash-shot {
-  background: #fff;
+  background: #f4f4f6;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   overflow: hidden;
-  padding: 18px;
+  padding: 20px;
 }
-.dash-mock { width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 14px; }
+.dash-mock {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 16px 18px;
+  transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.card:hover .dash-mock {
+  --ml: -10px;
+  box-shadow: 0 20px 44px -14px rgba(18, 20, 28, 0.20),
+    0 6px 16px -6px rgba(18, 20, 28, 0.10);
+}
 .dash-learnertabs { display: flex; gap: 8px; }
 .dt-pill {
   display: inline-flex;
@@ -806,26 +915,31 @@ main {
   font-family: var(--font-body);
   font-size: 13px;
   cursor: pointer;
+  transition: background .12s ease;
 }
+.dt-pill:hover:not(.selected) { background: #e6e9ff; }
 .dt-pill.selected { background: #4b01d4; color: #fff; }
 .dt-sub { font-size: 10.5px; color: rgba(255,255,255,0.7); }
 .dash-body { display: flex; gap: 20px; }
-.dash-sidebar { display: flex; flex-direction: column; gap: 13px; flex-shrink: 0; width: 108px; padding-top: 2px; }
+.dash-sidebar { display: flex; flex-direction: column; gap: 7px; flex-shrink: 0; width: 108px; padding-top: 2px; }
 .ds-item {
   font-family: var(--font-body);
   font-size: 12.5px;
   font-weight: 500;
   color: #5c5c5c;
   cursor: pointer;
+  padding: 5px 8px;
+  margin: 0 -8px;
+  border-radius: 7px;
+  transition: background .12s ease;
 }
+.ds-item:hover { background: #f0f0f2; }
 .ds-item.active { font-weight: 700; color: #000; }
 .dash-panel {
   flex: 1;
   min-width: 0;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 18px 22px;
+  border-left: 1px solid #eee;
+  padding-left: 20px;
 }
 .dp-title { display: block; font-family: var(--font-display); font-size: 18px; font-weight: 500; color: #262626; margin-bottom: 12px; }
 .dp-tabs { display: flex; gap: 7px; margin-bottom: 16px; }
@@ -838,7 +952,9 @@ main {
   border-radius: 5px;
   padding: 8px 10px;
   cursor: pointer;
+  transition: background .12s ease;
 }
+.dp-tab:hover:not(.selected) { background: #e0e0e4; }
 .dp-tab.selected { background: #e0e5ff; }
 .dp-empty { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 0 4px; text-align: center; }
 .dp-empty-text { font-family: var(--font-body); font-size: 13px; font-weight: 500; color: #1a1a1a; }
@@ -862,7 +978,7 @@ main {
    bug (an un-blockified inline span rendering as a fragmented ghost box)
    is exactly the kind of mistake this guards against. ------------------- */
 .card .shot.site-shot {
-  background: var(--paper);
+  background: #f4f4f6;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -873,10 +989,17 @@ main {
   display: block;
   width: 100%;
   max-width: 280px;
-  background: var(--card);
+  background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 14px;
+  transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.card:hover .site-mock {
+  --ml: -10px;
+  box-shadow: 0 20px 44px -14px rgba(18, 20, 28, 0.20),
+    0 6px 16px -6px rgba(18, 20, 28, 0.10);
 }
 .sm-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .sm-mark { font-family: var(--font-display); font-size: 9px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); }
@@ -886,7 +1009,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  background: #fff;
+  background: var(--card);
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 8px;
@@ -897,7 +1020,7 @@ main {
   flex-direction: column;
   gap: 5px;
   flex: 1;
-  background: #fff;
+  background: var(--card);
   border-radius: 8px;
   padding: 8px 10px;
 }
@@ -920,6 +1043,216 @@ main {
   border-radius: 999px;
   background: #fff;
   border: 1px solid var(--line);
+}
+
+/* --- Sales-tax card: a live rebuild of Outschool's checkout panel with the
+   sales-tax line added under the marketplace fee (the value is illustrative —
+   Matt's state has no sales tax). -------------------------------------------- */
+.card .shot.tax-shot {
+  background: #f4f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 18px;
+}
+.tax-mock {
+  width: 100%;
+  max-width: 300px;
+  background: #f3f2fb;
+  border-radius: 12px;
+  padding: 15px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-body);
+  transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.tax-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 12px;
+  color: #1a1a1a;
+}
+.tax-val { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tax-discount { color: #1a8a4a; }
+.tax-new {
+  background: #fff6d6;
+  border-radius: 6px;
+  margin: 0 -6px;
+  padding: 4px 6px;
+}
+.tax-new .tax-label, .tax-new .tax-val { font-weight: 600; }
+.tax-hr { height: 1px; background: #dad8ea; margin: 3px 0; }
+.tax-total { font-weight: 700; font-size: 13px; }
+
+/* --- Kajabi card: three product tiles (Coaching / Newsletters / Podcasts) in
+   Kajabi's minimal black-on-light menu style. --------------------------------- */
+.card .shot.kaj-shot {
+  background: #f4f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+}
+.kaj-mock {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--font-body);
+  transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.kaj-head { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 2px; }
+.kaj-mark { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 600; font-size: 15px; color: #0a0a0a; }
+.kaj-logo { width: 18px; height: 18px; border-radius: 5px; background: #0a0a0a; flex-shrink: 0; }
+.kaj-eyebrow { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.1em; font-size: 9px; font-weight: 500; color: #9a9a9a; }
+.kaj-tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid #e6e6e9;
+  border-radius: 12px;
+  padding: 13px 14px;
+  transition: background .14s ease, border-color .14s ease;
+}
+.kaj-tile:hover { background: #f0f0f2; border-color: #dcdce1; }
+.kaj-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #f2f2f4;
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kaj-icon svg { width: 18px; height: 18px; }
+.kaj-tiletext { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.kaj-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: #0a0a0a; }
+.kaj-desc { font-size: 11px; color: #6b6b6b; line-height: 1.3; }
+.kaj-go { flex-shrink: 0; color: #0a0a0a; font-size: 16px; }
+
+/* --- Tutoring card: compact Outschool tutoring hero (headline + rating +
+   search bar). --------------------------------------------------------------- */
+.card .shot.tut-shot {
+  background: #f4f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px 24px;
+}
+.tut-mock {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--font-body);
+  transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.tut-head { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.1; color: #0e0e1a; }
+.tut-accent { color: #4b01d4; }
+.tut-rating { font-size: 11px; color: #4a4a4a; display: flex; align-items: center; gap: 6px; }
+.tut-stars { color: #f5a623; letter-spacing: 1px; }
+.tut-searchbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 999px;
+  padding: 5px 5px 5px 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.tut-search-icon { color: #767676; display: flex; }
+.tut-search-icon svg { width: 15px; height: 15px; }
+.tut-search-text { flex: 1; font-size: 12.5px; color: #a3a3a3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tut-search-btn {
+  flex-shrink: 0;
+  background: #4b01d4;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 12.5px;
+  padding: 9px 16px;
+  border-radius: 999px;
+}
+
+/* --- Landing-page card: compact Outschool landing hero (headline + bullets +
+   CTA, playful hero blob). --------------------------------------------------- */
+.card .shot.land-shot {
+  background: #eef0fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px 24px;
+}
+.land-mock {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-body);
+  transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+}
+.land-left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.land-crumb { font-size: 10px; color: #7a7a8a; }
+.land-head { font-family: var(--font-display); font-weight: 600; font-size: 19px; line-height: 1.12; color: #1a1a2e; }
+.land-bullets { display: flex; flex-direction: column; gap: 4px; }
+.land-bullet { font-size: 11px; color: #4a4a5a; padding-left: 15px; position: relative; }
+.land-bullet::before { content: ""; position: absolute; left: 0; top: 5px; width: 7px; height: 7px; border-radius: 50%; background: #4b01d4; }
+.land-cta {
+  align-self: flex-start;
+  margin-top: 3px;
+  background: #4b01d4;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 12.5px;
+  padding: 9px 18px;
+  border-radius: 999px;
+}
+.land-right { position: relative; flex-shrink: 0; width: 120px; height: 120px; }
+.land-blob { position: absolute; border-radius: 50%; }
+.land-blob-yellow { width: 88px; height: 88px; background: #ffcf3f; left: 6px; top: 20px; }
+.land-blob-purple { width: 44px; height: 44px; background: #4b01d4; right: 0; top: 2px; }
+.land-photo {
+  position: absolute;
+  left: 20px;
+  top: 8px;
+  width: 84px;
+  height: 100px;
+  border-radius: 10px;
+  background: linear-gradient(150deg, #c9d4e8, #9aa9c8);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+.land-heart {
+  position: absolute;
+  left: -4px;
+  bottom: 6px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ef5b34;
+  color: #fff;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ai-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -1006,30 +1339,34 @@ main {
   max-width: 720px;
   padding-top: 12px;
 }
-.article-head { padding: 24px 0 8px; }
-.article-head .eyebrow { margin-bottom: 20px; }
-.number.big {
-  font-size: clamp(3.4rem, 16vw, 7rem);
-  margin: 0 0 8px;
-}
+.article-head { padding: 30px 0 8px; }
 .article-head h1 {
-  margin: 0 0 20px;
+  margin: 0 0 12px;
   font-size: clamp(2rem, 8vw, 3.2rem);
 }
+.article-stat {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.article-stat-num { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
 .article .lede {
   font-size: 1.25rem;
   line-height: 1.4;
   color: var(--ink);
   max-width: 40ch;
 }
-.article-hero-shot {
-  margin: 36px 0;
+/* Hero at the top of the story: large rounded image or embedded video. */
+.article-hero {
+  margin: 8px 0 4px;
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--card);
-  box-shadow: 0 30px 70px rgba(0,0,0,0.12);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.12);
 }
-.article-hero-shot img { display: block; width: 100%; height: auto; }
+.article-hero-media { display: block; width: 100%; height: auto; }
+.article-hero-embed { position: relative; aspect-ratio: 16 / 9; }
+.article-hero-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 .article-section { padding: 26px 0; }
 .article-section h2 { margin-bottom: 14px; }
@@ -1152,15 +1489,132 @@ main {
   .card-lg .card-label,
   .card-xl .card-label { font-size: 2rem; }
 
-  /* Work grid only: fixed row unit so the tall (2-row) card lines up exactly
-     with two stacked single-row cards beside it, bento-style. Shots flex to
-     fill whatever height their row track gives them instead of holding a
-     fixed aspect ratio, so no card is left with dead space or gets stretched
-     to match a taller neighbor unevenly. */
-  #work .bento { grid-auto-rows: 340px; }
-  #work .card-md .shot,
-  #work .card-tall .shot { aspect-ratio: auto; flex: 1; min-height: 0; }
-  #work .card-tall .phone-shot { padding: 20px 0; }
+  /* Work: one unified bento mosaic (Marco), intro tile folded in top-left.
+     Placement is explicit via named grid-areas (see projects.js `area`). This
+     2-col arrangement is the tablet fallback; the full 4-col mosaic kicks in
+     at >=1080 below. Shots flex to fill their tile height (no fixed aspect). */
+  .work-bento {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+    grid-auto-rows: minmax(210px, auto);
+    grid-template-areas:
+      "intro intro"
+      "memb  memb"
+      "quiz  quiz"
+      "dash  dash"
+      "phone tax"
+      "phone learn"
+      "kaj   kaj"
+      "tut   tut"
+      "land  land";
+  }
+  .work-bento .card .shot { aspect-ratio: auto; flex: 1; min-height: 0; }
+  .work-bento .phone-shot { padding: 20px 0; }
+
+  /* Wide tile (dashboard): mock beside text, matching its short-landscape mock. */
+  .card-wide { flex-direction: row; align-items: stretch; }
+  .card-wide .shot { width: 58%; flex: 0 0 58%; }
+  .card-wide .card-foot {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 14px;
+    padding: 28px;
+  }
+  .card-wide .card-label { font-size: 2rem; }
+}
+
+/* Work bento: full 4-col mosaic. 11 tiles fill a 4x7 grid exactly, spans matched
+   to each card's shape (phone tall; intro/memb/kaj/dash 2x2 blocks; quiz/tut/land
+   wide-short; tax/learn small; place closes the bottom row). */
+@media (min-width: 1080px) {
+  .work-bento {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: var(--work-row, 250px);
+    grid-template-areas:
+      "intro intro memb  memb"
+      "intro intro quiz  quiz"
+      "phone dash  dash  tax"
+      "phone dash  dash  learn"
+      "kaj   kaj   tut   tut"
+      "kaj   kaj   land  land";
+  }
+
+  /* All mocks centered v+h (specificity ties the per-mock ".card .shot.x-shot"
+     rules; later in the cascade wins). */
+  .work-bento .card .shot { align-items: center; justify-content: center; }
+}
+
+/* ==========================================================================
+   Bento v2 work-card interaction (hover-capable, >=720). At rest a card shows
+   only its mock, bottom-anchored and floating off the bottom edge; on hover the
+   mock lifts (the phone rotates upright) + shadows, and the caption reveals as a
+   scrim overlay. Touch / mobile keep the caption visible (no :hover branch).
+   ========================================================================== */
+@media (hover: hover) and (min-width: 720px) {
+  /* Caption: bottom scrim overlay, hidden until hover. */
+  .work-bento a.card .card-foot {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    z-index: 3;
+    padding: 24px 22px 20px;
+    background: linear-gradient(to top,
+      var(--card) 34%, rgba(246, 246, 248, 0.82) 68%, rgba(246, 246, 248, 0));
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .26s ease, transform .26s ease;
+    pointer-events: none;
+  }
+  .work-bento a.card:hover .card-foot { opacity: 1; transform: translateY(0); }
+  .work-bento a.card .card-label { font-size: 1.4rem; line-height: 1.08; }
+  .work-bento a.card .card-tagline { font-size: 0.9rem; margin-top: 6px; }
+
+  /* Hover-hint arrow, top-right; fades out on hover. */
+  .work-bento .hover-hint {
+    position: absolute;
+    top: 14px; right: 16px;
+    z-index: 4;
+    font-size: 19px;
+    line-height: 1;
+    color: var(--ink-soft);
+    opacity: 0.45;
+    transition: opacity .2s ease;
+    pointer-events: none;
+  }
+  .work-bento a.card:hover .hover-hint { opacity: 0; }
+
+  /* Give the mocks that lack it the composable transform (the four white-card
+     mocks already have scale(--ms)*translateY(--ml) from earlier). */
+  .work-bento .mem-mock {
+    transform: scale(var(--ms, 1)) translateY(var(--ml, 0px));
+    transition: transform .34s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+  }
+  .work-bento .phone {
+    transform: rotate(var(--rot, 0deg)) translateX(var(--tx, 0px)) scale(var(--ms, 1)) translateY(var(--ml, 0px));
+    transition: transform .42s cubic-bezier(.2, .7, .2, 1), box-shadow .3s ease;
+    transform-origin: center center;
+  }
+  /* Phone rests tilted + slightly oversized so its corners run past the tile
+     edges; the tile CLIPS them (overflow hidden, like marco) so the phone tucks
+     BEHIND the container edge rather than floating on top. Hover straightens it. */
+  .work-bento .phone { --rot: -12deg; --tx: 0px; --ms: 1.12; }
+
+  /* Hover: lift up (+ shadow on the solid white-card mocks only). */
+  .work-bento a.card:hover .quiz-mock,
+  .work-bento a.card:hover .dash-mock,
+  .work-bento a.card:hover .tax-mock,
+  .work-bento a.card:hover .site-mock {
+    --ml: -10px;
+    box-shadow: 0 20px 44px -14px rgba(18, 20, 28, 0.22),
+      0 6px 16px -6px rgba(18, 20, 28, 0.10);
+  }
+  .work-bento a.card:hover .mem-mock { --ml: -6px; }
+  .work-bento a.card:hover .learner-mock,
+  .work-bento a.card:hover .kaj-mock,
+  .work-bento a.card:hover .tut-mock,
+  .work-bento a.card:hover .land-mock { --ml: -8px; }
+  .work-bento a.card:hover .phone { --rot: 0deg; --tx: 0px; --ms: 1.0; --ml: -8px; }
 }
 
 @media (min-width: 960px) {
@@ -1178,7 +1632,7 @@ main {
   .hero h1 { font-size: clamp(2.6rem, 11vw, 6.6rem); }
   .card-lg .card-label,
   .card-xl .card-label { font-size: 2.3rem; }
-  #work .bento { grid-auto-rows: 400px; }
+  .work-bento { --work-row: 285px; }
 
   .number.big { font-size: clamp(3.4rem, 16vw, 8rem); }
   .article-head h1 { font-size: clamp(2rem, 8vw, 3.6rem); }
@@ -1189,23 +1643,26 @@ main {
   .card-label { font-size: clamp(1.25rem, 4.4vw, 2rem); }
   .card-tagline { font-size: 1.05rem; }
 
-  /* The interactive mocks were sized for the old (smaller) work cards, so
-     scale each one up in place to match. The `.shot` wrapper around every
-     mock already clips overflow, and each origin is picked to match how its
-     `.shot` aligns the content (centered vs. top-anchored), so the scaled
-     result grows into the extra room the bigger card gives it instead of
-     spilling past an edge. */
-  .phone { transform: scale(1.15); }
-  .mem-mock { transform: scale(1.15); }
-  /* quiz-mock fills its shot edge-to-edge on purpose (no slack like the
-     other mocks), so shrink it first to leave room for the scale to grow
-     into instead of clipping the rightmost chips. */
-  .quiz-mock { width: 87%; transform: scale(1.15); transform-origin: top left; }
-  /* learner-mock's dropdown is a fixed stack of rows, not reflow-based like
-     the quiz chips, so there's little slack to grow into — reclaim padding
-     from the shot and use a smaller scale so the taller dropdown still fits. */
+  /* Per-tile mock scale via --ms (composes with the hover-lift --ml, and the
+     phone's --rot). Values matched to each tile's size in the v2 mosaic. */
+  /* All mocks centered v+h now (origin center); scale tuned per tile. */
+  .phone { --ms: 1.0; }
+  .mem-mock { --ms: 0.93; transform-origin: center; }
+  .quiz-mock { width: 100%; --ms: 1.0; transform-origin: center; }
   .card .shot.learner-shot { padding: 0 20px; }
-  .learner-mock { transform: scale(1.08); transform-origin: top center; }
-  .dash-mock { transform: scale(1.15); transform-origin: top center; }
-  .site-mock { transform: scale(1.15); transform-origin: top center; }
+  .learner-mock { --ms: 1.0; transform-origin: center; }
+  .dash-mock { --ms: 1.15; transform-origin: center; }
+  .tax-mock { --ms: 0.9; transform-origin: center; }
+  .kaj-mock { --ms: 1.15; transform-origin: center; }
+  .tut-mock { --ms: 1.05; transform-origin: center; }
+  .land-mock { --ms: 1.05; transform-origin: center; }
 }
+
+/* --- Very large / hi-res displays: the layout caps at a comfortable reading
+   width, so on big monitors it can read small (a thin strip of content). Scale
+   the whole page up proportionally on very wide viewports — the code equivalent
+   of nudging browser zoom, so fonts AND the px-based mocks grow together. Kicks
+   in only past normal desktop widths, so 1080p/1440p/4K-at-2x are untouched. */
+@media (min-width: 2000px) { :root { zoom: 1.35; } }
+@media (min-width: 2600px) { :root { zoom: 1.7; } }
+@media (min-width: 3300px) { :root { zoom: 2.1; } }

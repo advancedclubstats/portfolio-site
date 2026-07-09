@@ -22,23 +22,42 @@
 <body class="detail">
   <div class="topbar">
     <a class="mark-link" href="/">&larr; <%= config.name %></a>
-    <a class="mark-link" href="mailto:<%= config.email %>">Email</a>
+    <nav class="socials" aria-label="Contact links">
+      <a href="mailto:<%= config.email %>" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a><% if (config.linkedin) { %>
+      <a href="<%= config.linkedin %>" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.4 8.75h3.4V21H3.4V8.75Zm6.02 0h3.26v1.68h.05c.45-.86 1.56-1.77 3.22-1.77 3.44 0 4.08 2.27 4.08 5.22V21h-3.4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-3.4V8.75Z"/></svg>
+      </a><% } %>
+      <a href="<%= config.roundRecallUrl %>" target="_blank" rel="noopener" aria-label="RoundRecall">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+      </a>
+    </nav>
   </div>
 
   <main class="article">
     <article>
-      <header class="article-head reveal">
-        <p class="eyebrow"><%= project.org %></p>
-        <p class="number display big"><%= project.number %></p>
-        <h1 class="display"><%= project.detail.title %></h1>
-        <p class="lede"><%= project.detail.lede %></p>
-      </header>
-
-      <% if (project.screenshot) { %>
-      <div class="article-hero-shot reveal" aria-hidden="true">
-        <img src="/img/<%= project.screenshot %>" alt="" />
+      <% if (project.heroEmbed) { %>
+      <div class="article-hero article-hero-embed reveal">
+        <iframe src="<%= project.heroEmbed %>" title="<%= project.detail.title %>" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <% } else if (project.heroVideo) { %>
+      <div class="article-hero reveal">
+        <video class="article-hero-media" src="/img/<%= project.heroVideo %>" autoplay muted loop playsinline aria-hidden="true"></video>
+      </div>
+      <% } else if (project.screenshot) { %>
+      <div class="article-hero reveal" aria-hidden="true">
+        <img class="article-hero-media" src="/img/<%= project.screenshot %>" alt="" />
       </div>
       <% } %>
+
+      <header class="article-head reveal">
+        <h1 class="display"><%= project.detail.title %></h1>
+        <% if (project.number) { %>
+        <p class="article-stat"><span class="article-stat-num"><%= project.number %></span> &middot; <%= project.metric %></p>
+        <% } %>
+        <p class="lede"><%= project.detail.lede %></p>
+      </header>
 
       <% project.detail.sections.forEach(function(sec){ %>
       <section class="article-section reveal">

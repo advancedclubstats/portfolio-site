@@ -33,6 +33,7 @@
 module.exports = [
   {
     slug: "membership-optional",
+    area: "memb",
     label: "Optional membership",
     tagline: "Made membership optional across web and mobile.",
     screenshot: "membership-optional.png",
@@ -73,6 +74,7 @@ module.exports = [
   },
   {
     slug: "roundrecall",
+    area: "phone",
     label: "Built solo",
     tagline: "A golf app, designed and shipped end to end.",
     screenshot: "roundrecall-cover.png",
@@ -110,6 +112,7 @@ module.exports = [
   },
   {
     slug: "signup-rebuild",
+    area: "quiz",
     label: "Signup rebuild",
     tagline: "Rebuilt onboarding and cut the dead steps.",
     screenshot: "signup-rebuild.png",
@@ -147,9 +150,11 @@ module.exports = [
   },
   {
     slug: "sales-tax",
+    area: "tax",
     label: "Sales tax at checkout",
     tagline: "Added tax at checkout without losing conversion.",
     screenshot: "sales-tax.png",
+    taxMock: true,
     number: "0",
     metric: "conversion lost",
     org: "Outschool",
@@ -184,6 +189,7 @@ module.exports = [
   },
   {
     slug: "dashboard-rebuild",
+    area: "dash",
     label: "Dashboard rebuild",
     tagline: "Put every core job two or three clicks away.",
     screenshot: "dashboard-rebuild.png",
@@ -223,6 +229,7 @@ module.exports = [
   },
   {
     slug: "search-by-learner",
+    area: "learn",
     label: "Search by learner",
     tagline: "Rebuilt search around the kid, not a blank box.",
     screenshot: "search-by-learner.png",
@@ -261,37 +268,125 @@ module.exports = [
     }
   },
   {
-    slug: "built-this-site",
-    label: "Built this site",
-    tagline: "Treated my own portfolio as a product.",
-    screenshot: "built-this-site.png",
-    siteMock: true,
-    number: "Steal it",
-    metric: "the whole thing",
-    org: "Personal",
-    size: "md",
-    link: "/steal",
-    linkLabel: "Steal it",
+    slug: "kajabi-launches",
+    area: "kaj",
+    label: "Kajabi launches",
+    tagline: "Took Coaching, Podcasts, and Newsletters to market.",
+    screenshot: "kajabi-launches.png",
+    kajMock: true,
+    number: "4 products",
+    metric: "launched, still core to Kajabi today",
+    org: "Kajabi",
+    size: "lg",
+    link: "https://pages.kajabi.com/special-event",
+    linkLabel: "Watch the launch event",
     detail: {
-      title: "I built this site",
-      lede: "This portfolio is a product too. Same job as any other: one user, one minute, one clear thing to do. I directed it, shipped it, then made it easy to steal.",
+      title: "I launched four of Kajabi's core products",
+      lede: "Kajabi sold courses. I was the product marketer who took its next four products to market: Coaching, Podcasts, Newsletters, and a website builder. Years later, most of them are still core to the product.",
       sections: [
         {
-          heading: "The idea",
+          heading: "The problem",
           body: [
-            "A portfolio has a user and a job to do, and about a minute to do it. I built mine to that spec: read in under a minute, every project one tap away, nothing on screen that does not earn its place."
+            "To keep growing, Kajabi had to become the whole business-in-a-box for creators. That meant shipping and selling products it had never sold before.",
+            "New products do not sell themselves. Someone has to decide what each one is, who it is for, and why anyone should switch to it."
           ]
         },
         {
-          heading: "How I built it",
+          heading: "What I did",
           body: [
-            "I did not hand-code a server from scratch, and that is the point. I made the product calls: the structure, the voice, what to cut. Built with Claude as the pair, shipped as a real thing. This is what a PM directing an AI build looks like."
+            "Owned go-to-market as the product marketer on Coaching, Podcasts, Newsletters, and the website builder. Positioning, messaging, and the launch itself.",
+            "We ran the launches as a series of Apple-style events, leadership on camera in the office walking through each product. I helped produce them and wrote scripts. Around each one we shipped the feature page, a demo video, an in-house podcast, blog posts, and the social."
           ]
         },
         {
-          heading: "Steal it",
+          heading: "What lasted",
           body: [
-            "Like it? Take it. The prompts and a starter you can run are one click away. Make it yours in an afternoon."
+            "No clean attribution here, and I will not invent one. Product marketing rarely gets a single number it can honestly own.",
+            "The durable proof is on Kajabi's site. Five years on, Coaching, Podcasts, and Newsletters are still core products, positioned much the way we launched them."
+          ]
+        }
+      ],
+      images: []
+    }
+  },
+  {
+    slug: "tutoring-launch",
+    area: "tut",
+    label: "Tutoring launch",
+    tagline: "Opened tutoring as a new category.",
+    screenshot: "tutoring-launch.png",
+    tutMock: true,
+    number: "+15%",
+    metric: "YoY tutoring bookings",
+    org: "Outschool",
+    size: "md",
+    link: "https://outschool.com/tutoring",
+    linkLabel: "See the tutoring page",
+    detail: {
+      title: "I launched tutoring as a new category",
+      lede: "Outschool had group classes, not tutoring. I led the go-to-market that made tutoring its own category: positioning, pricing, lifecycle, and the launch page. Bookings grew 15% year over year.",
+      sections: [
+        {
+          heading: "The problem",
+          body: [
+            "Parents wanted one-on-one help, not only group classes. Outschool had the supply to do it but no real tutoring offering and no demand pointed at one.",
+            "The category was there in theory and invisible in practice, buried inside a class catalog built for something else."
+          ]
+        },
+        {
+          heading: "What I did",
+          body: [
+            "Led GTM for tutoring as a new category. Set the positioning and pricing, built the lifecycle around it, and shipped the launch surface parents landed on.",
+            "The job was to make tutoring legible and findable on its own terms, not a filter on the class search."
+          ]
+        },
+        {
+          heading: "What moved",
+          body: [
+            "Tutoring bookings grew 15% year over year, and it became one of the platform's core growth levers.",
+            "This is a number I can defend. I owned the launch that opened the category."
+          ]
+        }
+      ],
+      images: []
+    }
+  },
+  {
+    slug: "landing-page-experiments",
+    area: "land",
+    label: "Landing-page testing",
+    tagline: "Ran the experiment loop on our highest-traffic pages.",
+    screenshot: "landing-page-experiments.png",
+    landMock: true,
+    number: "Always testing",
+    metric: "on the pages that carry paid traffic",
+    org: "Outschool",
+    size: "md",
+    link: "https://outschool.com",
+    linkLabel: "See Outschool",
+    detail: {
+      title: "I ran our landing-page experiment program",
+      lede: "The homepage and marketing landing pages are where Outschool's paid traffic lands. My pod ran the experiments on them, and on the Facebook ads feeding them, so positioning got tested instead of argued about.",
+      sections: [
+        {
+          heading: "The problem",
+          body: [
+            "Facebook is one of Outschool's biggest sources of business. All that paid traffic hits a handful of pages: the homepage, summer camps, programming, homeschool.",
+            "Small changes to those pages move real money. Most opinions about them were still just opinions."
+          ]
+        },
+        {
+          heading: "What I did",
+          body: [
+            "Ran a steady experiment program across the homepage and the top marketing landing pages, plus the ad creative pointed at them. Tested headlines, layout, and positioning.",
+            "Kept what won, cut what did not, and let the traffic settle the arguments."
+          ]
+        },
+        {
+          heading: "What moved",
+          body: [
+            "No single headline number I would stand behind here, and I would rather say that than invent one.",
+            "The value was the cadence. A constant test loop on the pages and ads that carry the most acquisition traffic, so the funnel kept getting a little better instead of guessing."
           ]
         }
       ],

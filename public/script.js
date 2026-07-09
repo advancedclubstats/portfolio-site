@@ -138,6 +138,42 @@
         }
       });
     });
+
+    // Carousel chevrons: right scrolls the tier row to reveal 248 / 500,
+    // left scrolls back. Each hides when there's nothing more that way, the
+    // same move Outschool's real membership carousel makes.
+    const shot = group.closest(".mem-shot");
+    const rightBtn = shot && shot.querySelector(".mem-scroll-right");
+    const leftBtn = shot && shot.querySelector(".mem-scroll-left");
+    if (rightBtn || leftBtn) {
+      const step = () => Math.max(170, group.clientWidth * 0.55);
+      const updateArrows = () => {
+        const atStart = group.scrollLeft <= 2;
+        const atEnd =
+          group.scrollLeft + group.clientWidth >= group.scrollWidth - 4;
+        if (leftBtn) leftBtn.classList.toggle("is-hidden", atStart);
+        if (rightBtn) rightBtn.classList.toggle("is-hidden", atEnd);
+      };
+      const scrollBy = (dir) => (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        group.scrollTo({
+          left: group.scrollLeft + dir * step(),
+          behavior: "smooth",
+        });
+      };
+      const wire = (btn, dir) => {
+        if (!btn) return;
+        btn.addEventListener("click", scrollBy(dir));
+        btn.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") scrollBy(dir)(e);
+        });
+      };
+      wire(rightBtn, 1);
+      wire(leftBtn, -1);
+      group.addEventListener("scroll", updateArrows, { passive: true });
+      updateArrows();
+    }
   });
 })();
 
