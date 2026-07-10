@@ -1680,11 +1680,10 @@ main {
      Stack them as a flex column instead (ignores grid-area, flows in DOM order). */
   .work-bento { display: flex; flex-direction: column; }
 
-  /* Work-card mock area: real height (not a 4:3 crop), centered. */
+  /* Work-card mock area: height wraps the mock (no 4:3 crop), centered. */
   .work-bento .card .shot {
     aspect-ratio: auto;
-    min-height: 230px;
-    padding: 24px 16px;
+    padding: 26px 16px;
     align-items: center;
     justify-content: center;
   }
@@ -1692,19 +1691,14 @@ main {
   .work-bento .hover-hint { display: none; }
   .work-bento a.card .card-label { font-size: 1.35rem; }
 
-  /* Fit the wider mocks to the phone width (scaled around center; the shot
-     clips the now-invisible layout overflow). */
-  .dash-mock { --ms: 0.64; }
-  .tut-mock { --ms: 0.68; }
-  .kaj-mock { --ms: 0.82; }
-  .mem-mock { --ms: 0.92; }
-  .quiz-mock { --ms: 0.92; }
-  .learner-mock { --ms: 0.95; }
-  .tax-mock { --ms: 0.95; }
-
-  /* Landing hero: stack text over the image instead of a cramped row. */
-  .land-mock { flex-direction: column; align-items: flex-start; gap: 14px; --ms: 0.95; }
-  .land-right { align-self: center; }
+  /* Mocks wider than the phone: scale the whole thing down with `zoom` (which
+     shrinks the layout box too, unlike transform), so each is a true smaller
+     copy of the desktop mock — filling its card, no reserved empty space. The
+     narrower mocks (membership/signup/tax/search/phone) already fit as-is. */
+  .dash-mock { zoom: 0.66; }
+  .tut-mock { zoom: 0.7; }
+  .kaj-mock { zoom: 0.82; }
+  .land-mock { zoom: 0.66; }
 
   .mem-scroll { width: 30px; height: 30px; }
 }
