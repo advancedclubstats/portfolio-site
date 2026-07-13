@@ -274,6 +274,7 @@ module.exports = [
     label: "Kajabi launches",
     tagline: "Took Coaching, Podcasts, and Newsletters to market.",
     screenshot: "kajabi-launches.png",
+    heroEmbed: "https://www.youtube.com/embed/8krfUu-Ekxw",
     kajMock: true,
     number: "4 products",
     metric: "launched, still core to Kajabi today",
