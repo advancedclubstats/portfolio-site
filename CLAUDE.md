@@ -11,11 +11,21 @@ marketer, running a job search. Node.js + Express + EJS. **Live on Render at
 
 ## Starting a session
 
-No specific task given? Read `BACKLOG.md` (may lag reality — cross-check against
-"Current state" below), propose the top open item, confirm before starting.
-
 **Open the session with this folder as the working directory**
-(`~/CoWork/portfolio-site`), or Claude Code won't auto-load this file.
+(`~/CoWork/portfolio-site`) so Claude Code auto-loads this file. This file alone
+is enough to start acting — no exploration/catch-up needed.
+
+No specific task given? Read `docs/BACKLOG.md`, propose the top open item,
+confirm, then go. Keep that file current as work finishes.
+
+### Repo map
+- `CLAUDE.md` (this file) — the context you're reading.
+- `README.md` — human run/deploy quickstart.
+- `docs/BACKLOG.md` — living "what's next" list.
+- `docs/archive/` — old build-process prompts + the pre-redesign backlog; safe
+  to ignore, kept for history.
+- Code: `server.js`, `site.config.js`, `content/projects.js`, `views/`,
+  `public/` (see Architecture below).
 
 ## What it is now (the design, current)
 
@@ -106,21 +116,11 @@ No automated tests. After a CSS/layout change, check the home page at **mobile
 - Set `SITE_DOMAIN=mattmartin.work` as a Render env var → updates canonical /
   sitemap / llms.txt / OpenGraph.
 
-## Current state / open items (keep this honest)
+## Open items
 
-- **Real screenshots** for the story-page heroes: `public/img/<slug>.png` (some
-  are still placeholder graphics; Matt is sourcing real ones).
-- **Kajabi story hero**: add `heroEmbed: "<youtube/loom embed url>"` on the
-  kajabi object when the video exists.
-- **LinkedIn headshot**: swap the "MM" initials for a real photo — drop the file
-  in `public/img/`, then change the `.contact-avatar` span to an `<img>`.
-- **Large-screen zoom** (`≥2000px` breakpoints) is set partly blind — tune once
-  Matt shares his monitor resolution.
-- **Domain**: finish the apex ALIAS record so `mattmartin.work` resolves + cert
-  issues (www already works).
-- Section labels on story pages ("THE PROBLEM") are still small-caps — decide
-  sentence-case or leave.
-- Missing SEO polish: an `og:image` share card + a favicon.
+The living to-do list — what's next, and what's waiting on Matt (real
+screenshots, Kajabi video, headshot, domain go-live, SEO) — is in
+**`docs/BACKLOG.md`**. Update it as work finishes; don't duplicate it here.
 
 ## Writing rules for any visitor-facing copy
 
