@@ -1368,6 +1368,19 @@ main {
 .article-hero-embed { position: relative; aspect-ratio: 16 / 9; }
 .article-hero-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
+/* Two screenshots side by side in the hero slot (bento-style). Stacks on mobile. */
+.article-hero-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 8px 0 4px;
+  align-items: start;
+}
+.article-hero-pair .article-hero-tile { margin: 0; }
+@media (max-width: 640px) {
+  .article-hero-pair { grid-template-columns: 1fr; }
+}
+
 .article-section { padding: 26px 0; }
 .article-section h2 { margin-bottom: 14px; }
 .article-section p {

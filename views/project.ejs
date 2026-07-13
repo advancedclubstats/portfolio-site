@@ -45,6 +45,14 @@
       <div class="article-hero reveal">
         <video class="article-hero-media" src="/img/<%= project.heroVideo %>" autoplay muted loop playsinline aria-hidden="true"></video>
       </div>
+      <% } else if (project.heroPair && project.heroPair.length) { %>
+      <div class="article-hero-pair reveal" aria-hidden="true">
+        <% project.heroPair.forEach(function(src){ %>
+        <div class="article-hero article-hero-tile">
+          <img class="article-hero-media" src="/img/<%= src %>" alt="" />
+        </div>
+        <% }); %>
+      </div>
       <% } else if (project.screenshot) { %>
       <div class="article-hero reveal" aria-hidden="true">
         <img class="article-hero-media" src="/img/<%= project.screenshot %>" alt="" />
