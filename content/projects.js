@@ -280,8 +280,6 @@ module.exports = [
     metric: "launched, still core to Kajabi today",
     org: "Kajabi",
     size: "lg",
-    link: "https://pages.kajabi.com/special-event",
-    linkLabel: "Watch the launch event",
     detail: {
       title: "I launched four of Kajabi's core products",
       lede: "Kajabi sold courses. I was the product marketer who took its next four products to market: Coaching, Podcasts, Newsletters, and a website builder. Years later, most of them are still core to the product.",
