@@ -38,12 +38,14 @@ module.exports = {
   // --- Page copy (edit these strings to change the words on the page) -------
   // The big intro card. Placeholder copy — rewrite it in your own voice.
   intro: {
-    eyebrow: "Product Manager & Product Marketer",
-    head: "I build products that solve real problems.",
+    eyebrow: "Product manager. Product marketer before that.",
+    head: "I start from why people buy, then build around it.",
     body: [
-      "Most recently at Outschool working on pricing, onboarding, checkout, and membership. Before product I was in product marketing, so I start from why people buy.",
-      "I'm best where the right move isn't obvious yet.",
-      "I use AI to accelerate my thinking, not replace it. This site is built with Claude Code, but designed and written with my taste.",
+      "Most recently a PM at Outschool, working on pricing, checkout, and membership.",
+      "I led the call to make membership optional again, and rebuilt onboarding around getting new users to value fast.",
+      "I came up through product marketing, so I think buyer first, feature second.",
+      "This site is built with Claude Code. The design, words, and judgment are mine.",
+      "I build with AI most weeks now, tools, prototypes, this site, and I'm still finding the edges of what it can do.",
     ],
   },
 };
