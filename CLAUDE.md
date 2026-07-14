@@ -1,9 +1,10 @@
 # Portfolio site — context for Claude Code
 
 Personal portfolio for **Matt Martin**, a growth & monetization PM / product
-marketer, running a job search. Node.js + Express + EJS. **Live on Render at
-`mattmartin.work`** (auto-deploys on push to `master`). Repo:
-`advancedclubstats/portfolio-site`, default branch **`master`**.
+marketer, running a job search. Node.js + Express + EJS, prerendered to a
+static site. **Live on Cloudflare Pages at `mattmartin.work`** (auto-deploys on
+push to `master`). Repo: `advancedclubstats/portfolio-site`, default branch
+**`master`**.
 
 > This file is the source of truth for a new session. If it disagrees with your
 > assumptions, trust this file, then verify in the code. Keep it current — when
@@ -107,14 +108,22 @@ No automated tests. After a CSS/layout change, check the home page at **mobile
 
 ## Deploy & domain
 
-- Render web service `matt-martin-portfolio` → **auto-deploys on push to
-  `master`**. `git push origin master` = deploy.
-- Custom domain **`mattmartin.work`** (Namecheap DNS). `www` CNAME →
-  `matt-martin-portfolio.onrender.com` works; the **apex needs an ALIAS record**
-  (`@` → `matt-martin-portfolio.onrender.com`) or it NXDOMAINs. Render issues
-  the Let's Encrypt cert automatically once the apex resolves.
-- Set `SITE_DOMAIN=mattmartin.work` as a Render env var → updates canonical /
-  sitemap / llms.txt / OpenGraph.
+- **Cloudflare Pages** project `portfolio-site` (account: Mattrobm+golf@gmail),
+  connected to the GitHub repo → **auto-deploys on push to `master`**. `git push
+  origin master` = deploy. Build command `npm run build`, output dir `dist`.
+- **The site is a static build.** `build.js` (`npm run build`) prerenders every
+  route to flat files in `dist/`; Cloudflare serves that from its CDN. No running
+  server, no cold starts (this is why we left Render's sleeping free tier — it
+  showed a "SERVICE WAKING UP" preloader on cold loads). `server.js` is kept only
+  for local dev (`npm start`) and the preview tool. `dist/` is gitignored.
+- **DNS is on Cloudflare** (nameservers moved off Namecheap → `holly.ns` /
+  `langston.ns.cloudflare.com`). Cloudflare's CNAME flattening handles the apex,
+  so the old Render ALIAS-record apex problem is gone. Custom domains
+  `mattmartin.work` + `www.mattmartin.work` are attached to the Pages project,
+  cert auto-issued. The old Render service is **suspended**.
+- `SITE_DOMAIN` defaults to `mattmartin.work` in `site.config.js` now, and is
+  also set as a build env var on Pages → drives canonical / sitemap / llms.txt /
+  OpenGraph.
 
 ## Open items
 

@@ -5,7 +5,7 @@
 // Ask-AI prompt, the JSON-LD schema, llms.txt, sitemap, and canonical URLs.
 // ---------------------------------------------------------------------------
 
-const SITE_DOMAIN = process.env.SITE_DOMAIN || "matt-martin-portfolio.onrender.com";
+const SITE_DOMAIN = process.env.SITE_DOMAIN || "mattmartin.work";
 const PROTOCOL = process.env.SITE_PROTOCOL || "https";
 
 module.exports = {
