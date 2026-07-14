@@ -91,8 +91,26 @@
             <% }); %>
           </div>
         </div>
-        <% projects.forEach(function(p){ %>
+        <%
+          // Discipline badge per card: pm / pmm / live (RoundRecall is a
+          // real live product, so it gets the pulsing "live" dot).
+          const BADGES = {
+            "membership-optional": { kind: "pm",   text: "Product" },
+            "signup-rebuild":      { kind: "pm",   text: "Product" },
+            "sales-tax":           { kind: "pm",   text: "Product" },
+            "dashboard-rebuild":   { kind: "pm",   text: "Product" },
+            "search-by-learner":   { kind: "pm",   text: "Product" },
+            "kajabi-launches":     { kind: "pmm",  text: "Marketing" },
+            "tutoring-launch":     { kind: "pmm",  text: "Marketing" },
+            "landing-page-experiments": { kind: "pmm", text: "Marketing" },
+            "roundrecall":         { kind: "live", text: "Live · Built solo" },
+          };
+        %>
+        <% projects.forEach(function(p){ const badge = BADGES[p.slug]; %>
         <a class="card reveal area-<%= p.area %><%= p.wide ? ' card-wide' : '' %>" style="grid-area: <%= p.area %>" href="/work/<%= p.slug %>">
+          <% if (badge) { %>
+          <span class="card-badge badge-<%= badge.kind %>"><span class="badge-dot" aria-hidden="true"></span><%= badge.text %></span>
+          <% } %>
           <% if (p.phoneMock) { %>
           <span class="shot phone-shot" aria-label="RoundRecall dashboard preview, scrollable">
             <span class="phone">
