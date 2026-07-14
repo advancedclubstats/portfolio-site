@@ -58,18 +58,9 @@ async function build() {
   await render("robots.ejs", "robots.txt", { config });
   await render("sitemap.ejs", "sitemap.xml", { config, projects });
 
-  // 404 -> home, matching the Express catch-all. Cloudflare Pages serves
-  // /404.html automatically for unknown paths.
-  fs.writeFileSync(
-    path.join(DIST, "404.html"),
-    `<!doctype html><html><head><meta charset="utf-8">` +
-      `<meta http-equiv="refresh" content="0; url=/">` +
-      `<link rel="canonical" href="${config.baseUrl}/">` +
-      `<title>Redirecting…</title></head>` +
-      `<body><script>location.replace("/")</script>` +
-      `<p>Redirecting to <a href="/">home</a>.</p></body></html>\n`
-  );
-  console.log("  ✓ 404.html");
+  // Styled 404 page. Cloudflare Pages serves /404.html automatically for
+  // unknown paths, matching the Express catch-all.
+  await render("404.ejs", "404.html", { config });
 
   console.log("\nBuilt static site -> dist/  (SITE_DOMAIN=" + config.domain + ")");
 }

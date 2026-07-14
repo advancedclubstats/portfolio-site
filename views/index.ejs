@@ -57,7 +57,7 @@
 
   <!-- NAME + SOCIALS (the only things outside a card) -->
   <div class="topbar" id="home">
-    <span class="mark"><%= config.name %></span>
+    <span class="mark"><img class="mark-memoji" src="/img/memoji/face.png" alt="" aria-hidden="true" /><%= config.name %></span>
     <nav class="socials" aria-label="Contact links">
       <a href="mailto:<%= config.email %>" aria-label="Email">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
@@ -474,6 +474,9 @@
           </span>
         </a>
         <% }); %>
+        <% projects.filter(function(p){ return p.memoji; }).forEach(function(p){ %>
+        <img class="bento-memoji memoji-<%= p.area %>" style="grid-area: <%= p.area %>" src="/img/memoji/<%= p.memoji %>.png" alt="" aria-hidden="true" />
+        <% }); %>
       </div>
     </section>
 
@@ -502,7 +505,7 @@
         <a class="card card-md contact-tile linkedin-tile reveal" href="<%= config.linkedin %>" target="_blank" rel="noopener">
           <div class="card-pad contact-tile-pad">
             <div class="contact-tile-head">
-              <span class="contact-avatar" aria-hidden="true">MM</span>
+              <span class="contact-avatar contact-avatar-memoji" aria-hidden="true"><img src="/img/memoji/wave.png" alt="" /></span>
               <span class="contact-tile-headtext">
                 <span class="contact-tile-name"><%= config.name %></span>
                 <span class="contact-tile-handle">Growth &amp; Monetization PM</span>

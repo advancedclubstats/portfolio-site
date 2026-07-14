@@ -68,8 +68,8 @@ app.get("/sitemap.xml", (req, res) => {
 // --- Health check ----------------------------------------------------------
 app.get("/healthz", (req, res) => res.type("text/plain").send("ok"));
 
-// --- 404 -> home -----------------------------------------------------------
-app.use((req, res) => res.redirect(302, "/"));
+// --- 404 -> styled not-found page ------------------------------------------
+app.use((req, res) => res.status(404).render("404", { config }));
 
 app.listen(PORT, () => {
   console.log(`Portfolio site running on http://localhost:${PORT}`);
