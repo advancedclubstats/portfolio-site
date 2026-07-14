@@ -185,9 +185,9 @@ main {
 }
 /* Small face memoji beside the name in the top bar. */
 .mark-memoji {
-  width: 30px;
-  height: 30px;
-  vertical-align: -8px;
+  width: 45px;
+  height: 45px;
+  vertical-align: -13px;
   margin-right: 8px;
 }
 
