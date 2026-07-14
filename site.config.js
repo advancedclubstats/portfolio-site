@@ -10,7 +10,7 @@ const PROTOCOL = process.env.SITE_PROTOCOL || "https";
 
 module.exports = {
   name: "Matt Martin",
-  role: "Growth & Monetization Product Manager",
+  role: "Product Manager",
   domain: SITE_DOMAIN,
   baseUrl: `${PROTOCOL}://${SITE_DOMAIN}`,
   email: "mattrobm@gmail.com",
@@ -21,7 +21,7 @@ module.exports = {
 
   // Short description reused in meta tags, Open Graph, and llms.txt.
   metaDescription:
-    "Matt Martin is a growth and monetization product manager. He finds the expensive problems in a product and fixes the ones that move the business. Most recently at Outschool; builder of RoundRecall.",
+    "Matt Martin is a product manager. He finds the expensive problems in a product and fixes the ones that move the business. Most recently at Outschool; builder of RoundRecall.",
 
   // The prompt visitors send to an AI when they click a footer button.
   // Uses the live domain so the AI has a source to read.
