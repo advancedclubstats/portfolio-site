@@ -63,10 +63,11 @@
         <% projects.forEach(function(p){ %>
         <a class="card card-work size-<%= p.size || 'md' %>" href="/work/<%= p.slug %>">
           <span class="shot">
-            <% if (p.screenshot) { %>
-            <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />
-            <% } else { %>
             <span class="shot-placeholder"><%= p.label %></span>
+            <% if (p.screenshot) { %>
+            <%# The placeholder sits behind the image, so a missing or broken
+                screenshot file falls back to it cleanly (onerror hides the img). %>
+            <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" onerror="this.style.display='none'" />
             <% } %>
           </span>
           <span class="card-foot">

@@ -66,6 +66,18 @@ app.get("/healthz", (req, res) => res.type("text/plain").send("ok"));
 // --- 404 -> styled not-found page ------------------------------------------
 app.use((req, res) => res.status(404).render("404", { config }));
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Portfolio site running on http://localhost:${PORT}`);
+});
+
+// Friendly message instead of a raw stack trace when the port is taken.
+server.on("error", (err) => {
+  if (err.code === "EADDRINUSE") {
+    console.error(
+      `\nPort ${PORT} is already in use. Start on another port, e.g.:\n` +
+        `  PORT=3001 npm start\n`
+    );
+    process.exit(1);
+  }
+  throw err;
 });

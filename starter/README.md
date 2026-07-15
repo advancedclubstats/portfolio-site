@@ -23,7 +23,10 @@ There are also copy-paste prompts in [`prompts/`](prompts/):
 2. Edit **`site.config.js`** — your name, role, email, links, and the intro copy.
 3. Edit **`content/projects.js`** — your projects (2 examples are in there).
 4. Drop screenshots in **`public/img/`** named to match each project's
-   `screenshot` field. No image yet? A placeholder shows until you add one.
+   `screenshot` field. No image yet? Omit the `screenshot` field (or point it at
+   a file you haven't added) and a soft placeholder shows until you drop one in.
+   Delete the two bundled `example-project.png` / `second-project.png` once you
+   add your own.
 5. `npm start` → preview at http://localhost:3000 (restart after editing the two
    config files — they're cached).
 6. Deploy: `SITE_DOMAIN=yourdomain.com npm run build` produces `dist/`. Point a

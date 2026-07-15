@@ -80,14 +80,20 @@ img { max-width: 100%; display: block; }
 .card-work:hover { transform: translateY(-2px); transition: transform 0.2s ease; }
 .shot {
   display: block;
+  position: relative;
   background: #ececef;
   aspect-ratio: 16 / 10;
   overflow: hidden;
 }
-.shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.shot img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+}
+/* Sits behind the image, so a missing/broken screenshot falls back to it. */
 .shot-placeholder {
+  position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  height: 100%; min-height: 200px;
   font-family: var(--font-display); font-weight: 600; color: var(--ink-soft);
   background: repeating-linear-gradient(45deg, #ececef, #ececef 12px, #e6e6ea 12px, #e6e6ea 24px);
 }
