@@ -1529,6 +1529,56 @@ main {
 }
 .article-back a:hover { color: var(--ink); }
 
+/* --- Home: full-width dark announcement band -> /steal -------------------- */
+.steal-band {
+  background: #191919;
+  color: #fff;
+  padding: 64px 0;
+  margin: 40px 0;
+}
+.steal-band-inner {
+  max-width: var(--maxw, 940px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.steal-band-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #9a9a9a;
+  margin: 0 0 14px;
+}
+.steal-band-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #cdf23e;
+}
+.steal-band-head {
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  line-height: 1.08;
+  margin: 0 0 14px;
+  color: #fff;
+}
+.steal-band-sub {
+  font-size: 1.1rem;
+  color: #b4b4b4;
+  margin: 0 0 26px;
+  max-width: 54ch;
+}
+.steal-band-cta {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 999px;
+  background: #fff;
+  color: #191919;
+  font-family: var(--font-display);
+  font-weight: 600;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.steal-band-cta:hover { transform: translateY(-1px); background: #cdf23e; }
+
 /* --- Steal page: the two "doors" (template repo + zip) --------------------- */
 .steal-doors { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 12px; }
 .steal-btn {
