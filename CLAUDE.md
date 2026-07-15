@@ -3,7 +3,7 @@
 Personal portfolio for **Matt Martin**, a growth & monetization PM / product
 marketer, running a job search. Node.js + Express + EJS, prerendered to a
 static site. **Live on Cloudflare Pages at `mattmartin.work`** (auto-deploys on
-push to `master`). Repo: `advancedclubstats/portfolio-site`, default branch
+push to `master`). Repo: `mattrmartin/portfolio-site`, default branch
 **`master`**.
 
 > This file is the source of truth for a new session. If it disagrees with your
@@ -27,6 +27,13 @@ confirm, then go. Keep that file current as work finishes.
   to ignore, kept for history.
 - Code: `server.js`, `site.config.js`, `content/projects.js`, `views/`,
   `public/` (see Architecture below).
+- `starter/` — a neutralized, content-free copy of this site: the "steal this"
+  starter (working static build, 2-file content model, its own CLAUDE.md +
+  DECISIONS.md + prompts). Source for the public GitHub **template repo**
+  `mattrmartin/portfolio-starter` and the download at
+  `public/downloads/portfolio-starter.zip`. The `/steal` page leads with the
+  build lesson and links both. Not part of the live site build; publish repo
+  changes by re-pushing `starter/` to the template repo.
 
 ## What it is now (the design, current)
 
