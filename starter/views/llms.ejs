@@ -1,0 +1,21 @@
+# <%- config.name %>
+
+> <%- config.metaDescription %>
+
+## Who <%- config.name %> is
+
+<%- config.metaDescription %>
+
+Role: <%- config.role %>.
+Location: <%- config.location %>.
+Contact: <%- config.email %><% if (config.linkedin) { %>
+LinkedIn: <%- config.linkedin %><% } %>
+
+## Selected work
+<% projects.forEach(function(p){ %>
+- <%- p.label %><% if (p.org) { %> (<%- p.org %>)<% } %>: <%- p.detail.lede %><% }); %>
+
+## How to get in touch
+
+Email: <%- config.email %>
+Website: <%- config.baseUrl %>/

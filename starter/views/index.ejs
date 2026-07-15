@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= config.name %> · <%= config.role %></title>
+
+  <meta name="description" content="<%= config.metaDescription %>" />
+  <meta name="author" content="<%= config.name %>" />
+  <link rel="canonical" href="<%= config.baseUrl %>/" />
+
+  <!-- OpenGraph / social preview. Add an og:image (1200x630) at
+       public/og-image.jpg and uncomment the line below for rich link previews. -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="<%= config.name %> · <%= config.role %>" />
+  <meta property="og:description" content="<%= config.metaDescription %>" />
+  <meta property="og:url" content="<%= config.baseUrl %>/" />
+  <!-- <meta property="og:image" content="<%= config.baseUrl %>/og-image.jpg" /> -->
+
+  <!-- JSON-LD: helps search + AI answer "who is <name>" accurately. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "<%= config.name %>",
+    "jobTitle": "<%= config.role %>",
+    "url": "<%= config.baseUrl %>/",
+    "description": "<%= config.metaDescription %>"<% if (config.linkedin) { %>,
+    "sameAs": ["<%= config.linkedin %>"]<% } %>
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <div class="topbar" id="home">
+    <span class="mark"><%= config.name %></span>
+    <nav class="socials" aria-label="Contact links">
+      <a href="mailto:<%= config.email %>" aria-label="Email">Email</a><% if (config.linkedin) { %>
+      <a href="<%= config.linkedin %>" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a><% } %>
+    </nav>
+  </div>
+
+  <main>
+    <!-- WORK: intro tile + screenshot cards in one bento grid. -->
+    <section class="section" id="work" aria-label="Work">
+      <div class="bento work-bento">
+        <div class="card card-text">
+          <div class="card-pad">
+            <p class="card-eyebrow"><%= config.intro.eyebrow %></p>
+            <h1 class="card-head display"><%= config.intro.head %></h1>
+            <% config.intro.body.forEach(function(p){ %>
+            <p class="card-para"><%= p %></p>
+            <% }); %>
+          </div>
+        </div>
+
+        <% projects.forEach(function(p){ %>
+        <a class="card card-work size-<%= p.size || 'md' %>" href="/work/<%= p.slug %>">
+          <span class="shot">
+            <% if (p.screenshot) { %>
+            <img src="/img/<%= p.screenshot %>" alt="<%= p.label %>" loading="lazy" />
+            <% } else { %>
+            <span class="shot-placeholder"><%= p.label %></span>
+            <% } %>
+          </span>
+          <span class="card-foot">
+            <span class="card-label display"><%= p.label %></span>
+            <span class="card-tagline"><%= p.tagline %></span>
+            <% if (p.org) { %><span class="card-org"><%= p.org %></span><% } %>
+          </span>
+        </a>
+        <% }); %>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact" aria-label="Contact">
+      <div class="bento contact-bento">
+        <a class="card card-contact" href="mailto:<%= config.email %>">
+          <span class="card-eyebrow">Email</span>
+          <span class="card-contact-line"><%= config.email %></span>
+          <span class="card-cta">Say hello &#8599;</span>
+        </a>
+        <% if (config.linkedin) { %>
+        <a class="card card-contact" href="<%= config.linkedin %>" target="_blank" rel="noopener">
+          <span class="card-eyebrow">LinkedIn</span>
+          <span class="card-contact-line"><%= config.name %></span>
+          <span class="card-cta">View profile &#8599;</span>
+        </a>
+        <% } %>
+        <a class="card card-contact" href="https://claude.ai/new?q=<%= encodeURIComponent(config.askAiPrompt(config.name, config.domain)) %>" target="_blank" rel="noopener">
+          <span class="card-eyebrow">Ask an AI about me</span>
+          <span class="card-contact-line">Open a chat seeded with a prompt about my work.</span>
+          <span class="card-cta">Ask &#8599;</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>&copy; <%= new Date().getFullYear() %> <%= config.name %></span>
+    </footer>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>

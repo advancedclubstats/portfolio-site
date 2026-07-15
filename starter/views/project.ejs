@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= project.detail.title %> · <%= config.name %></title>
+
+  <meta name="description" content="<%= project.detail.lede %>" />
+  <meta name="author" content="<%= config.name %>" />
+  <link rel="canonical" href="<%= config.baseUrl %>/work/<%= project.slug %>" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="<%= project.detail.title %> · <%= config.name %>" />
+  <meta property="og:description" content="<%= project.detail.lede %>" />
+  <meta property="og:url" content="<%= config.baseUrl %>/work/<%= project.slug %>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="detail">
+  <div class="topbar">
+    <a class="mark-link" href="/">&larr; <%= config.name %></a>
+    <nav class="socials" aria-label="Contact links">
+      <a href="mailto:<%= config.email %>">Email</a><% if (config.linkedin) { %>
+      <a href="<%= config.linkedin %>" target="_blank" rel="noopener">LinkedIn</a><% } %>
+    </nav>
+  </div>
+
+  <main class="article">
+    <article>
+      <% if (project.heroEmbed) { %>
+      <div class="article-hero article-hero-embed reveal">
+        <iframe src="<%= project.heroEmbed %>" title="<%= project.detail.title %>" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <% } else if (project.heroVideo) { %>
+      <div class="article-hero reveal">
+        <video class="article-hero-media" src="/img/<%= project.heroVideo %>" autoplay muted loop playsinline aria-hidden="true"></video>
+      </div>
+      <% } else if (project.heroPair && project.heroPair.length) { %>
+      <div class="article-hero-pair reveal" aria-hidden="true">
+        <% project.heroPair.forEach(function(src){ %>
+        <div class="article-hero article-hero-tile">
+          <img class="article-hero-media" src="/img/<%= src %>" alt="" />
+        </div>
+        <% }); %>
+      </div>
+      <% } else if (project.screenshot) { %>
+      <div class="article-hero reveal" aria-hidden="true">
+        <img class="article-hero-media" src="/img/<%= project.screenshot %>" alt="" />
+      </div>
+      <% } %>
+
+      <header class="article-head reveal">
+        <h1 class="display"><%= project.detail.title %></h1>
+        <% if (project.number) { %>
+        <p class="article-stat"><span class="article-stat-num"><%= project.number %></span> &middot; <%= project.metric %></p>
+        <% } %>
+        <p class="lede"><%= project.detail.lede %></p>
+      </header>
+
+      <% project.detail.sections.forEach(function(sec){ %>
+      <section class="article-section reveal">
+        <h2 class="label"><%= sec.heading %></h2>
+        <% sec.body.forEach(function(para){ %>
+        <p><%= para %></p>
+        <% }); %>
+      </section>
+      <% }); %>
+
+      <% if (project.detail.images && project.detail.images.length) { %>
+      <div class="article-gallery reveal">
+        <% project.detail.images.forEach(function(img){ %>
+        <figure><img src="/img/<%= img.src %>" alt="<%= img.alt || '' %>" />
+          <% if (img.caption) { %><figcaption><%= img.caption %></figcaption><% } %>
+        </figure>
+        <% }); %>
+      </div>
+      <% } %>
+
+      <% if (project.link) {
+        const isExternal = /^https?:\/\//.test(project.link);
+        const linkLabel = project.linkLabel || (isExternal ? `Visit ${project.org}` : "Go");
+      %>
+      <p class="article-cta reveal">
+        <a href="<%= project.link %>"<% if (isExternal) { %> target="_blank" rel="noopener"<% } %>><%= linkLabel %> &rarr;</a>
+      </p>
+      <% } %>
+    </article>
+
+    <p class="article-back reveal"><a href="/#work">&larr; Back to all work</a></p>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>

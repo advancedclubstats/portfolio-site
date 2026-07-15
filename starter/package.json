@@ -1,0 +1,21 @@
+{
+  "name": "portfolio-starter",
+  "version": "1.0.0",
+  "description": "A data-driven personal portfolio. Edit two files, deploy static, free.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node build.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  },
+  "license": "MIT",
+  "private": true
+}

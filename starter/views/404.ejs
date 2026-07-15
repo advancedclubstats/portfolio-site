@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found · <%= config.name %></title>
+  <meta name="robots" content="noindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="detail">
+  <div class="topbar">
+    <a class="mark-link" href="/">&larr; <%= config.name %></a>
+    <nav class="socials" aria-label="Contact links">
+      <a href="mailto:<%= config.email %>">Email</a>
+    </nav>
+  </div>
+
+  <main class="notfound">
+    <p class="notfound-code">404</p>
+    <h1 class="notfound-head display">This page ran off.</h1>
+    <p class="notfound-body">That link doesn&rsquo;t go anywhere. The work is all back home.</p>
+    <a class="notfound-btn" href="/">Back to the work &rarr;</a>
+  </main>
+</body>
+</html>
