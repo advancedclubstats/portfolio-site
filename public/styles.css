@@ -1531,15 +1531,10 @@ main {
 
 /* --- Home: full-width dark announcement band -> /steal -------------------- */
 .steal-band {
-  background: #191919;
+  background: #2b2b2b;
   color: #fff;
-  padding: 64px 0;
-  margin: 40px 0;
-}
-.steal-band-inner {
-  max-width: var(--maxw, 940px);
-  margin: 0 auto;
-  padding: 0 24px;
+  border-radius: var(--radius);
+  padding: clamp(28px, 4vw, 40px);
 }
 .steal-band-eyebrow {
   display: inline-flex;
