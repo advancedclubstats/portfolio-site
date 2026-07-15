@@ -23,6 +23,8 @@
 //   metric      one line under the number
 //   org         small label (company / product)
 //   link        external url for a CTA on the detail page (optional, else null)
+//   heroEmbed   optional embed URL (e.g. a YouTube /embed/<id> link) to show a
+//               video at the top of the story page instead of the screenshot
 //   detail      the story. Keep it short and concrete. Sections are
 //               { heading, body[] }. Default three: problem / what I did / result.
 //
