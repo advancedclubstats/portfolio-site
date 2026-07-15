@@ -20,6 +20,10 @@ module.exports = {
   roundRecallUrl: "https://roundrecall.com",
   // The steal-able starter: a GitHub template repo + a downloadable zip.
   starterRepo: "https://github.com/mattrmartin/portfolio-starter",
+  // Cloudflare Web Analytics beacon token (privacy-first, cookieless). Enable
+  // Web Analytics in the Cloudflare dashboard, paste the token here (or set the
+  // CF_ANALYTICS_TOKEN env var). Empty = no beacon rendered.
+  analyticsToken: process.env.CF_ANALYTICS_TOKEN || "",
 
   // Short description reused in meta tags, Open Graph, and llms.txt.
   metaDescription:

@@ -33,6 +33,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="/styles.css" />
+  <% if (config.analyticsToken) { %><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "<%= config.analyticsToken %>"}'></script><% } %>
 
   <!-- Structured data: helps an AI answer "who is Matt Martin" accurately -->
   <script type="application/ld+json">
