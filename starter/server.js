@@ -1,9 +1,9 @@
 // ---------------------------------------------------------------------------
-// Matt Martin — personal portfolio site
+// Personal portfolio — local dev + preview server.
 // Node.js + Express. Renders the home page (bento of work cards) plus a detail
 // page per project, and the AI-SEO text files (llms.txt, robots.txt,
 // sitemap.xml). Everything editable lives in site.config.js and
-// content/projects.js. Deployable anywhere that runs Node; binds to PORT.
+// content/projects.js. Production is the static output of `npm run build`.
 // ---------------------------------------------------------------------------
 
 const path = require("path");
