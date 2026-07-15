@@ -18,6 +18,8 @@ module.exports = {
   linkedin: process.env.LINKEDIN_URL || "https://www.linkedin.com/in/matthewmartin3/",
   location: "Remote, United States",
   roundRecallUrl: "https://roundrecall.com",
+  // The steal-able starter: a GitHub template repo + a downloadable zip.
+  starterRepo: "https://github.com/mattrmartin/portfolio-starter",
 
   // Short description reused in meta tags, Open Graph, and llms.txt.
   metaDescription:

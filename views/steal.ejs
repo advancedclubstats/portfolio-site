@@ -13,6 +13,11 @@
   <meta property="og:title" content="Steal this site · <%= config.name %>" />
   <meta property="og:description" content="The prompts and starter code behind this portfolio. Take them and build your own." />
   <meta property="og:url" content="<%= config.baseUrl %>/steal" />
+  <meta property="og:image" content="<%= config.baseUrl %>/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="<%= config.baseUrl %>/og-image.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,9 +37,26 @@
     <article>
       <header class="article-head reveal">
         <p class="eyebrow">Steal it</p>
-        <h1 class="display">Take the whole site</h1>
-        <p class="lede">I didn't hand-code this site. I directed Claude to build it, then treated it like a real product. Here's the exact prompt, plus a working starter, so you can do the same in an afternoon.</p>
+        <h1 class="display">I built this with AI. The first draft was generic slop.</h1>
+        <p class="lede">Not because the tool is bad. Because I prompted it the way most people do: &ldquo;build me a portfolio,&rdquo; then fed it my copy and let it design around my words. You get the average of every portfolio ever made. Here's what fixed it, plus the working starter, so you can skip the week I spent figuring it out.</p>
       </header>
+
+      <section class="article-section reveal">
+        <h2 class="label">What fixed it</h2>
+        <p><strong>Design first, copy last.</strong> Treat every word as a placeholder until the layout is locked. Your rough copy should not shape the design.</p>
+        <p><strong>Point it at real taste.</strong> Not &ldquo;make it clean.&rdquo; Name two sites you like, tell it to open them, read the actual CSS, and lift the specific parts section by section.</p>
+        <p><strong>Make it data-driven.</strong> One file holds who you are. One holds your projects. Add a project by editing one file and the whole site updates.</p>
+      </section>
+
+      <section class="article-section reveal">
+        <h2 class="label">Start from the working code</h2>
+        <p>This exact site, stripped of my content. Same layout engine, same data-driven cards. It ships with a <code>CLAUDE.md</code> and a <code>DECISIONS.md</code> so your Claude picks it up and keeps the design from drifting generic. Edit two files and it's yours.</p>
+        <p class="steal-doors">
+          <a class="steal-btn steal-btn-primary" href="<%= config.starterRepo %>/generate" target="_blank" rel="noopener">Use this template &rarr;</a>
+          <a class="steal-btn" href="/downloads/portfolio-starter.zip" download>Download the .zip</a>
+        </p>
+        <p class="steal-sub">Open it in Claude Code and read <code>CLAUDE.md</code> first &mdash; it knows the rest. Or browse it on <a href="<%= config.starterRepo %>" target="_blank" rel="noopener">GitHub</a>.</p>
+      </section>
 
       <section class="article-section reveal">
         <h2 class="label">Build one from scratch</h2>
@@ -108,13 +130,6 @@ Keep it tight. If a section would just be filler, cut it. When in doubt about fi
         </div>
       </section>
 
-      <section class="article-section reveal">
-        <h2 class="label">Or start from the working code</h2>
-        <p>A stripped copy of this repo. Same layout engine, same data-driven cards, none of my content. Edit two files and it's yours.</p>
-        <p class="article-cta">
-          <a href="/downloads/portfolio-starter.zip" download>Download starter (.zip) &rarr;</a>
-        </p>
-      </section>
     </article>
 
     <p class="article-back reveal"><a href="/#work">&larr; Back to all work</a></p>

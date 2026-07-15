@@ -1529,6 +1529,33 @@ main {
 }
 .article-back a:hover { color: var(--ink); }
 
+/* --- Steal page: the two "doors" (template repo + zip) --------------------- */
+.steal-doors { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 12px; }
+.steal-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.steal-btn:hover { background: rgba(0, 0, 0, 0.05); }
+.steal-btn-primary { background: var(--ink); color: #fff; }
+.steal-btn-primary:hover { background: #000; color: #fff; }
+.steal-sub { font-size: 0.95rem; color: var(--ink-soft); }
+.steal-sub code, .article-section code {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 0.88em;
+  background: var(--card);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
 /* --- Steal page: prompt blocks with a copy button -------------------------- */
 .prompt-block {
   margin-top: 16px;
