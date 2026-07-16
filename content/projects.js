@@ -348,36 +348,42 @@ module.exports = [
   {
     slug: "landing-page-experiments",
     area: "land",
-    label: "Landing-page development & testing",
-    tagline: "Created and tested category landing pages.",
+    label: "Marketplace merchandising",
+    tagline: "Owned how the catalog got surfaced and sold.",
     screenshot: "landing-page-experiments.png",
     landMock: true,
-    number: "+25,000",
-    metric: "new landing pages",
+    number: "620",
+    metric: "category pages I launched",
     org: "Outschool",
     size: "md",
-    link: "https://outschool.com",
+    link: "https://outschool.com/online-classes/popular",
     linkLabel: "See Outschool",
     detail: {
-      title: "I developed and iterated on our core marketing pages",
-      lede: "Outschool has no real mechanism to test landing pages without significant engineering effort, creating an inefficient loop and poor UX.",
+      title: "I ran how the marketplace surfaced and sold its catalog",
+      lede: "Outschool had thousands of classes and no deliberate system for putting the right ones in front of the right parents. Discovery was thin, SEO was weak, and there was no way to build or test a page without engineering.",
       sections: [
         {
           heading: "The problem",
           body: [
-            "We had no way to quickly develop and self-serve landing pages on Outschool without engineering intervention, in addition to weak performance in SEO and SEM."
+            "We were leaving demand on the table. Parents searched in patterns we weren't acting on, our best inventory was hard to find, and every new marketing page meant an eng and design cycle."
           ]
         },
         {
-          heading: "What I did",
+          heading: "What I owned",
           body: [
-            "Categorized our catalog, developed a system for automatically generating pages, iterated on designs, and created the copy for thousands of pages both manually and not."
+            "I built the merchandising layer: our first real catalog taxonomy (by hand, in Excel, pre-LLM) that fed search tagging and the navbar, plus suggested searches, a seasonal global nav, and the reading of demand trends that told product and marketing what to push and when."
+          ]
+        },
+        {
+          heading: "Turning that into pages",
+          body: [
+            "The team started generating category landing pages at scale to get indexed, about 25,000 of them, with early ChatGPT drafting hero copy that I edited and maintained. That SEO project turned into a self-serve system (headless CMS) that let marketing ship and test pages in minutes instead of weeks, with no eng/design loop. I helped shape it and then it became my surface to run."
           ]
         },
         {
           heading: "What moved",
           body: [
-            "The value was the cadence and unlock for the team. This content system allowed marketing to operate free of the product and eng backlog, creating pages for SEO and SEM in minutes instead of weeks."
+            "These pages became a core part of the organic and paid machine. I launched 620 by hand: wrote the copy, chose the imagery, ran the tests, and experimented with early LLMs to generate copy and images. Together they drove hundreds of thousands in revenue. I also moved our catalog ads onto category pages with no supply limits, which lifted paid efficiency without cutting conversion. The real unlock was cadence. Marketing stopped waiting on the backlog, and I could tune what the marketplace merchandised as fast as demand moved."
           ]
         }
       ],
