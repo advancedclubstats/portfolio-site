@@ -71,7 +71,7 @@
       <header class="article-head reveal">
         <h1 class="display"><%= project.detail.title %></h1>
         <% if (project.number) { %>
-        <p class="article-stat"><span class="article-stat-num"><%= project.number %></span> &middot; <%= project.metric %></p>
+        <p class="article-stat"><span class="article-stat-num"><%= project.number %></span><% if (project.metric) { %> &middot; <%= project.metric %><% } %></p>
         <% } %>
         <p class="lede"><%= project.detail.lede %></p>
       </header>

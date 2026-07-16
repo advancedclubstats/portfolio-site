@@ -51,21 +51,21 @@ module.exports = [
           heading: "The problem",
           body: [
             "Outschool required membership to buy a class. The theory was that membership added value. The data suggested it mostly added friction.",
-            "Undoing it meant reversing a decision the company had already committed to. That is a harder problem than any UX change."
+            "Undoing it meant reversing a decision the company had already committed to. It was an incredibly complex cross-functional decision that impacted every team at the company."
           ]
         },
         {
           heading: "What I did",
           body: [
             "Shifted the model from mandatory membership to optional. Reintroduced a la carte purchasing across web and mobile. Built clearer measurement around monetization so the bet could be judged honestly.",
-            "The tradeoff was real: short-term revenue predictability against long-term growth. I made the case and owned it."
+            "The tradeoff was short-term revenue predictability vs. long-term growth. I made the case and owned it."
           ]
         },
         {
           heading: "What moved",
           body: [
-            "New buyer conversion rose 35% year over year. Total payments rose 10%.",
-            "The lift confirmed the bet. Membership had been net friction, not net value."
+            "New buyer conversion rose 35% and total payments rose 10% YoY.",
+            "The lift in these numbers among several other guardrail metrics confirmed our membership product was net friction."
           ]
         }
       ],
@@ -81,30 +81,30 @@ module.exports = [
     heroPair: ["roundrecall-hero.png", "roundrecall-dash.png"],
     phoneMock: true,
     number: "Built solo",
-    metric: "RoundRecall",
+    metric: "",
     org: "roundrecall.com",
     size: "tall",
     link: "https://roundrecall.com",
     detail: {
       title: "RoundRecall",
-      lede: "RoundRecall reads your golf round from memory instead of making you tap after every shot. I kept deleting features until it said one true thing.",
+      lede: "RoundRecall reads your golf round from memory instead of making you tap after every shot. I use it almost daily to track practice and rounds, meticulously crafting the UI/UX to solve my problem.",
       sections: [
         {
           heading: "The idea",
           body: [
-            "Most golf apps make you log every shot as you play. Nobody does it for long. RoundRecall lets you reconstruct the round afterward, from memory, and still get real insight."
+            "Most golf apps make you log every shot as you play via GPS. Most people don't like using their phone that much when they golf. RoundRecall lets you reconstruct the round afterward, from memory, and get the same fidelity of insights."
           ]
         },
         {
           heading: "How I built it",
           body: [
-            "Solo. Product, design, and the calls about what to leave out. The discipline was subtraction: every feature had to survive the question of whether it made the one true thing clearer or just added noise."
+            "Solo with Claude Code. Every feature and product change is a result of usage and pressure testing ideas to ensure we adhere to the vision of the app and solve the problem efficiently."
           ]
         },
         {
           heading: "See it",
           body: [
-            "The live app is the best version of this story. Go tap around."
+            "The live app is the best version of this story. Go tap around, I made a demo version where you can see my real data and add your own (you won't mess with mine)."
           ]
         }
       ],
@@ -114,35 +114,35 @@ module.exports = [
   {
     slug: "signup-rebuild",
     area: "quiz",
-    label: "Signup rebuild",
-    tagline: "Rebuilt onboarding and cut the dead steps.",
+    label: "Onboarding rebuild",
+    tagline: "Rebuilt onboarding to increase conversion and retention.",
     screenshot: "signup-rebuild.png",
     quizMock: true,
-    number: "3x",
-    metric: "signups",
+    number: "+70%",
+    metric: "signup to purchase rate",
     org: "Outschool",
     size: "md",
     link: null,
     detail: {
-      title: "I rebuilt the signup flow",
-      lede: "The signup flow was leaking people. I rebuilt it, tested fast, and cut the dead steps. Conversion up 70%.",
+      title: "I rebuilt the onboarding flow",
+      lede: "The onboarding flow was bare bones and left users with no momentum in the product. I led the rebuild and increased the visit-to-signup rate too.",
       sections: [
         {
           heading: "The problem",
           body: [
-            "Onboarding had friction points that quietly suppressed signup and activation. People were dropping before they ever saw the product."
+            "Onboarding dropped users into our product with no context, resulting in a high bounce rate and low conversion rate."
           ]
         },
         {
           heading: "What I did",
           body: [
-            "Rapid experimentation. Redesigned the funnel. Simplified onboarding. Removed steps that did not earn their place, and tested each change instead of guessing."
+            "Rapid experimentation and built a high touch onboarding flow that increased user momentum and helped us better recommend products to our users throughout their product experience."
           ]
         },
         {
           heading: "What moved",
           body: [
-            "Signup volume tripled. Conversion improved 70%. Directional outcomes from work I led, not a lab result."
+            "Signup volume tripled. Conversion improved 70%. Overall user flow subjectively improved and increased user trust."
           ]
         }
       ],
@@ -163,25 +163,25 @@ module.exports = [
     link: null,
     detail: {
       title: "I added sales tax without losing conversion",
-      lede: "The company was eating sales tax in every state. I shipped collection at checkout and conversion did not move. Raising a price for free is the hard part. That is the win.",
+      lede: "The company was eating sales tax in every state. I shipped collection at checkout and conversion did not move.",
       sections: [
         {
           heading: "The problem",
           body: [
             "Outschool was absorbing sales tax it should have collected. Every US state treats online education differently, so there was no single rule to follow.",
-            "Adding a tax line at checkout is a price increase. Price increases usually cost you conversion."
+            "Adding a tax line at checkout is a price increase which usually cost you conversion."
           ]
         },
         {
           heading: "What I did",
           body: [
-            "Owned the product implementation. Worked through state-level tax law with legal and finance. Designed a checkout that introduced tax to users without spooking them, and shipped the backend to collect and remit across states."
+            "Owned the product implementation and worked through state-level tax law with legal and finance. Designed a checkout that introduced tax to users without scaring them, and shipped the backend to collect and remit across applicable states."
           ]
         },
         {
           heading: "What moved",
           body: [
-            "Conversion held flat despite a real price increase to users. Money back to the company, regulatory risk down, and proof that careful UX can absorb a price change that normally hurts."
+            "Conversion held flat despite a real price increase to users. This meant money going back to the company, a decrease in regulatory risk, and proof that careful UX can absorb a price change that normally hurts."
           ]
         }
       ],
@@ -195,33 +195,32 @@ module.exports = [
     tagline: "Put every core job two or three clicks away.",
     screenshot: "dashboard-rebuild.png",
     dashMock: true,
-    number: "2–3 clicks",
+    number: "2 clicks",
     metric: "to any core job",
     org: "Outschool",
     size: "lg",
     link: null,
     detail: {
       title: "I rebuilt the dashboard",
-      lede: "The dashboard was an afterthought, and users treated it like one. They left it to get anything done. I rebuilt it so the core jobs live in one place, two or three clicks away.",
+      lede: "The dashboard was an afterthought, and users treated it like one. They considered it an afterthought and left it to get anything done. I rebuilt it so the core jobs live in one place, two clicks away.",
       sections: [
         {
           heading: "The problem",
           body: [
             "Outschool's dashboard was effectively useless. You could not change payment, enroll in a class, adjust an enrollment, or message a teacher from one page. Even joining a class was confusing.",
-            "We interviewed dozens of users. They confirmed it. The dashboard was an afterthought, and they had built workarounds to do their core jobs."
+            "We interviewed dozens of users and they confirmed our hypothesis."
           ]
         },
         {
           heading: "What I did",
           body: [
-            "Redesigned the dashboard and the settings pages behind it, on top of a pile of design and tech debt. The bar was simple: pull the scattered actions into one place and make every core job reachable in two or three clicks."
+            "Redesigned the dashboard and the settings pages behind it, in addition to fixing a bunch of design and tech debt. The goal was to collect scattered actions into one place and make every core job reachable in a couple clicks."
           ]
         },
         {
           heading: "What moved",
           body: [
-            "Dashboard usage rose. Time to finish a core job dropped. Users said so too.",
-            "No single headline number here. The direction was clear and consistent across all three."
+            "The dashboard became useful again, users wrote into CX less, and subjectively found the design to be better."
           ]
         }
       ],
@@ -235,27 +234,25 @@ module.exports = [
     tagline: "Rebuilt search around the kid, not a blank box.",
     screenshot: "search-by-learner.png",
     learnerMock: true,
-    number: "Significant lift",
-    metric: "in search to enroll",
+    number: "+8%",
+    metric: "search to enroll rate",
     org: "Outschool",
     size: "md",
     link: null,
     detail: {
       title: "I built search by learner",
-      lede: "Outschool's search was a blank box. But parents never search in the abstract. They have one kid in mind, sometimes several. I made the child the starting point.",
+      lede: "Outschool's search was a blank box and generally not kid-centric. Parents rarely search in the abstract and typically have a kid in mind, sometimes several. I made the child the starting point.",
       sections: [
         {
           heading: "The problem",
           body: [
-            "Search was a generic bar. Type anything, good luck. The trouble is that a parent is never searching for themselves. They are searching for one child: their age, their interests, when they are free.",
-            "We already collected all of that at onboarding. Search ignored it."
+            "Search was a generic bar, despite the fact that parents were searching for a specific kid in almost all cases. We saw that users with more filters converted more often. We were collecting all the key data points during onboarding."
           ]
         },
         {
           heading: "What I did",
           body: [
-            "Made the learner explicit. You pick a child, and search preloads what we already know: age, interests, availability. From there you add only the part that is actually new.",
-            "Shipped and tested a few versions to find the one that landed."
+            "Made the learner explicit where you pick a child, and search preloads key data points like ages, availability, and formats of interest. Shipped and tested a few versions to find the one that worked best with our users."
           ]
         },
         {
@@ -282,27 +279,25 @@ module.exports = [
     size: "lg",
     detail: {
       title: "I launched four of Kajabi's core products",
-      lede: "Kajabi sold courses. I was the product marketer who took its next four products to market: Coaching, Podcasts, Newsletters, and a website builder. Years later, most of them are still core to the product.",
+      lede: "Kajabi sold a course builder product. I was the product marketer who took its next four products to market: Coaching, Podcasts, Newsletters, and a website builder. Years later, most of them are still core to the product.",
       sections: [
         {
           heading: "The problem",
           body: [
-            "To keep growing, Kajabi had to become the whole business-in-a-box for creators. That meant shipping and selling products it had never sold before.",
-            "New products do not sell themselves. Someone has to decide what each one is, who it is for, and why anyone should switch to it."
+            "To keep growing, Kajabi had to become the whole business-in-a-box for creators. That meant shipping products others were building in the market, so we could compete."
           ]
         },
         {
           heading: "What I did",
           body: [
-            "Owned go-to-market as the product marketer on Coaching, Podcasts, Newsletters, and the website builder. Positioning, messaging, and the launch itself.",
-            "We ran the launches as a series of Apple-style events, leadership on camera in the office walking through each product. I helped produce them and wrote scripts. Around each one we shipped the feature page, a demo video, an in-house podcast, blog posts, and the social."
+            "Owned GTM as the product marketer on Coaching, Podcasts, Newsletters, and the website builder. Positioning, messaging, and the launch itself.",
+            "We ran the launches as an Apple-style event (you can watch in the hero), leadership on camera in the office walking through each product. I helped produce the event and wrote scripts, worked with our creative marketing team to make it happen. Around each one we shipped the feature page, a demo video, an in-house podcast, blog posts, and the social media content."
           ]
         },
         {
           heading: "What lasted",
           body: [
-            "No clean attribution here, and I will not invent one. Product marketing rarely gets a single number it can honestly own.",
-            "The durable proof is on Kajabi's site. Five years on, Coaching, Podcasts, and Newsletters are still core products, positioned much the way we launched them."
+            "No clean attribution here, and I will not invent one. Product marketing rarely gets a single number it can honestly own. The proof is that over five years later, these products are still core to the platform, positioned in a similar way to how we launched them."
           ]
         }
       ],
@@ -324,27 +319,26 @@ module.exports = [
     linkLabel: "See the tutoring page",
     detail: {
       title: "I launched tutoring as a new category",
-      lede: "Outschool had group classes, not tutoring. I led the go-to-market that made tutoring its own category: positioning, pricing, lifecycle, and the launch page. Bookings grew 15% year over year.",
+      lede: "Outschool was mainly seen as a group class platform and tutoring was a not-so-secret category of classes. I led the GTM that made tutoring its own “official” category: positioning, pricing, lifecycle, and the launch page. Bookings grew 15% YoY.",
       sections: [
         {
           heading: "The problem",
           body: [
-            "Parents wanted one-on-one help, not only group classes. Outschool had the supply to do it but no real tutoring offering and no demand pointed at one.",
+            "Parents wanted one-on-one help, not only group classes. Outschool had the supply to do it but no real tutoring offering and no formal product support.",
             "The category was there in theory and invisible in practice, buried inside a class catalog built for something else."
           ]
         },
         {
           heading: "What I did",
           body: [
-            "Led GTM for tutoring as a new category. Set the positioning and pricing, built the lifecycle around it, and shipped the launch surface parents landed on.",
+            "Led GTM for tutoring as a new category. Set the positioning, lifecycle around it, and shipped the landing page parents went to.",
             "The job was to make tutoring legible and findable on its own terms, not a filter on the class search."
           ]
         },
         {
           heading: "What moved",
           body: [
-            "Tutoring bookings grew 15% year over year, and it became one of the platform's core growth levers.",
-            "This is a number I can defend. I owned the launch that opened the category."
+            "Tutoring bookings grew 15% YoY, and it became one of the platform's core growth levers."
           ]
         }
       ],
@@ -354,39 +348,36 @@ module.exports = [
   {
     slug: "landing-page-experiments",
     area: "land",
-    label: "Landing-page testing",
-    tagline: "Ran the experiment loop on our highest-traffic pages.",
+    label: "Landing-page development & testing",
+    tagline: "Created and tested category landing pages.",
     screenshot: "landing-page-experiments.png",
     landMock: true,
-    number: "Always testing",
-    metric: "on the pages that carry paid traffic",
+    number: "+25,000",
+    metric: "new landing pages",
     org: "Outschool",
     size: "md",
     link: "https://outschool.com",
     linkLabel: "See Outschool",
     detail: {
-      title: "I ran our landing-page experiment program",
-      lede: "The homepage and marketing landing pages are where Outschool's paid traffic lands. My pod ran the experiments on them, and on the Facebook ads feeding them, so positioning got tested instead of argued about.",
+      title: "I developed and iterated on our core marketing pages",
+      lede: "Outschool has no real mechanism to test landing pages without significant engineering effort, creating an inefficient loop and poor UX.",
       sections: [
         {
           heading: "The problem",
           body: [
-            "Facebook is one of Outschool's biggest sources of business. All that paid traffic hits a handful of pages: the homepage, summer camps, programming, homeschool.",
-            "Small changes to those pages move real money. Most opinions about them were still just opinions."
+            "We had no way to quickly develop and self-serve landing pages on Outschool without engineering intervention, in addition to weak performance in SEO and SEM."
           ]
         },
         {
           heading: "What I did",
           body: [
-            "Ran a steady experiment program across the homepage and the top marketing landing pages, plus the ad creative pointed at them. Tested headlines, layout, and positioning.",
-            "Kept what won, cut what did not, and let the traffic settle the arguments."
+            "Categorized our catalog, developed a system for automatically generating pages, iterated on designs, and created the copy for thousands of pages both manually and not."
           ]
         },
         {
           heading: "What moved",
           body: [
-            "No single headline number I would stand behind here, and I would rather say that than invent one.",
-            "The value was the cadence. A constant test loop on the pages and ads that carry the most acquisition traffic, so the funnel kept getting a little better instead of guessing."
+            "The value was the cadence and unlock for the team. This content system allowed marketing to operate free of the product and eng backlog, creating pages for SEO and SEM in minutes instead of weeks."
           ]
         }
       ],
