@@ -1536,25 +1536,39 @@ main {
   color: #fff;
   border-radius: var(--radius);
   padding: clamp(28px, 4vw, 40px);
-  box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
-  transition: box-shadow 0.5s ease, transform 0.4s ease;
+  transition: transform 0.4s ease;
 }
-/* Subtle colorful glow that cycles hues on hover. A box-shadow renders outside
-   the box, so it never bleeds over the card's interior. */
+/* Subtle colorful glow that cycles hues on hover. Lives on a separate layer
+   whose opacity fades in (so it swells in, not flicks on); the box-shadow
+   renders outside the box, so it never bleeds over the card's interior. */
+.steal-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 22px 1px rgba(99, 102, 241, 0.5), 0 0 46px 7px rgba(99, 102, 241, 0.18);
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+}
 .steal-band:hover {
   transform: translateY(-2px);
+}
+.steal-band:hover::after {
+  opacity: 1;
   animation: stealGlow 7s linear infinite;
 }
 @keyframes stealGlow {
   0%,
-  100% { box-shadow: 0 0 44px 2px rgba(99, 102, 241, 0.5), 0 0 90px 14px rgba(99, 102, 241, 0.18); }
-  25%  { box-shadow: 0 0 44px 2px rgba(236, 72, 153, 0.5), 0 0 90px 14px rgba(236, 72, 153, 0.18); }
-  50%  { box-shadow: 0 0 44px 2px rgba(245, 158, 11, 0.5), 0 0 90px 14px rgba(245, 158, 11, 0.18); }
-  75%  { box-shadow: 0 0 44px 2px rgba(34, 211, 238, 0.5), 0 0 90px 14px rgba(34, 211, 238, 0.18); }
+  100% { box-shadow: 0 0 22px 1px rgba(99, 102, 241, 0.5), 0 0 46px 7px rgba(99, 102, 241, 0.18); }
+  25%  { box-shadow: 0 0 22px 1px rgba(236, 72, 153, 0.5), 0 0 46px 7px rgba(236, 72, 153, 0.18); }
+  50%  { box-shadow: 0 0 22px 1px rgba(245, 158, 11, 0.5), 0 0 46px 7px rgba(245, 158, 11, 0.18); }
+  75%  { box-shadow: 0 0 22px 1px rgba(34, 211, 238, 0.5), 0 0 46px 7px rgba(34, 211, 238, 0.18); }
 }
 @media (prefers-reduced-motion: reduce) {
   .steal-band { transition: none; }
-  .steal-band:hover { transform: none; animation: none; box-shadow: 0 0 44px 2px rgba(99, 102, 241, 0.45); }
+  .steal-band:hover { transform: none; }
+  .steal-band:hover::after { animation: none; }
 }
 .steal-band-eyebrow {
   display: inline-flex;
