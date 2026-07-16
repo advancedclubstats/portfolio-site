@@ -357,7 +357,7 @@ module.exports = [
     org: "Outschool",
     size: "md",
     link: "https://outschool.com/online-classes/popular",
-    linkLabel: "See Outschool",
+    linkLabel: "See the category pages",
     detail: {
       title: "I ran how the marketplace surfaced and sold its catalog",
       lede: "Outschool had thousands of classes and no deliberate system for putting the right ones in front of the right parents. Discovery was thin, SEO was weak, and there was no way to build or test a page without engineering.",
